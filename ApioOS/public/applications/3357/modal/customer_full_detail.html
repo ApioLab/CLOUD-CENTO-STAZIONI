@@ -1,0 +1,379 @@
+<style>
+    .redBoarder {
+    }
+
+    .backgrey {
+
+        background-color: #f5f5f5 !important;
+    }
+
+    .labelora {
+        font-size: 14px !important;
+        padding-left: 8px !important;
+    }
+
+    .redBoarder .md-icon {
+        border-color: red;
+    }
+
+    .md-toolbar-tools {
+        min-height: 50px !important;
+        height: 50px !important;
+    }
+
+    .label {
+        font-size: 14px !important;
+        color: #ffffff !important;
+    }
+
+    .uli-color-bar {
+        background-color: rgb(33, 150, 243) !important;
+    }
+</style>
+<md-dialog aria-label="{{value.name}} class detail" style="min-width: 60%;">
+    <form ng-cloak>
+        <md-toolbar class="uli-color-bar md-toolbar-tools">
+            <div class="md-toolbar-tools">
+                <h2>{{value.id}}: {{value.nome}} {{value.cognome}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="delTesserato()">
+                    <md-icon class="material-icons" aria-label="Delete Tesserato">delete</md-icon>
+                </md-button>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon class="material-icons" aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+
+
+            <md-card style="margin-top: 10px;">
+
+
+                <!-- <div class="md-dialog-content"> -->
+
+                <md-content id="new_class_container">
+
+                    <div layout="row" layout-wrap>
+                        <!--                         <p flex="100" style="margin: 0;">Inserisci le seguenti informazioni:</p> -->
+                        <md-list flex="100">
+
+
+                            <md-list-item>
+                                <span flex="40">Nome</span>
+                                <md-input-container flex class="md-block" placeholder="Nome" style="margin: 0;">
+                                    <input ng-model="value.nome">
+                                </md-input-container>
+                            </md-list-item>
+                            <md-list-item>
+                                <span flex="40">Cognome</span>
+                                <md-input-container flex class="md-block" placeholder="Cognome" style="margin: 0;">
+                                    <input ng-model="value.cognome">
+                                </md-input-container>
+                            </md-list-item>
+                            <md-list-item>
+                                <span flex="40">Data Nascita</span>
+                                <md-input-container flex class="md-block" placeholder="Cognome" style="margin: 0;">
+                                    <input ng-model="value.data_nascita">
+                                </md-input-container>
+                            </md-list-item>
+                            <md-list-item>
+                                <span flex="40">Codice Fiscale</span>
+                                <md-input-container flex class="md-block" placeholder="Cognome" style="margin: 0;">
+                                    <input ng-model="value.codice_fiscale">
+                                </md-input-container>
+                            </md-list-item>
+                            <md-list-item>
+                                <span flex="40">Inizio Abbonamento</span>
+                                <md-input-container flex class="md-block" placeholder="Cognome" style="margin: 0;">
+                                    <input ng-model="value.inizio_abbonamento">
+                                </md-input-container>
+                            </md-list-item>
+                            <md-list-item>
+                                <span flex="40">Fine Abbonamento</span>
+                                <md-input-container flex class="md-block" placeholder="Cognome" style="margin: 0;">
+                                    <input ng-model="value.scadenza_abbonamento">
+                                </md-input-container>
+                            </md-list-item>
+                            <md-list-item>
+                                <span flex="40">Inizio Isc. Assicurazione</span>
+                                <md-input-container flex class="md-block" placeholder="Cognome" style="margin: 0;">
+                                    <input ng-model="value.inizio_assicurazione">
+                                </md-input-container>
+                            </md-list-item>
+                            <md-list-item>
+                                <span flex="40">Fine Isc. Assicurazione</span>
+                                <md-input-container flex class="md-block" placeholder="Cognome" style="margin: 0;">
+                                    <input ng-model="value.scadenza_assicurazione">
+                                </md-input-container>
+                            </md-list-item>
+                            <md-list-item>
+                                <md-input-container flex>
+                                    <label>Assenze settimanali</label>
+                                    <input type="text" ng-model="assenze_settimanali" disabled/>
+                                </md-input-container>
+                            </md-list-item>
+                            <md-list-item>
+                                <md-input-container flex>
+                                    <label>Assenze mesili</label>
+                                    <input type="text" ng-model="assenze_mensili" disabled/>
+                                </md-input-container>
+                            </md-list-item>
+                            <md-list-item>
+                                <md-input-container flex>
+                                    <label>Assenze annuali</label>
+                                    <input type="text" ng-model="assenze_annuali" disabled/>
+                                </md-input-container>
+                            </md-list-item>
+                            <md-list-item>
+                                <md-input-container flex>
+                                    <label>Recupero</label>
+                                    <input type="text" ng-model="recupero" disabled/>
+                                </md-input-container>
+                            </md-list-item>
+                            <md-list-item>
+                                <md-input-container flex>
+                                    <label>Corso seguito</label>
+                                    <md-select ng-model="value.idCorso">
+                                        <md-option ng-value="c.id" ng-repeat="c in CorsiScuolaNuoto">{{c.nome}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </md-list-item>
+
+                        </md-list>
+                    </div>
+
+                </md-content>
+            </md-card>
+
+
+            <!--
+                        <div class="md-dialog-content">
+                            <md-content id="new_gateways_container">
+                                <div layout="row">
+                                    <md-list flex class="listTableStyle">
+                                        <md-list-item class="listTableItemStyle" flex>
+                                            <md-input-container flex>
+                                                <label>Nome</label>
+                                                <input type="text" ng-model="value.nome"/>
+                                            </md-input-container>
+                                        </md-list-item>
+                                        <md-list-item class="listTableItemStyle">
+                                            <md-input-container flex>
+                                                <label>Cognome</label>
+                                                <input type="text" ng-model="value.cognome"/>
+                                            </md-input-container>
+                                        </md-list-item>
+                                        <md-list-item class="listTableItemStyle">
+                                            <md-input-container flex>
+                                                <label>Data Nascita</label>
+                                                <input type="text" ng-model="value.data_nascita"/>
+                                            </md-input-container>
+                                        </md-list-item>
+                                        <md-list-item class="listTableItemStyle">
+                                            <md-input-container flex>
+                                                <label>Codice Fiscale</label>
+                                                <input type="text" ng-model="value.codice_fiscale"/>
+                                            </md-input-container>
+                                        </md-list-item>
+                                        <md-list-item class="listTableItemStyle">
+                                            <md-input-container flex>
+                                                <label>Inizio Abbonamento</label>
+                                                <input type="text" ng-model="value.inizio_abbonamento"/>
+                                            </md-input-container>
+                                        </md-list-item>
+                                        <md-list-item class="listTableItemStyle">
+                                            <md-input-container flex>
+                                                <label>Scadenza Abbonamento</label>
+                                                <input type="text" ng-model="value.scadenza_abbonamento"/>
+                                            </md-input-container>
+                                        </md-list-item>
+                                        <md-list-item class="listTableItemStyle">
+                                            <md-input-container flex>
+                                                <label>Inizio Assicurazione</label>
+                                                <input type="text" ng-model="value.inizio_assicurazione"/>
+                                            </md-input-container>
+                                        </md-list-item>
+                                        <md-list-item class="listTableItemStyle">
+                                            <md-input-container flex>
+                                                <label>Scadenza Assicurazione</label>
+                                                <input type="text" ng-model="value.scadenza_assicurazione"/>
+                                            </md-input-container>
+                                        </md-list-item>
+                                        <md-list-item class="listTableItemStyle">
+                                            <md-input-container flex>
+                                                <label>Assenze settimanali</label>
+                                                <input type="text" ng-model="assenze_settimanali" disabled/>
+                                            </md-input-container>
+                                        </md-list-item>
+                                        <md-list-item class="listTableItemStyle">
+                                            <md-input-container flex>
+                                                <label>Assenze mesili</label>
+                                                <input type="text" ng-model="assenze_mensili" disabled/>
+                                            </md-input-container>
+                                        </md-list-item>
+                                        <md-list-item class="listTableItemStyle">
+                                            <md-input-container flex>
+                                                <label>Assenze annuali</label>
+                                                <input type="text" ng-model="assenze_annuali" disabled/>
+                                            </md-input-container>
+                                        </md-list-item>
+                                        <md-list-item class="listTableItemStyle">
+                                            <md-input-container flex>
+                                                <label>Corso seguito</label>
+                                                <md-select ng-model="value.idCorso">
+                                                    <md-option ng-value="c.id" ng-repeat="c in CorsiScuolaNuoto">{{c.nome}}
+                                                    </md-option>
+                                                </md-select>
+                                            </md-input-container>
+                                        </md-list-item>
+
+                                        <md-list-item class="listTableItemStyle">
+                                            <md-input-container flex>
+                                                <label>Recupero</label>
+                                                <input type="text" ng-model="recupero" disabled/>
+                                            </md-input-container>
+                                        </md-list-item>
+                                    </md-list>
+
+                                </div>
+                            </md-content>
+                        </div>
+            -->
+            <!--
+            <md-card>
+                        <md-list class="poolList" flex>
+                            <md-list-item flex style="background-color: #5d6dcb; color: white;">
+                                <p flex>Orario</p>
+                                <p flex>Lun</p>
+                                <p flex>Mar</p>
+                                <p flex>Mer</p>
+                                <p flex>Gio</p>
+                                <p flex>Ven</p>
+                                <p flex>Sab</p>
+                                <p flex>Dom</p>
+                            </md-list-item>
+                            <md-list-item flex ng-repeat="t in mydata.time[0]">
+                                <p class="labelora" flex>{{t.start}} - {{t.end}}</p>
+                                <md-checkbox flex ng-disabled="!esistenzaSettimanale[1][$index]" ng-model="checkBoxModel[1][$index]"
+                                             ng-click="register($event, 1, $index)"
+                                             ng-class="{'redBoarder': redBorder[1][$index]}"></md-checkbox>
+                                <md-checkbox flex ng-disabled="!esistenzaSettimanale[2][$index]" ng-model="checkBoxModel[2][$index]"
+                                             ng-click="register($event, 2, $index)"
+                                             ng-class="{'redBoarder': redBorder[2][$index]}"></md-checkbox>
+                                <md-checkbox flex ng-disabled="!esistenzaSettimanale[3][$index]" ng-model="checkBoxModel[3][$index]"
+                                             ng-click="register($event, 3, $index)"
+                                             ng-class="{'redBoarder': redBorder[3][$index]}"></md-checkbox>
+                                <md-checkbox flex ng-disabled="!esistenzaSettimanale[4][$index]" ng-model="checkBoxModel[4][$index]"
+                                             ng-click="register($event, 4, $index)"
+                                             ng-class="{'redBoarder': redBorder[4][$index]}"></md-checkbox>
+                                <md-checkbox flex ng-disabled="!esistenzaSettimanale[5][$index]" ng-model="checkBoxModel[5][$index]"
+                                             ng-click="register($event, 5, $index)"
+                                             ng-class="{'redBoarder': redBorder[5][$index]}"></md-checkbox>
+                                <md-checkbox flex ng-disabled="!esistenzaSettimanale[6][$index]" ng-model="checkBoxModel[6][$index]"
+                                             ng-click="register($event, 6, $index)"
+                                             ng-class="{'redBoarder': redBorder[6][$index]}"></md-checkbox>
+                                <md-checkbox flex ng-disabled="!esistenzaSettimanale[0][$index]" ng-model="checkBoxModel[0][$index]"
+                                             ng-click="register($event, 0, $index)"
+                                             ng-class="{'redBoarder': redBorder[0][$index]}"></md-checkbox>
+                            </md-list-item>
+                        </md-list>
+            </md-card>
+            -->
+
+
+            <md-card>
+                <md-tabs md-selected="selectedIndex" md-dynamic-height md-border-bottom>
+                    <md-tab ng-repeat="c in Corsie" style="font-size: 12px;" label="{{ c.name }}">
+
+                        <md-card>
+                            <md-table-container>
+                                <table md-table md-row-select="false" multiple="false" ng-model="selected"
+                                       md-progress="promise">
+                                    <thead ng-if="!options.decapitate" md-head>
+                                    <!--           <table md-table md-head class="uli-color-bar md-toolbar-tools"> -->
+                                    <tr md-row class="uli-color-bar">
+                                        <th md-column><span class="label">Orario</span></th>
+                                        <th md-column><span class="label">Lun</span></th>
+                                        <th md-column><span class="label">Mar</span></th>
+                                        <th md-column><span class="label">Mer</span></th>
+                                        <th md-column><span class="label">Gio</span></th>
+                                        <th md-column><span class="label">Ven</span></th>
+                                        <th md-column><span class="label">Sab</span></th>
+                                        <th md-column><span class="label">Dom</span></th>
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody md-body class="backgrey">
+                                    <tr md-row ng-repeat="t in mydata.time[0]">
+                                        <td><p class="labelora">{{t.start}} - {{t.end}}</p></td>
+                                        <td>
+                                            <md-checkbox flex ng-disabled="!esistenzaSettimanale[$parent.$index][1][$index]"
+                                                         ng-model="checkBoxModel[$parent.$index][1][$index]"
+                                                         ng-click="register($event, $parent.$index, 1, $index)"
+                                                         ng-class="{'redBoarder': redBorder[$parent.$index][1][$index]}"></md-checkbox>
+                                        </td>
+                                        <td>
+                                            <md-checkbox flex ng-disabled="!esistenzaSettimanale[$parent.$index][2][$index]"
+                                                         ng-model="checkBoxModel[$parent.$index][2][$index]"
+                                                         ng-click="register($event, $parent.$index, 2, $index)"
+                                                         ng-class="{'redBoarder': redBorder[$parent.$index][2][$index]}"></md-checkbox>
+                                        </td>
+                                        <td>
+                                            <md-checkbox flex ng-disabled="!esistenzaSettimanale[$parent.$index][3][$index]"
+                                                         ng-model="checkBoxModel[$parent.$index][3][$index]"
+                                                         ng-click="register($event, $parent.$index, 3, $index)"
+                                                         ng-class="{'redBoarder': redBorder[$parent.$index][3][$index]}"></md-checkbox>
+                                        </td>
+                                        <td>
+                                            <md-checkbox flex ng-disabled="!esistenzaSettimanale[$parent.$index][4][$index]"
+                                                         ng-model="checkBoxModel[$parent.$index][4][$index]"
+                                                         ng-click="register($event, $parent.$index, 4, $index)"
+                                                         ng-class="{'redBoarder': redBorder[$parent.$index][4][$index]}"></md-checkbox>
+                                        </td>
+                                        <td>
+                                            <md-checkbox flex ng-disabled="!esistenzaSettimanale[$parent.$index][5][$index]"
+                                                         ng-model="checkBoxModel[$parent.$index][5][$index]"
+                                                         ng-click="register($event, $parent.$index, 5, $index)"
+                                                         ng-class="{'redBoarder': redBorder[$parent.$index][5][$index]}"></md-checkbox>
+                                        </td>
+                                        <td>
+                                            <md-checkbox flex ng-disabled="!esistenzaSettimanale[$parent.$index][6][$index]"
+                                                         ng-model="checkBoxModel[$parent.$index][6][$index]"
+                                                         ng-click="register($event, $parent.$index, 6, $index)"
+                                                         ng-class="{'redBoarder': redBorder[$parent.$index][6][$index]}"></md-checkbox>
+                                        </td>
+                                        <td>
+                                            <md-checkbox flex ng-disabled="!esistenzaSettimanale[$parent.$index][0][$index]"
+                                                         ng-model="checkBoxModel[$parent.$index][0][$index]"
+                                                         ng-click="register($event, $parent.$index, 0, $index)"
+                                                         ng-class="{'redBoarder': redBorder[$parent.$index][0][$index]}"></md-checkbox>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </md-table-container>
+                        </md-card>
+
+                    </md-tab>
+                </md-tabs>
+            </md-card>
+
+
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button class="md-primary md-raised uli-color-bar" ng-click="modifyCustomer()" style="padding: 0 10px;">
+                Salva
+            </md-button>
+        </md-dialog-actions>
+
+        <!--<md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button class="md-primary md-raised" ng-click="createNewEvent()" style="padding: 0 10px;">Add Event</md-button>
+        </md-dialog-actions>-->
+
+    </form>
+</md-dialog>

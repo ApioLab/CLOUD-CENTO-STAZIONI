@@ -1,0 +1,185 @@
+<md-dialog id="view_ticket_dialog_container" aria-label="Ticket nr. {{value.idTicket}}" style="width: 100%;">
+	<form ng-cloak>
+	    
+	    <md-toolbar>
+	    	<div class="md-toolbar-tools">
+	        	<h2>Ticket nr. {{value.idTicket}}</h2>
+				<span flex></span>
+				<md-button class="md-icon-button" ng-click="cancel()">
+					<md-icon aria-label="Close dialog"><i class="material-icons" style="color: white;">close</i></md-icon>
+				</md-button>
+	    	</div>
+	    </md-toolbar>
+	
+	    <md-dialog-content>
+	    	<div class="md-dialog-content">
+	    		
+	    		<section layout="row" layout-align="space-between center" layout-align-sm="start center" layout-align-xs="center start" layout-wrap>
+				    <md-button ng-show="value.stato === 'Aperto'" ng-if="role==='superAdmin' || role==='guest' && subrole==='direttore' || role==='guest' && subrole==='operatore'" class="md-raised md-primary ticket_actions_button" ng-click="startWork()">Inizio lavori</md-button>
+				    
+				    <md-button ng-show="value.stato === 'In Corso'" ng-if="role==='superAdmin' || role==='guest' && subrole==='direttore' || role==='guest' && subrole==='operatore'" class="md-raised md-primary ticket_actions_button" ng-click="stopWork()">Fine lavori</md-button>
+				    
+				    <md-button ng-show="value.stato === 'In Attesa'" ng-if="role==='superAdmin' || role==='guest' && subrole==='direttore'" class="md-raised md-primary ticket_actions_button" ng-click="completedWork()">Completato</md-button>
+				    
+				    <md-button ng-hide="value.stato === 'Completato' || value.stato === 'Eliminato'" ng-if="role==='superAdmin' || role==='guest' && subrole==='callcenter'" class="md-raised md-warn ticket_actions_button" ng-click="deleteTicket()">Elimina Ticket</md-button>
+			    </section>
+	    		
+	    		<section style="margin-top: 20px;">
+		    		<md-content flex layout-padding>
+		    			
+						<md-list class="md-dense ticket_list" flex>
+							<md-list-item class="ticket">
+								<p flex-gt-xs="30" flex-xs="35">Ticket ID</p>
+								<p flex>{{value.idTicket}}</p>
+							</md-list-item>
+							<md-divider></md-divider>
+							<md-list-item class="ticket">
+								<p flex-gt-xs="30" flex-xs="35">Descrizione</p>
+								<p flex>{{value.descrizione}}</p>
+							</md-list-item>
+							<md-divider></md-divider>
+							<md-list-item class="ticket">
+								<p flex-gt-xs="30" flex-xs="35">Stato</p>
+								<p flex>{{value.stato}}</p>
+							</md-list-item>
+							<md-divider></md-divider>
+							<md-list-item class="ticket">
+								<p flex-gt-sm="30" flex-xs="35">Stazione</p>
+								<p flex>{{value.stazione.nome}}</p>
+							</md-list-item>
+							<md-divider></md-divider>
+							<md-list-item class="ticket">
+								<p flex-gt-sm="30" flex-xs="35">Operatore Call Center</p>
+								<p flex>{{value.callCenter.nome + " " + value.callCenter.cognome}}</p>
+							</md-list-item>
+							<md-divider></md-divider>
+							<md-list-item class="ticket">
+								<p flex-gt-sm="30" flex-xs="35">Direttore Cantiere</p>
+								<p flex>{{value.direttore.nome + " " + value.direttore.cognome}}</p>
+							</md-list-item>
+							<md-divider></md-divider>
+							<md-list-item class="ticket">
+								<p flex-gt-sm="30" flex-xs="35">Operatore Tecnico</p>
+								<p flex>{{value.operatore.nome + " " + value.operatore.cognome}}</p>
+							</md-list-item>
+							<md-divider></md-divider>
+							<md-list-item class="ticket">
+								<p flex-gt-sm="30" flex-xs="35">Data Apertura</p>
+								<p flex>{{value.dataApertura | date:'dd/MM/yyyy'}}</p>
+							</md-list-item>
+							<md-divider></md-divider>
+							<md-list-item class="ticket">
+								<p flex-gt-sm="30" flex-xs="35">Data inizio lavori</p>
+								<p flex>{{value.dataInizioLavori | date:'dd/MM/yyyy'}}</p>
+							</md-list-item>
+							<md-divider></md-divider>
+							<md-list-item class="ticket">
+								<p flex-gt-sm="30" flex-xs="35">Data lavori finiti</p>
+								<p flex>{{value.dataFineLavori | date:'dd/MM/yyyy'}}</p>
+							</md-list-item>
+							<md-divider></md-divider>
+							<md-list-item class="ticket">
+								<p flex-gt-sm="30" flex-xs="35">Data chiusura</p>
+								<p flex>{{value.dataChiusura | date:'dd/MM/yyyy'}}</p>
+							</md-list-item>
+						</md-list>
+															
+					</md-content>
+	    		</section>
+	    		
+	    		
+	    		<section ng-hide="value.stato === 'Aperto'" layout="row" layout-align-gt-sm="space-between start" layout-align-sm="start center" layout-align-xs="center start" layout-wrap style="margin-top: 10px;">
+			    	
+			    	<md-card id="note_card" flex-gt-sm="50" flex-xs="100" style="background-color: rgba(249, 237, 105, 0.8);">
+				        <md-card-header>
+				        	<md-card-header-text>
+				            	<span class="md-title">Note</span>
+							</md-card-header-text>
+						</md-card-header>
+				        <md-card-content style="padding-top: 0;">
+				        
+				        	<md-input-container md-no-float style="width: 100%;">
+					        	<textarea ng-model="value.note" placeholder="Scrivi qualcosa qui...." style="min-height: 150px;" md-no-resize ng-blur="saveNote()"></textarea>
+					        </md-input-container>
+					        
+				        </md-card-content>
+		    		</md-card>
+		    		
+		    		<md-card flex-gt-sm="45" flex-xs="100">
+				        <md-card-header>
+				        	<md-card-header-text>
+				            	<span class="md-title">Immagini</span>
+							</md-card-header-text>
+						</md-card-header>
+				        <md-card-content>
+				        	
+				        	<choose-file layout="row" flex layout-padding>
+							    <input id="imgInput" nv-file-select uploader="uploader" type="file" class="ng-hide">
+							    <md-input-container flex class="md-block">
+							    	<input type="text" ng-model="fileName" disabled>
+							    </md-input-container>
+							    <div>
+							    	<md-button id="uploadButton" class="md-fab md-mini" style="padding: 0;">
+							        	<md-icon class="material-icons">attach_file</md-icon>
+									</md-button>
+							    </div>
+							</choose-file>
+							
+							
+							<div flex>
+								<div layout-align="space-around" layout-padding>
+									<a target="_blank" ng-repeat="item in value.immagini" style="width: 50%;"
+										 href="/applications/{{object.objectId}}/images/{{value.idTicket}}/{{item}}">
+										<div class="img_container" style="background: url(/applications/{{object.objectId}}/images/{{value.idTicket}}/{{item}}) no-repeat center center; background-size: cover;"></div>
+									</a>
+								</div>
+							</div>
+				        	
+				        	<div>
+					    		<p flex>{{value.immagini[$index]}}</p>
+				    		</div>
+					        
+				        </md-card-content>
+		    		</md-card>
+			    	
+		    	</section>
+	    		
+	    		
+<!--
+	    		<section layout="row" layout-align-gt-sm="space-around start" layout-align-sm="start center" layout-align-xs="center start" layout-wrap style="margin-top: 25px;">
+			    	
+			    	<md-content flex-gt-sm="50" flex-xs="100" style="background-color: rgba(249, 237, 105, 0.8);">
+				        <div layout="column" layout-padding>
+					        <span>Note</span>
+					        <md-input-container md-no-float>
+					        	<textarea ng-model="value.note" placeholder="Scrivi qualcosa qui...." style="min-height: 150px;" md-no-resize></textarea>
+					        </md-input-container>
+					    </div>
+			        </md-content>
+			        
+			        <md-content flex-gt-sm="50" flex-xs="100" style="background-color: rgba(249, 237, 105, 0.8);">
+				        <div layout="column" layout-padding>
+					        <span>Immagini</span>
+					        <div>
+					    		<p flex>{{value.immagini[$index]}}</p>
+				    		</div>
+					    </div>
+			        </md-content>
+			    	
+		    	</section>
+-->
+
+	    		
+	    	</div>
+	    </md-dialog-content>
+	
+<!--
+	    <md-dialog-actions layout="row">
+	    	<span flex></span>
+	    	<md-button class="md-warn" ng-click="answer('delete_ticket')">Elimina Ticket</md-button>
+	    	<md-button class="md-primary" ng-click="answer('save')">Salva</md-button>
+	    </md-dialog-actions>
+-->
+	    
+	</form>
+</md-dialog>

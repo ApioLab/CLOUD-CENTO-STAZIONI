@@ -1,0 +1,240 @@
+<style>
+    .redBoarder {
+    }
+
+.labelora{
+font-size: 14px !important;
+padding-left: 8px !important;
+}
+    .redBoarder .md-icon {
+        border-color: red;
+    }
+    
+    .md-toolbar-tools {	
+	min-height: 50px !important;
+	height: 50px !important;
+}
+
+.label {
+	font-size: 14px !important;
+	color: #ffffff !important;
+}
+
+.uli-color-bar{
+	background-color: rgb(33,150,243) !important; 
+}
+</style>
+
+
+<md-dialog aria-label="Add a new instructor" style="min-width: 50%;">
+    <form ng-cloak>
+        <md-toolbar class="uli-color-bar md-toolbar-tools">
+            <div class="md-toolbar-tools">
+                <h2>Aggiungi un nuovo tesserato</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon class="material-icons" aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+
+
+        <md-dialog-content>
+ <md-card style="margin-top: 10px;">
+ 
+<!--              <div class="md-dialog-content"> -->
+
+                <md-content id="new_class_container">
+
+                    <div layout="row" layout-wrap>
+<!--                         <p flex="100" style="margin: 0;">Inserisci le seguenti informazioni:</p> -->
+                        <md-list flex="100">
+                            <md-list-item>
+                                <span flex="40">Nome</span>
+                                <md-input-container flex class="md-block" placeholder="Nome" style="margin: 0;">
+                                    <input ng-model="newCustomer.nome">
+                                </md-input-container>
+                            </md-list-item>
+                            <md-list-item>
+                                <span flex="40">Cognome</span>
+                                <md-input-container flex class="md-block" placeholder="Cognome" style="margin: 0;">
+                                    <input ng-model="newCustomer.cognome">
+                                </md-input-container>
+                            </md-list-item>
+                            <md-list-item>
+                                <span flex="40">Data Nascita</span>
+                                <md-input-container flex class="md-block" placeholder="Cognome" style="margin: 0;">
+                                    <input type="date" name="input" ng-model="newCustomer.data_nascita"
+       placeholder="dd-MM-yyyy" min="1940-01-01" max="2017-12-31" required />
+                                </md-input-container>
+                            </md-list-item>
+                            <md-list-item>
+                                <span flex="40">Codice Fiscale</span>
+                                <md-input-container flex class="md-block" placeholder="Cognome" style="margin: 0;">
+                                    <input ng-model="newCustomer.codice_fiscale">
+                                </md-input-container>
+                            </md-list-item>
+                            <md-list-item>
+                                <span flex="40">Inizio Abbonamento</span>
+                                <md-input-container flex class="md-block" placeholder="Cognome" style="margin: 0;">
+                                   <input type="date" name="input" ng-model="newCustomer.inizio_abbonamento"
+       placeholder="dd-MM-yyyy" min="2017-01-01" max="2030-12-31" required />
+                                </md-input-container>
+                            </md-list-item>
+                            <md-list-item>
+                                <span flex="40">Fine Abbonamento</span>
+                                <md-input-container flex class="md-block" placeholder="Cognome" style="margin: 0;">
+                                    <input type="date" name="input" ng-model="newCustomer.fine_abbonament"
+       placeholder="dd-MM-yyyy" min="2017-01-01" max="2030-12-31" required />
+                                </md-input-container>
+                            </md-list-item>
+                            <md-list-item>
+                                <span flex="40">Inizio Isc. Assicurazione</span>
+                                <md-input-container flex class="md-block" placeholder="Cognome" style="margin: 0;">
+                                    <input type="date" name="input" ng-model="newCustomer.inizio_assicurazione"
+       placeholder="dd-MM-yyyy" min="2013-01-01" max="2030-12-31" required />
+                                </md-input-container>
+                            </md-list-item>
+                             <md-list-item>
+                                <span flex="40">Fine Isc. Assicurazione</span>
+                                <md-input-container flex class="md-block" placeholder="Cognome" style="margin: 0;">
+                                    <input type="date" name="input" ng-model="newCustomer.fine_assicurazione"
+       placeholder="dd-MM-yyyy" min="2013-01-01" max="2030-12-31" required />
+                                </md-input-container>
+                            </md-list-item>
+                            <md-list-item>
+                                <span flex="40">Corso</span>
+<!--
+                                <md-input-container flex class="md-block" placeholder="Cognome" style="margin: 0;">
+                                    <input ng-model="newCustomer.corso">
+                                </md-input-container>
+-->
+<md-select ng-model="cosricustomer">
+                            <md-option  ng-model="newCustomer.corsi_seguiti[$index]" ng-repeat="n in Corsi">
+									{{n.nome}}</md-option>
+<!--
+<md-option>Ambientamento</md-option>
+<md-option>Livello 1</md-option>
+<md-option>Livello 2</md-option>
+<md-option>Livello 3</md-option>
+<md-option>Livello 4</md-option>
+-->
+                            </md-select>
+                            </md-list-item>
+
+                        </md-list>
+
+                    </div>
+
+                </md-content>
+
+<!--             </div> -->
+        </md-card>
+
+<!--
+<md-card>
+            <md-list class="poolList" flex>
+                <md-list-item flex style="background-color: #5d6dcb; color: white;">
+                    <p flex>Orario</p>
+                    <p flex>Lun</p>
+                    <p flex>Mar</p>
+                    <p flex>Mer</p>
+                    <p flex>Gio</p>
+                    <p flex>Ven</p>
+                    <p flex>Sab</p>
+                    <p flex>Dom</p>
+                </md-list-item>
+                <md-list-item flex ng-repeat="t in mydata.time[0]">
+                    <p class="labelora" flex>{{t.start}} - {{t.end}}</p>
+                    <md-checkbox flex ng-disabled="!esistenzaSettimanale[1][$index]" ng-model="checkBoxModel[1][$index]"
+                                 ng-click="register($event, 1, $index)"
+                                 ng-class="{'redBoarder': redBorder[1][$index]}"></md-checkbox>
+                    <md-checkbox flex ng-disabled="!esistenzaSettimanale[2][$index]" ng-model="checkBoxModel[2][$index]"
+                                 ng-click="register($event, 2, $index)"
+                                 ng-class="{'redBoarder': redBorder[2][$index]}"></md-checkbox>
+                    <md-checkbox flex ng-disabled="!esistenzaSettimanale[3][$index]" ng-model="checkBoxModel[3][$index]"
+                                 ng-click="register($event, 3, $index)"
+                                 ng-class="{'redBoarder': redBorder[3][$index]}"></md-checkbox>
+                    <md-checkbox flex ng-disabled="!esistenzaSettimanale[4][$index]" ng-model="checkBoxModel[4][$index]"
+                                 ng-click="register($event, 4, $index)"
+                                 ng-class="{'redBoarder': redBorder[4][$index]}"></md-checkbox>
+                    <md-checkbox flex ng-disabled="!esistenzaSettimanale[5][$index]" ng-model="checkBoxModel[5][$index]"
+                                 ng-click="register($event, 5, $index)"
+                                 ng-class="{'redBoarder': redBorder[5][$index]}"></md-checkbox>
+                    <md-checkbox flex ng-disabled="!esistenzaSettimanale[6][$index]" ng-model="checkBoxModel[6][$index]"
+                                 ng-click="register($event, 6, $index)"
+                                 ng-class="{'redBoarder': redBorder[6][$index]}"></md-checkbox>
+                    <md-checkbox flex ng-disabled="!esistenzaSettimanale[0][$index]" ng-model="checkBoxModel[0][$index]"
+                                 ng-click="register($event, 0, $index)"
+                                 ng-class="{'redBoarder': redBorder[0][$index]}"></md-checkbox>
+                </md-list-item>
+            </md-list>
+</md-card>
+-->
+
+<md-card>
+<md-tabs md-selected="selectedIndex" md-dynamic-height md-border-bottom>
+<md-tab ng-repeat="c in Corsie"  style="font-size: 12px;"  label="{{ c.name }}">
+
+<md-card>
+        <md-table-container>
+          <table md-table md-row-select="false" multiple="false" ng-model="selected" md-progress="promise">
+	            <thead ng-if="!options.decapitate" md-head >
+	<!--           <table md-table md-head class="uli-color-bar md-toolbar-tools"> -->
+	              <tr md-row class="uli-color-bar">
+	                <th md-column ><span class="label">Orario</span></th>
+	                <th md-column ><span class="label">Lun</span></th>
+	                <th md-column ><span class="label">Mar</span></th>
+	                <th md-column ><span class="label">Mer</span></th>
+	                <th md-column ><span class="label">Gio</span></th>
+	                <th md-column ><span class="label">Ven</span></th>
+	                <th md-column ><span class="label">Sab</span></th>
+	                <th md-column ><span class="label">Dom</span></th>
+	                </th>
+	              </tr>
+	            </thead>
+	            <tbody md-body class="backgrey">
+	                <tr md-row ng-repeat="t in mydata.time[0]"> 
+	                <td ><p class="labelora">{{t.start}} - {{t.end}}</p></td>
+	                    <td><md-checkbox flex ng-disabled="!esistenzaSettimanale[1][$index]" ng-model="checkBoxModel[1][$index]"
+	                                 ng-click="register($event, 1, $index)"
+	                                 ng-class="{'redBoarder': redBorder[1][$index]}"></md-checkbox></td>
+	                    <td><md-checkbox flex ng-disabled="!esistenzaSettimanale[2][$index]" ng-model="checkBoxModel[2][$index]"
+	                                 ng-click="register($event, 2, $index)"
+	                                 ng-class="{'redBoarder': redBorder[2][$index]}"></md-checkbox></td>
+	                    <td><md-checkbox flex ng-disabled="!esistenzaSettimanale[3][$index]" ng-model="checkBoxModel[3][$index]"
+	                                 ng-click="register($event, 3, $index)"
+	                                 ng-class="{'redBoarder': redBorder[3][$index]}"></md-checkbox></td>
+	                    <td><md-checkbox flex ng-disabled="!esistenzaSettimanale[4][$index]" ng-model="checkBoxModel[4][$index]"
+	                                 ng-click="register($event, 4, $index)"
+	                                 ng-class="{'redBoarder': redBorder[4][$index]}"></md-checkbox></td>
+	                    <td><md-checkbox flex ng-disabled="!esistenzaSettimanale[5][$index]" ng-model="checkBoxModel[5][$index]"
+	                                 ng-click="register($event, 5, $index)"
+	                                 ng-class="{'redBoarder': redBorder[5][$index]}"></md-checkbox></td>
+	                    <td><md-checkbox flex ng-disabled="!esistenzaSettimanale[6][$index]" ng-model="checkBoxModel[6][$index]"
+	                                 ng-click="register($event, 6, $index)"
+	                                 ng-class="{'redBoarder': redBorder[6][$index]}"></md-checkbox></td>
+	                    <td><md-checkbox flex ng-disabled="!esistenzaSettimanale[0][$index]" ng-model="checkBoxModel[0][$index]"
+	                                 ng-click="register($event, 0, $index)"
+	                                 ng-class="{'redBoarder': redBorder[0][$index]}"></md-checkbox></td>
+	              </tr>
+	            </tbody>
+	          </table>
+        </md-table-container>
+</md-card>
+
+</md-tab>
+</md-tabs>
+</md-card>
+
+        </md-dialog-content>
+                                           
+
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button class="md-primary md-raised uli-color-bar" ng-click="saveNewCustomer()" style="padding: 0 10px;">Aggiungi tesserato</md-button>
+        </md-dialog-actions>
+
+    </form>
+</md-dialog>

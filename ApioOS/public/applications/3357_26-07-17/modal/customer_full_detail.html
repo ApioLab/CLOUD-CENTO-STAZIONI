@@ -1,0 +1,216 @@
+<md-dialog aria-label="{{value.name}} class detail" style="min-width: 60%;">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>{{value.id}}: {{value.nome}} {{value.cognome}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon class="material-icons" aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <md-content id="new_gateways_container">
+                    <div layout="row">
+                        <md-list flex class="listTableStyle">
+                            <md-list-item class="listTableItemStyle" flex>
+                                <md-input-container flex>
+                                    <label>Nome</label>
+                                    <input type="text" ng-model="value.nome"/>
+                                </md-input-container>
+                            </md-list-item>
+                            <md-list-item class="listTableItemStyle">
+                                <md-input-container flex>
+                                    <label>Cognome</label>
+                                    <input type="text" ng-model="value.cognome"/>
+                                </md-input-container>
+                            </md-list-item>
+                            <md-list-item class="listTableItemStyle">
+                                <md-input-container flex>
+                                    <label>Data Nascita</label>
+                                    <input type="text" ng-model="value.data_nascita"/>
+                                </md-input-container>
+                            </md-list-item>
+                            <md-list-item class="listTableItemStyle">
+                                <md-input-container flex>
+                                    <label>Codice Fiscale</label>
+                                    <input type="text" ng-model="value.codice_fiscale"/>
+                                </md-input-container>
+                            </md-list-item>
+                            <md-list-item class="listTableItemStyle">
+                                <md-input-container flex>
+                                    <label>Inizio Abbonamento</label>
+                                    <input type="text" ng-model="value.inizio_abbonamento"/>
+                                </md-input-container>
+                            </md-list-item>
+                            <md-list-item class="listTableItemStyle">
+                                <md-input-container flex>
+                                    <label>Scadenza Abbonamento</label>
+                                    <input type="text" ng-model="value.scadenza_abbonamento"/>
+                                </md-input-container>
+                            </md-list-item>
+                            <md-list-item class="listTableItemStyle">
+                                <md-input-container flex>
+                                    <label>Inizio Assicurazione</label>
+                                    <input type="text" ng-model="value.inizio_assicurazione"/>
+                                </md-input-container>
+                            </md-list-item>
+                            <md-list-item class="listTableItemStyle">
+                                <md-input-container flex>
+                                    <label>Scadenza Assicurazione</label>
+                                    <input type="text" ng-model="value.scadenza_assicurazione"/>
+                                </md-input-container>
+                            </md-list-item>
+                            <md-list-item class="listTableItemStyle">
+                                <md-input-container flex>
+                                    <label>Assenze settimanali</label>
+                                    <input type="text" ng-model="assenze_settimanali" disabled/>
+                                </md-input-container>
+                            </md-list-item>
+                            <md-list-item class="listTableItemStyle">
+                                <md-input-container flex>
+                                    <label>Assenze mesili</label>
+                                    <input type="text" ng-model="assenze_mensili" disabled/>
+                                </md-input-container>
+                            </md-list-item>
+                            <md-list-item class="listTableItemStyle">
+                                <md-input-container flex>
+                                    <label>Corso seguito</label>
+                                    <md-select ng-model="value.idCorso">
+                                        <md-option ng-value="c.id" ng-repeat="c in CorsiScuolaNuoto">{{c.nome}}</md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </md-list-item>
+                            <md-list-item class="listTableItemStyle">
+                                <md-input-container flex>
+                                    <label>Recupero</label>
+                                    <input type="text" ng-model="recupero" disabled/>
+                                </md-input-container>
+                            </md-list-item>
+                        </md-list>
+
+                    </div>
+                </md-content>
+            </div>
+
+            <md-list class="poolList" flex ng-cloak>
+                <md-list-item style="background-color:#5d6dcb; color: white;">
+                    <p flex>Orario</p>
+                    <p flex>Lun</p>
+                    <p flex>Mar</p>
+                    <p flex>Mer</p>
+                    <p flex>Gio</p>
+                    <p flex>Ven</p>
+                    <p flex>Sab</p>
+                    <p flex>Dom</p>
+                    <!--                                                         <p flex="40">Corsi Seguiti</p> -->
+                </md-list-item>
+                <!--<md-list-item>-->
+                <!--<p flex>10:30</p>-->
+                <!--<md-checkbox flex></md-checkbox>-->
+                <!--<md-checkbox flex ng-disabled="true"></md-checkbox>-->
+                <!--<md-checkbox flex ng-disabled="true"></md-checkbox>-->
+                <!--<md-checkbox flex></md-checkbox>-->
+                <!--<md-checkbox flex></md-checkbox>-->
+                <!--<md-checkbox flex></md-checkbox>-->
+                <!--<md-checkbox flex></md-checkbox>-->
+                <!--</md-list-item>-->
+                <!--<md-list-item>-->
+                <!--<p flex>16:00</p>-->
+                <!--<md-checkbox flex ng-disabled="true"></md-checkbox>-->
+                <!--<md-checkbox flex></md-checkbox>-->
+                <!--<md-checkbox flex></md-checkbox>-->
+                <!--<md-checkbox flex></md-checkbox>-->
+                <!--<md-checkbox flex></md-checkbox>-->
+                <!--<md-checkbox flex></md-checkbox>-->
+                <!--<md-checkbox flex ng-disabled="true"></md-checkbox>-->
+                <!--</md-list-item>-->
+                <!--<md-list-item>-->
+                <!--<p flex>16:45</p>-->
+                <!--<md-checkbox flex></md-checkbox>-->
+                <!--<md-checkbox flex ng-disabled="true"></md-checkbox>-->
+                <!--<md-checkbox flex ng-disabled="true"></md-checkbox>-->
+                <!--<md-checkbox flex></md-checkbox>-->
+                <!--<md-checkbox flex></md-checkbox>-->
+                <!--<md-checkbox flex></md-checkbox>-->
+                <!--<md-checkbox flex></md-checkbox>-->
+                <!--</md-list-item>-->
+                <!--<md-list-item>-->
+                <!--<p flex>17:30</p>-->
+                <!--<md-checkbox flex ng-disabled="true"></md-checkbox>-->
+                <!--<md-checkbox flex></md-checkbox>-->
+                <!--<md-checkbox flex></md-checkbox>-->
+                <!--<md-checkbox flex></md-checkbox>-->
+                <!--<md-checkbox flex></md-checkbox>-->
+                <!--<md-checkbox flex></md-checkbox>-->
+                <!--<md-checkbox flex ng-disabled="true"></md-checkbox>-->
+                <!--</md-list-item>-->
+                <!--<md-list-item>-->
+                <!--<p flex>18:15</p>-->
+                <!--<md-checkbox flex></md-checkbox>-->
+                <!--<md-checkbox flex></md-checkbox>-->
+                <!--<md-checkbox flex></md-checkbox>-->
+                <!--<md-checkbox flex ng-disabled="true"></md-checkbox>-->
+                <!--<md-checkbox flex></md-checkbox>-->
+                <!--<md-checkbox flex></md-checkbox>-->
+                <!--<md-checkbox flex></md-checkbox>-->
+                <!--</md-list-item>-->
+                <!--<md-list-item>-->
+                <!--<p flex>19:00</p>-->
+                <!--<md-checkbox flex></md-checkbox>-->
+                <!--<md-checkbox flex ng-disabled="true"></md-checkbox>-->
+                <!--<md-checkbox flex></md-checkbox>-->
+                <!--<md-checkbox flex ng-disabled="true"></md-checkbox>-->
+                <!--<md-checkbox flex></md-checkbox>-->
+                <!--<md-checkbox flex></md-checkbox>-->
+                <!--<md-checkbox flex></md-checkbox>-->
+                <!--</md-list-item>-->
+                <!--<md-list-item>-->
+                <!--<p flex>19:45</p>-->
+                <!--<md-checkbox flex></md-checkbox>-->
+                <!--<md-checkbox flex></md-checkbox>-->
+                <!--<md-checkbox flex ng-disabled="true"></md-checkbox>-->
+                <!--<md-checkbox flex></md-checkbox>-->
+                <!--<md-checkbox flex ng-disabled="true"></md-checkbox>-->
+                <!--<md-checkbox flex ng-disabled="true"></md-checkbox>-->
+                <!--<md-checkbox flex></md-checkbox>-->
+                <!--</md-list-item>-->
+                <!--<md-list-item>-->
+                <!--<p flex>20:30</p>-->
+                <!--<md-checkbox flex ng-disabled="true"></md-checkbox>-->
+                <!--<md-checkbox flex ng-disabled="true"></md-checkbox>-->
+                <!--<md-checkbox flex ng-disabled="true"></md-checkbox>-->
+                <!--<md-checkbox flex ng-disabled="true"></md-checkbox>-->
+                <!--<md-checkbox flex ng-disabled="true"></md-checkbox>-->
+                <!--<md-checkbox flex ng-disabled="true"></md-checkbox>-->
+                <!--<md-checkbox flex ng-disabled="true"></md-checkbox>-->
+                <!--</md-list-item>-->
+                <md-list-item ng-repeat="t in mydata.time[0]">
+                    <p flex>{{t.start}}</p>
+                    <md-checkbox flex></md-checkbox>
+                    <md-checkbox flex ng-disabled="true"></md-checkbox>
+                    <md-checkbox flex ng-disabled="true"></md-checkbox>
+                    <md-checkbox flex></md-checkbox>
+                    <md-checkbox flex></md-checkbox>
+                    <md-checkbox flex></md-checkbox>
+                    <md-checkbox flex></md-checkbox>
+                </md-list-item>
+
+            </md-list>
+
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button class="md-primary md-raised" ng-click="modifyCustomer()" style="padding: 0 10px;">Salva
+            </md-button>
+        </md-dialog-actions>
+
+        <!--<md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button class="md-primary md-raised" ng-click="createNewEvent()" style="padding: 0 10px;">Add Event</md-button>
+        </md-dialog-actions>-->
+
+    </form>
+</md-dialog>

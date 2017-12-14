@@ -1,0 +1,155 @@
+<style type="text/css">
+    .redBoarder {
+    }
+
+    .backgrey {
+
+        background-color: #f5f5f5 !important;
+    }
+
+    .labelora {
+        font-size: 14px !important;
+        padding-left: 8px !important;
+    }
+
+    .redBoarder .md-icon {
+        border-color: red;
+    }
+
+    .md-toolbar-tools {
+        min-height: 50px !important;
+        height: 50px !important;
+    }
+
+    .label {
+        font-size: 14px !important;
+        color: #ffffff !important;
+    }
+
+    .uli-color-bar {
+        background-color: rgb(33, 150, 243) !important;
+    }
+</style>
+
+
+<md-dialog aria-label="{{value.name}} class detail" style="min-width: 60%;">
+    <form ng-cloak>
+        <md-toolbar class="uli-color-bar md-toolbar-tools ">
+            <div class="md-toolbar-tools">
+                <h2 style="font-size: 18px;">{{value.name}} del {{shortCalendarDate}} - {{letteralDay}}, ore
+                    {{time.start}} - {{time.end}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="delPrenotazione()">
+                    <md-icon class="material-icons" aria-label="Delete Prenotation">delete</md-icon>
+                </md-button>
+
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon class="material-icons" aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content class="backgrey">
+            <div class="md-dialog-content">
+
+                <md-content id="new_gateways_container">
+
+                    <div layout="row">
+
+                        <div flex="50" style="border-right: 1px solid #e3e3e3; padding-right: 16px;">
+                            <div layout="row" layout-align="center center" class="rowStyle" ng-if="value === undefined">
+                                <span flex="40">Recupero</span>
+                                <input flex="60" type="checkbox" ng-model="$parent.isRecupero"/>
+                            </div>
+                            <div layout="row" layout-align="center center" class="rowStyle">
+                                <span flex="40">Seleziona Corso</span>
+                                <select flex="60" aria-label="Property list" placeholder="Seleziona Corso"
+                                        class="form-control" ng-model="selectedCorso"
+                                        ng-options="i.id as i.nome for i in CorsiScuolaNuoto" ng-disabled="disableModify">
+                                </select>
+                            </div>
+                            <div layout="row" layout-align="center center" class="rowStyle">
+                                <span flex="40">Istruttore</span>
+                                <select flex="60" aria-label="Property list" placeholder="Seleziona Istruttore"
+                                        class="form-control" ng-model="selectedIstruttore" ng-disabled="disableModify"
+                                        ng-options="i.id as i.nome + ' ' + i.cognome for i in Istruttori">
+                                </select>
+                            </div>
+                            <div layout="row" layout-align="center center" class="rowStyle">
+                                <span flex="40">Piscina</span>
+                                <!--<select disabled flex="60" aria-label="Property list" placeholder="Seleziona Piscina"-->
+                                <!--class="form-control" ng-model="selectedPiscine"-->
+                                <!--ng-options="i.id as i.nome for i in Piscine">-->
+                                <!--</select>-->
+                                <select flex="60" aria-label="Property list" placeholder="Seleziona Piscina"
+                                        class="form-control" ng-model="selectedPiscine"
+                                        ng-disabled="value !== undefined"
+                                        ng-options="i.id as i.nome for i in Piscine">
+                                </select>
+                            </div>
+                            <div layout="row" layout-align="center center" class="rowStyle">
+                                <span flex="40">Corsia</span>
+                                <!--<select disabled flex="60" aria-label="Property list" placeholder="Seleziona Corsia"-->
+                                <!--class="form-control" ng-model="selectedCorsia"-->
+                                <!--ng-options="i.id as i.nome for i in Corsie">-->
+                                <!--</select>-->
+                                <select flex="60" aria-label="Property list" placeholder="Seleziona Corsia"
+                                        class="form-control" ng-model="selectedCorsia" ng-disabled="value !== undefined"
+                                        ng-options="i.id as i.nome for i in Corsie">
+                                </select>
+                            </div>
+                            <div layout="row" layout-align="center center" class="rowStyle" ng-if="value === undefined">
+                                <span flex="40">Posti</span>
+                                <input type="number" flex="60" aria-label="Property list" class="form-control"
+                                       placeholder="Massimo numero di posti" ng-model="$parent.selectedPosti"/>
+                            </div>
+                        </div>
+
+                        <div flex="50" style="padding-left: 16px;">
+                            <div layout="row" layout-align="center center" class="rowStyle">
+                                <md-autocomplete flex md-items="a in query(searchText)" md-search-text="searchText"
+                                                 md-item-text="itemText(a)" md-min-length="0"
+                                                 placeholder="Aggiungi Partecipante" md-selected-item="selectedItem"
+                                                 md-selected-item-change="itemChanged(a)"
+                                                 ng-disabled="isRecupero">
+                                    <md-item-template>
+                                        <span md-highlight-text="searchText" md-highlight-flags="gi">{{a.nome}} {{a.cognome}}</span>
+                                    </md-item-template>
+                                    <md-not-found>Nessun risultato.</md-not-found>
+                                </md-autocomplete>
+                            </div>
+                            <div layout="row" layout-align="center center" class="rowStyle">
+                                <md-list flex>
+                                    <md-list-item ng-repeat="u in Users"
+                                                  ng-style="{'background-color': u.scadenza_abbonamento.getTime() - today.getTime() <= (1000 * 3600 * 1 * 1) ? 'rgb(255, 56, 56)' : (u.scadenza_abbonamento.getTime() - today.getTime() <= (1000 * 3600 * 24 * 15) ? 'rgb(255, 129, 0)' : '')}">
+                                        <!--
+                                                                            <md-list-item ng-repeat="u in Users"
+                                                                                          ng-style="{'background-color': (u.scadenza_abbonamento.getMonth() || 12) - today.getMonth() <= 1 ? 'rgb(255, 56, 56)' : ((u.scadenza_abbonamento.getMonth() || 12) - today.getMonth() <= 2 ? 'rgb(255, 129, 0)' : '')}">
+                                        -->
+                                        <md-checkbox ng-model="u.presente" ng-disabled="disableModify || isRecupero"></md-checkbox>
+                                        <p>{{u.nome}} {{u.cognome}}</p>
+                                        <md-icon class="md-secondary" ng-click="deleteParticipant(u.id)"
+                                                 ng-disabled="disableModify" aria-label="delete participant">
+                                            <i class="material-icons">delete</i>
+                                        </md-icon>
+                                    </md-list-item>
+                                </md-list>
+                            </div>
+                            <div layout="row" layout-align="end end" class="rowStyle" ng-if="value === undefined">
+                                <md-button class="md-raised md-primary" ng-click="addPrenotazione()">CREA</md-button>
+                            </div>
+                        </div>
+                    </div>
+
+                </md-content>
+
+            </div>
+        </md-dialog-content>
+
+        <!--<md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button class="md-primary md-raised" ng-click="createNewEvent()" style="padding: 0 10px;">Add Event</md-button>
+        </md-dialog-actions>-->
+
+    </form>
+</md-dialog>

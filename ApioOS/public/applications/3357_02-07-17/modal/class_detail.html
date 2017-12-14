@@ -1,0 +1,198 @@
+<md-dialog aria-label="{{value.name}} class detail" style="min-width: 60%;">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>{{value.name}} del {{shortCalendarDate}} ore 09:00 - 10:00</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon class="material-icons" aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+
+                <md-content id="new_gateways_container">
+
+                    <div layout="row">
+
+                        <div flex="50" style="border-right: 1px solid #e3e3e3; padding-right: 16px;">
+                            <div layout="row" layout-align="center center" class="rowStyle">
+                                <span flex="40">Seleziona Corso</span>
+                                <!--<select flex="60" aria-label="Property list" placeholder="Seleziona Corso"-->
+                                        <!--class="form-control">-->
+                                    <!--<option value="0">Ambientamento</option>-->
+                                    <!--<option value="1">Livello 1</option>-->
+                                    <!--<option value="2">Livello 2</option>-->
+                                    <!--<option value="2">Livello 3</option>-->
+                                    <!--<option value="2">Livello 4</option>-->
+                                    <!--<option value="2">Acqua Bebè</option>-->
+                                    <!--&lt;!&ndash; solo su le vasche piccole questo si deve vedere &ndash;&gt;-->
+
+                                <!--</select>-->
+
+                                <select flex="60" aria-label="Property list" placeholder="Seleziona Corso"
+                                        class="form-control" ng-model="selectedCorso"
+                                        ng-options="i.id as i.nome for i in Corsi">
+                                </select>
+                            </div>
+                            <!--
+                                                        <div layout="row" layout-align="center center" class="rowStyle">
+                                                            <span flex="40">Livello Corso</span>
+                                                            <select flex="60" aria-label="Property list" placeholder="Seleziona Livello" class="form-control">
+                                                                <option value="0">Generale</option>
+                                                                <option value="1">Livello 2</option>
+                                                                <option value="1">Avanzato</option>
+                                                            </select>
+                                                        </div>
+                            -->
+                            <div layout="row" layout-align="center center" class="rowStyle">
+                                <span flex="40">Istruttore</span>
+                                <!--<select flex="60" aria-label="Property list" placeholder="Seleziona Istruttore"-->
+                                <!--class="form-control">-->
+                                <!--<option value="0">Federico</option>-->
+                                <!--<option value="1">Laura</option>-->
+                                <!--<option value="2">Marco Rossi</option>-->
+                                <!--</select>-->
+
+                                <select flex="60" aria-label="Property list" placeholder="Seleziona Istruttore"
+                                        class="form-control" ng-model="selectedIstruttore"
+                                        ng-options="i.id as i.nome + ' ' + i.cognome for i in Istruttori">
+                                </select>
+                            </div>
+                            <div layout="row" layout-align="center center" class="rowStyle">
+                                <span flex="40">Piscina</span>
+                                <!--<select flex="60" aria-label="Property list" placeholder="Seleziona Piscina"-->
+                                        <!--class="form-control">-->
+                                    <!--<option value="0">Grande</option>-->
+                                    <!--<option value="1">Secondo piano</option>-->
+                                <!--</select>-->
+
+                                <select flex="60" aria-label="Property list" placeholder="Seleziona Piscina"
+                                        class="form-control" ng-model="selectedPiscine"
+                                        ng-options="i.id as i.nome for i in Piscine">
+                                </select>
+                            </div>
+                            <div layout="row" layout-align="center center" class="rowStyle">
+                                <span flex="40">Corsia</span>
+                                <!--<select flex="60" aria-label="Property list" placeholder="Seleziona Corsia"-->
+                                        <!--class="form-control">-->
+                                    <!--<option value="0">Corsia 1</option>-->
+                                    <!--<option value="1">Corsia 2</option>-->
+                                    <!--<option value="1">Corsia 3</option>-->
+                                    <!--<option value="1">Corsia 4</option>-->
+                                    <!--<option value="1">Corsia 5</option>-->
+                                    <!--<option value="1">Corsia 6</option>-->
+                                <!--</select>-->
+
+                                <select flex="60" aria-label="Property list" placeholder="Seleziona Corsia"
+                                        class="form-control" ng-model="selectedCorsia"
+                                        ng-options="i.id as i.nome for i in Corsie">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div flex="50" style="padding-left: 16px;">
+                            <div layout="row" layout-align="center center" class="rowStyle">
+                                <input class="form-control" placeholder="Aggiungi Partecipante"/>
+                            </div>
+                            <div layout="row" layout-align="center center" class="rowStyle">
+                                <!--<md-list flex>-->
+                                <!--<md-list-item>-->
+                                <!--<md-checkbox ng-model="message.selected"></md-checkbox>-->
+                                <!--<p>Marco Rossi</p>-->
+                                <!--<md-icon class="md-secondary" ng-click="deleteParticipant()"-->
+                                <!--aria-label="delete participant"><i class="material-icons">delete</i>-->
+                                <!--</md-icon>-->
+                                <!--</md-list-item>-->
+                                <!--<md-list-item>-->
+                                <!--<md-checkbox ng-model="message.selected1"></md-checkbox>-->
+                                <!--<p>Marco 1</p>-->
+                                <!--<md-icon class="md-secondary" ng-click="deleteParticipant()"-->
+                                <!--aria-label="delete participant"><i class="material-icons">delete</i>-->
+                                <!--</md-icon>-->
+                                <!--</md-list-item>-->
+                                <!--<md-list-item>-->
+                                <!--<md-checkbox ng-model="message.selected2"></md-checkbox>-->
+                                <!--<p>Marco 2</p>-->
+                                <!--<md-icon class="md-secondary" ng-click="deleteParticipant()"-->
+                                <!--aria-label="delete participant"><i class="material-icons">delete</i>-->
+                                <!--</md-icon>-->
+                                <!--</md-list-item>-->
+                                <!--<md-list-item>-->
+                                <!--<md-checkbox ng-model="message.selected3"></md-checkbox>-->
+                                <!--<p>Marco 3</p>-->
+                                <!--<md-icon class="md-secondary" ng-click="deleteParticipant()"-->
+                                <!--aria-label="delete participant"><i class="material-icons">delete</i>-->
+                                <!--</md-icon>-->
+                                <!--</md-list-item>-->
+                                <!--<md-list-item>-->
+                                <!--<md-checkbox ng-model="message.selected4"></md-checkbox>-->
+                                <!--<p>Marco 4</p>-->
+                                <!--<md-icon class="md-secondary" ng-click="deleteParticipant()"-->
+                                <!--aria-label="delete participant"><i class="material-icons">delete</i>-->
+                                <!--</md-icon>-->
+                                <!--</md-list-item>-->
+                                <!--<md-list-item>-->
+                                <!--<md-checkbox ng-model="message.selected5"></md-checkbox>-->
+                                <!--<p>Marco 5</p>-->
+                                <!--<md-icon class="md-secondary" ng-click="deleteParticipant()"-->
+                                <!--aria-label="delete participant"><i class="material-icons">delete</i>-->
+                                <!--</md-icon>-->
+                                <!--</md-list-item>-->
+                                <!--<md-list-item>-->
+                                <!--<md-checkbox ng-model="message.selected6"></md-checkbox>-->
+                                <!--<p>Marco 6</p>-->
+                                <!--<md-icon class="md-secondary" ng-click="deleteParticipant()"-->
+                                <!--aria-label="delete participant"><i class="material-icons">delete</i>-->
+                                <!--</md-icon>-->
+                                <!--</md-list-item>-->
+                                <!--<md-list-item>-->
+                                <!--<md-checkbox ng-model="message.selected7"></md-checkbox>-->
+                                <!--<p>Marco 7</p>-->
+                                <!--<md-icon class="md-secondary" ng-click="deleteParticipant()"-->
+                                <!--aria-label="delete participant"><i class="material-icons">delete</i>-->
+                                <!--</md-icon>-->
+                                <!--</md-list-item>-->
+                                <!--<md-list-item>-->
+                                <!--<md-checkbox ng-model="message.selected8"></md-checkbox>-->
+                                <!--<p>Marco 8</p>-->
+                                <!--<md-icon class="md-secondary" ng-click="deleteParticipant()"-->
+                                <!--aria-label="delete participant"><i class="material-icons">delete</i>-->
+                                <!--</md-icon>-->
+                                <!--</md-list-item>-->
+                                <!--<md-list-item>-->
+                                <!--<md-checkbox ng-model="message.selected9"></md-checkbox>-->
+                                <!--<p>Marco 9</p>-->
+                                <!--<md-icon class="md-secondary" ng-click="deleteParticipant()"-->
+                                <!--aria-label="delete participant"><i class="material-icons">delete</i>-->
+                                <!--</md-icon>-->
+                                <!--</md-list-item>-->
+                                <!--</md-list>-->
+
+                                <md-list flex>
+                                    <md-list-item ng-repeat="u in Users">
+                                        <md-checkbox ng-model="u.iscritto"></md-checkbox>
+                                        <p>{{u.nome}} {{u.cognome}}</p>
+                                        <md-icon class="md-secondary" ng-click="deleteParticipant(u.id)"
+                                                 aria-label="delete participant"><i class="material-icons">delete</i>
+                                        </md-icon>
+                                    </md-list-item>
+                                </md-list>
+                            </div>
+                        </div>
+                    </div>
+
+                </md-content>
+
+            </div>
+        </md-dialog-content>
+
+        <!--<md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button class="md-primary md-raised" ng-click="createNewEvent()" style="padding: 0 10px;">Add Event</md-button>
+        </md-dialog-actions>-->
+
+    </form>
+</md-dialog>

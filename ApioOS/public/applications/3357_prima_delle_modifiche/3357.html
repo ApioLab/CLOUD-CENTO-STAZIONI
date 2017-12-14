@@ -1,0 +1,697 @@
+<style>
+    #registra_statoinput {
+        display: none;
+    }
+
+    .topAppApplication {
+        background-color: #eca114 !important;
+        color: white !important;
+
+    }
+
+    .personalizaChevron {
+        color: white !important;
+    }
+
+    #tickets_app_container {
+        padding: 0 !important;
+        height: 100%;
+    }
+
+    a.md-button.md-default-theme.md-fab, a.md-button.md-fab, .md-button.md-default-theme.md-fab, .md-button.md-fab {
+        background-color: #01655b;
+    }
+
+    a.md-button.md-default-theme.md-fab:not([disabled]):hover, a.md-button.md-fab:not([disabled]):hover, .md-button.md-default-theme.md-fab:not([disabled]):hover, .md-button.md-fab:not([disabled]):hover {
+        background-color: #01655b;
+    }
+
+    a.md-button.md-default-theme.md-fab:not([disabled]).md-focused, a.md-button.md-fab:not([disabled]).md-focused, .md-button.md-default-theme.md-fab:not([disabled]).md-focused, .md-button.md-fab:not([disabled]).md-focused {
+        background-color: #02524a;
+    }
+
+    md-virtual-repeat-container {
+        z-index: 10000 !important;
+        /*         height: 40% !important; */
+        /*         max-height: 40% !important; */
+    }
+
+    .highlight {
+        background-color: yellow;
+        color: black;
+    }
+
+    .md-select-menu-container {
+        z-index: 1040;
+    }
+
+    .ticket_column_1 {
+        border-left: 1px solid rgba(0, 0, 0, 0.12);
+    }
+
+    md-tabs {
+        height: 93vh;
+    }
+
+    md-tab-content > div {
+        height: 100%;
+    }
+
+    .ticket_tabs md-list-item > p {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .ticket_tabs md-tabs-canvas {
+        background-color: white;
+    }
+
+    .ticket_tabs .md-tab {
+        color: rgba(0, 0, 0, 0.54);
+    }
+
+    .ticket_tabs .md-tab.md-active {
+        color: #313131;
+    }
+
+    .ticket_tabs md-ink-bar {
+        color: #505050;
+        background: #505050;
+    }
+
+    md-tabs-wrapper md-prev-button, md-tabs-wrapper md-next-button {
+        background-color: white;
+        opacity: 1 !important;
+    }
+
+    .ticket_list {
+        height: 100%;
+        border: 1px solid #dadada;
+        background-color: #fafafa;
+        padding: 0px !important;
+    }
+
+    .ticket_list md-list-item, .ticket_table_container md-list-item .md-list-item-inner {
+        min-height: 50px;
+    }
+
+    .list_header {
+        background-color: #5e04bf;
+        color: white;
+    }
+
+    .list_header p {
+        font-weight: 600;
+    }
+
+    md-input-container .md-errors-spacer {
+        min-height: 0;
+    }
+
+    /* Dialog VIEW styles */
+    #view_ticket_dialog_container {
+        max-height: 100%;
+    }
+
+    #view_ticket_dialog_container md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar) {
+        background-color: #01655b;
+    }
+
+    #view_ticket_dialog_container .md-toolbar-tools h2 {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    md-dialog-actions {
+        border-top: 1px solid rgba(0, 0, 0, 0.12);
+    }
+
+    .ticket_actions_button {
+        padding: 0 16px;
+    }
+
+    md-dialog md-list-item > p {
+        padding: 6px 1px;
+    }
+
+    #view_ticket_dialog_container md-input-container {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    #note_card md-input-container .md-input {
+        color: rgba(0, 0, 0, 0.87);
+        border-color: rgba(0, 0, 0, 0.12);
+        text-shadow:;
+        border: 0 !important;
+    }
+
+    .img_container {
+        width: 100%;
+        height: 200px;
+        margin-bottom: 8px;
+    }
+
+    /* Dialog NEW styles */
+    #new_ticket_dialog_container md-select {
+        margin-top: 0;
+    }
+
+    #new_ticket_dialog_container md-input-container {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    @media (min-width: 960px) and (max-width: 1279px) {
+        /* ---------FLEX-MD--------- */
+
+    }
+
+    @media (min-width: 600px) and (max-width: 959px) {
+        /* ---------FLEX-SM--------- */
+        #ticket_search_bar_container {
+        }
+
+        .ticket_column_1 {
+            /*             order: 1; */
+            border-right: 0px;
+        }
+
+        .ticket_column_2 {
+            /*             order: 2; */
+            border-top: 1px solid rgba(0, 0, 0, 0.12);
+        }
+
+        #ticket_tabs_container {
+        }
+
+        /* Dialog styles */
+        .md-button {
+            margin: 8px !important;
+            width: 46%;
+        }
+    }
+
+    @media (max-width: 599px) {
+        /* ---------FLEX-XS--------- */
+        md-tabs {
+            height: 82vh;
+        }
+
+        .ticket_column_1 {
+            /*             order: 1; */
+            border-right: 0px;
+        }
+
+        .ticket_column_2 {
+            /*             order: 2; */
+            border-top: 1px solid rgba(0, 0, 0, 0.12);
+        }
+
+        /* Dialog styles */
+        .md-button {
+            margin: 8px 0 !important;
+            width: 100%;
+        }
+    }
+
+</style>
+<!--Copyright 2014-2015 Alex Benfaremo, Alessandro Chelli, Lorenzo Di Berardino, Matteo Di Sabatino-->
+
+<!---------------------------------- LICENSE --------------------------------
+-                                                                           -
+- This file is part of ApioOS.                                              -
+-                                                                           -
+- ApioOS is free software released under the GPLv2 license: you can         -
+- redistribute it and/or modify it under the terms of the GNU General       -
+- Public License version 2 as published by the Free Software Foundation.    -
+-                                                                           -
+- ApioOS is distributed in the hope that it will be useful, but             -
+- WITHOUT ANY WARRANTY; without even the implied warranty of                -
+- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the              -
+- GNU General Public License version 2 for more details.                    -
+-                                                                           -
+- To read the license either open the file COPYING.txt or                   -
+- visit <http://www.gnu.org/licenses/gpl2.txt>                              -
+-                                                                           -
+---------------------------------------------------------------------------->
+
+<div id="ApioApplication3357" ng-app="ApioApplication3357" style="padding: 10px;">
+    <div ng-controller="defaultController">
+        <topappapplication></topappapplication>
+        <div id="app" style="display: block;">
+
+
+            <md-content id="tickets_app_container">
+
+
+                <div layout-gt-sm="row" layout-sm="column" layout-xs="column" style="height: 100%;">
+
+
+                    <!--
+                                        <div flex-gt-sm="30" class="ticket_column_2">
+
+                                            <md-content flex layout-padding>
+
+                                                <div id="ticket_search_bar_container" layout="column" layout-align="space-around left"
+                                                     layout-padding layout-wrap>
+
+                                                    <div class="search_bar" flex>
+                                                        <md-autocomplete md-items="a in query(searchText)" md-search-text="searchText"
+                                                                         md-item-text="itemText(a)" md-min-length="0"
+                                                                         placeholder="Ricerca un ticket" md-selected-item="selectedItem"
+                                                                         md-selected-item-change="itemChanged(a)">
+                                                            <md-item-template>
+                                                                <span md-highlight-text="searchText" md-highlight-flags="gi">{{a.descrizione}}</span>
+                                                            </md-item-template>
+                                                            <md-not-found>No matches found.</md-not-found>
+                                                        </md-autocomplete>
+                                                    </div>
+
+                                                    <div class="add_button_container" flex hide-xs ng-if="role === 'superAdmin' || subrole == 'callcenter'">
+                                                        <div layout="row" layout-align="start center">
+                                                            <md-button class="md-fab" ng-click="newTicket($event)" aria-label="Add careManager">
+                                                                <md-icon class="material-icons">add</md-icon>
+                                                            </md-button>
+                                                            <p style="margin: 0 0 0 8px; font-size: 16px;" ng-click="newTicket($event)">Crea nuovo ticket</p>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+
+                                            </md-content>
+                                        </div>
+                    -->
+
+
+                    <div id="ticket_tabs_container" flex class="ticket_column_1">
+
+                        <md-tabs class="ticket_tabs" md-stretch-tabs="never" md-swipe-content="false" md-center-tabs
+                                 md-dynamic-height="false" md-border-bottom>
+
+                            <md-tab label="Home">
+
+                                <md-content flex>
+
+                                    <md-list class="md-dense ticket_list" flex>
+                                        <md-list-item class="list_header">
+                                            <!--
+                                                                                        <p flex-gt-sm="20" flex-sm="25" flex-xs="75">Ticket id</p>
+                                                                                        <p flex-gt-sm="10" flex-sm="15" flex-xs="25">Creato il</p>
+                                                                                        <p flex hide-xs>Descrizione</p>
+                                                                                        <p flex="20" hide-xs>Operatore</p>
+                                            -->
+
+                                            <!--
+                                            <div layout-gt-xs="row">
+                                                <div flex-gt-xs>
+                                                  <h4>Opening the calendar when the input is focused</h4>
+                                            -->
+                                            <md-datepicker ng-model="myDate" md-placeholder="Enter date"
+                                                           md-open-on-focus ng-click="onFocus()"></md-datepicker>
+                                            <!--     </div> -->
+
+                                            <md-list-item ng-click="navigateTo(setting.extraScreen, $event)"
+                                                          ng-repeat="setting in settings">
+                                                <!--     <md-icon md-svg-icon="{{setting.icon}}"></md-icon> -->
+                                                <p> ale </p>
+                                                <md-switch class="md-secondary" ng-model="setting.enabled"></md-switch>
+                                            </md-list-item>
+
+                                        </md-list-item>
+
+
+                                        <md-divider></md-divider>
+
+                                    </md-list>
+
+
+                                    <md-content class="wrapper anim-fade" layout-padding layout="row" layout-xs="column"
+                                                layout-sm="column">
+                                        <div flex="20" flex-sm="100" flex-xs="100">
+                                            <md-card class="md-hue-1">
+                                                <md-card-title>
+                                                    <md-card-title-text>
+                                                        <span class="md-headline">Card with image</span>
+                                                        <span class="md-subhead">Small</span>
+                                                    </md-card-title-text>
+                                                    <md-card-title-media>
+                                                        <div class="md-media-md card-media">
+
+                                                            <div class="center promo promo-example">
+                                                                <a ui-sref="checkin.default"
+                                                                   style="text-decoration: none;"><i
+                                                                        class="large material-icons">input</i></a>
+                                                            </div>
+
+                                                        </div>
+                                                    </md-card-title-media>
+                                                </md-card-title>
+                                                <md-card-actions layout="row" layout-align="end center">
+                                                    <md-button>Action 1</md-button>
+                                                    <md-button>Action 2</md-button>
+                                                </md-card-actions>
+                                            </md-card>
+                                        </div>
+                                        <div flex="20" flex-sm="100" flex-xs="100">
+                                            <md-card class="md-hue-1">
+                                                <md-card-title>
+                                                    <md-card-title-text>
+                                                        <span class="md-headline">Card with image</span>
+                                                        <span class="md-subhead">Small</span>
+                                                    </md-card-title-text>
+                                                    <md-card-title-media>
+                                                        <div class="md-media-md card-media">
+                                                            <div class="center promo promo-example">
+                                                                <a ui-sref="devicesetup" style="text-decoration: none;"><i
+                                                                        class="large material-icons">phonelink_setup</i></a>
+                                                            </div>
+                                                        </div>
+
+                                                    </md-card-title-media>
+                                                </md-card-title>
+                                                <md-card-actions layout="row" layout-align="end center">
+                                                    <md-button>Action 1</md-button>
+                                                    <md-button>Action 2</md-button>
+                                                </md-card-actions>
+                                            </md-card>
+                                        </div>
+                                        <div flex="20" flex-sm="100" flex-xs="100">
+                                            <md-card class="md-hue-1">
+                                                <md-card-title>
+                                                    <md-card-title-text>
+                                                        <span class="md-headline">Card with image</span>
+                                                        <span class="md-subhead">Small</span>
+                                                    </md-card-title-text>
+                                                    <md-card-title-media>
+                                                        <div class="md-media-md card-media">
+                                                            <div class="center promo promo-example">
+                                                                <a ui-sref="settings" style="text-decoration: none;"><i
+                                                                        class="large material-icons">settings_applications</i></a>
+                                                            </div>
+                                                        </div>
+                                                    </md-card-title-media>
+                                                </md-card-title>
+                                                <md-card-actions layout="row" layout-align="end center">
+                                                    <md-button>Action 1</md-button>
+                                                    <md-button>Action 2</md-button>
+                                                </md-card-actions>
+                                            </md-card>
+                                        </div>
+                                        <div flex="20" flex-sm="100" flex-xs="100">
+                                            <md-card class="md-hue-1">
+                                                <md-card-title>
+                                                    <md-card-title-text>
+                                                        <span class="md-headline">Card with image</span>
+                                                        <span class="md-subhead">Small</span>
+                                                    </md-card-title-text>
+                                                    <md-card-title-media>
+                                                        <div class="md-media-md card-media">
+                                                            <div class="center promo promo-example">
+                                                                <a ui-sref="settings" style="text-decoration: none;"><i
+                                                                        class="large material-icons">settings_applications</i></a>
+                                                            </div>
+                                                        </div>
+                                                    </md-card-title-media>
+                                                </md-card-title>
+                                                <md-card-actions layout="row" layout-align="end center">
+                                                    <md-button>Action 1</md-button>
+                                                    <md-button>Action 2</md-button>
+                                                </md-card-actions>
+                                            </md-card>
+                                        </div>
+                                        <div flex="20" flex-sm="100" flex-xs="100">
+                                            <md-card class="md-hue-1">
+                                                <md-card-title>
+                                                    <md-card-title-text>
+                                                        <span class="md-headline">Card with image</span>
+                                                        <span class="md-subhead">Small</span>
+                                                    </md-card-title-text>
+                                                    <md-card-title-media>
+                                                        <div class="md-media-md card-media">
+                                                            <div class="center promo promo-example">
+                                                                <a ui-sref="settings" style="text-decoration: none;"><i
+                                                                        class="large material-icons">settings_applications</i></a>
+                                                            </div>
+                                                        </div>
+                                                    </md-card-title-media>
+                                                </md-card-title>
+                                                <md-card-actions layout="row" layout-align="end center">
+                                                    <md-button>Action 1</md-button>
+                                                    <md-button>Action 2</md-button>
+                                                </md-card-actions>
+                                            </md-card>
+                                        </div>
+                                        <div flex="20" flex-sm="100" flex-xs="100">
+                                            <md-card class="md-hue-1">
+                                                <md-card-title>
+                                                    <md-card-title-text>
+                                                        <span class="md-headline">Card with image</span>
+                                                        <span class="md-subhead">Small</span>
+                                                    </md-card-title-text>
+                                                    <md-card-title-media>
+                                                        <div class="md-media-md card-media">
+                                                            <div class="center promo promo-example">
+                                                                <a ui-sref="settings" style="text-decoration: none;"><i
+                                                                        class="large material-icons">settings_applications</i></a>
+                                                            </div>
+                                                        </div>
+                                                    </md-card-title-media>
+                                                </md-card-title>
+                                                <md-card-actions layout="row" layout-align="end center">
+                                                    <md-button>Action 1</md-button>
+                                                    <md-button>Action 2</md-button>
+                                                </md-card-actions>
+                                            </md-card>
+                                        </div>
+
+                                    </md-content>
+
+                                </md-content>
+
+                            </md-tab>
+
+
+                            <md-tab label="Clienti">
+
+                                <md-content flex>
+
+                                    <md-list class="md-dense ticket_list" flex>
+                                        <md-list-item class="list_header">
+                                            <p flex-gt-sm="20" flex-sm="25" flex-xs="75">Ticket id</p>
+                                            <p flex-gt-sm="10" flex-sm="15" flex-xs="25">Creato il</p>
+                                            <p flex hide-xs>Descrizione</p>
+                                            <p flex="20" hide-xs>Operatore</p>
+                                        </md-list-item>
+                                        <div id="{{value.idTicket}}" ng-repeat="(key, value) in tickets"
+                                             ng-click="openTicket($event, value)"
+                                             ng-if="(value.stato === 'Aperto' && role==='superAdmin') ||(value.stato === 'Aperto' && role==='guest' && subrole==='callcenter') || ( value.stato === 'Aperto' && role==='guest' && subrole==='operatore' && value.stazione.id=== stazioneID) || ( value.stato === 'Aperto' && role==='guest' && subrole==='direttore' && value.stazione.id=== stazioneID)">
+                                            <md-list-item class="ticket">
+                                                <p flex-gt-sm="20" flex-sm="25" flex-xs="75">{{value.idTicket}}</p>
+                                                <p flex-gt-sm="10" flex-sm="15" flex-xs="25">{{value.dataApertura |
+                                                    date:'dd/MM/yyyy'}}</p>
+                                                <p flex hide-xs>{{value.descrizione}}</p>
+                                                <p flex="20" hide-xs>{{value.operatore.nome + " " +
+                                                    value.operatore.cognome}}</p>
+                                            </md-list-item>
+                                            <md-divider></md-divider>
+                                        </div>
+                                    </md-list>
+
+                                </md-content>
+
+                            </md-tab>
+
+                            <md-tab label="In corso">
+
+                                <md-content flex>
+
+                                    <md-list class="md-dense ticket_list" flex>
+                                        <md-list-item class="list_header">
+                                            <p flex-gt-sm="20" flex-sm="25" flex-xs="75">Ticket id</p>
+                                            <p flex-gt-sm="10" flex-sm="15" flex-xs="25">Creato il</p>
+                                            <p flex hide-xs>Descrizione</p>
+                                            <p flex="20" hide-xs>Operatore</p>
+                                        </md-list-item>
+                                        <div id="{{value.idTicket}}" ng-repeat="(key, value) in tickets"
+                                             ng-click="openTicket($event, value)"
+                                             ng-if="(value.stato === 'In Corso' && role==='superAdmin') ||(value.stato === 'In Corso' && role==='guest' && subrole==='callcenter') || ( value.stato === 'In Corso' && role==='guest' && subrole==='operatore' && value.stazione.id=== stazioneID) || ( value.stato === 'In Corso' && role==='guest' && subrole==='direttore' && value.stazione.id=== stazioneID)">
+                                            <md-list-item class="ticket">
+                                                <p flex-gt-sm="20" flex-sm="25" flex-xs="75">{{value.idTicket}}</p>
+                                                <p flex-gt-sm="10" flex-sm="15" flex-xs="25">{{value.dataApertura |
+                                                    date:'dd/MM/yyyy'}}</p>
+                                                <p flex hide-xs>{{value.descrizione}}</p>
+                                                <p flex="20" hide-xs>{{value.operatore.nome + " " +
+                                                    value.operatore.cognome}}</p>
+                                            </md-list-item>
+                                            <md-divider></md-divider>
+                                        </div>
+                                    </md-list>
+                                    <!--
+                                                                        <p style="height: 500px;">{{status}}</p>
+                                                                        <p style="background-color: yellow;">ciao fine</p>
+                                    -->
+
+                                </md-content>
+
+                            </md-tab>
+
+                            <md-tab label="In attesa">
+
+                                <md-content flex>
+
+                                    <md-list class="md-dense ticket_list" flex>
+                                        <md-list-item class="list_header">
+                                            <p flex-gt-sm="20" flex-sm="25" flex-xs="75">Ticket id</p>
+                                            <p flex-gt-sm="10" flex-sm="15" flex-xs="25">Creato il</p>
+                                            <p flex hide-xs>Descrizione</p>
+                                            <p flex="20" hide-xs>Operatore</p>
+                                        </md-list-item>
+                                        <div id="{{value.idTicket}}" ng-repeat="(key, value) in tickets"
+                                             ng-click="openTicket($event, value)"
+                                             ng-if="(value.stato === 'In Attesa' && role==='superAdmin') ||(value.stato === 'In Attesa' && role==='guest' && subrole==='callcenter') || ( value.stato === 'In Attesa' && role==='guest' && subrole==='operatore' && value.stazione.id=== stazioneID) || ( value.stato === 'In Attesa' && role==='guest' && subrole==='direttore' && value.stazione.id=== stazioneID)">
+                                            <md-list-item class="ticket">
+                                                <p flex-gt-sm="20" flex-sm="25" flex-xs="75">{{value.idTicket}}</p>
+                                                <p flex-gt-sm="10" flex-sm="15" flex-xs="25">{{value.dataApertura |
+                                                    date:'dd/MM/yyyy'}}</p>
+                                                <p flex hide-xs>{{value.descrizione}}</p>
+                                                <p flex="20" hide-xs>{{value.operatore.nome + " " +
+                                                    value.operatore.cognome}}</p>
+                                            </md-list-item>
+                                            <md-divider></md-divider>
+                                        </div>
+
+                                    </md-list>
+
+                                </md-content>
+
+                            </md-tab>
+
+                            <md-tab label="Completati">
+
+                                <md-content flex>
+
+                                    <md-list class="md-dense ticket_list" flex>
+                                        <md-list-item class="list_header">
+                                            <p flex-gt-sm="20" flex-sm="25" flex-xs="75">Ticket id</p>
+                                            <p flex-gt-sm="10" flex-sm="15" flex-xs="25">Creato il</p>
+                                            <p flex hide-xs>Descrizione</p>
+                                            <p flex="20" hide-xs>Operatore</p>
+                                        </md-list-item>
+                                        <div id="{{value.idTicket}}" ng-repeat="(key, value) in tickets"
+                                             ng-click="openTicket($event, value)"
+                                             ng-if="(value.stato === 'Completato' && role==='superAdmin') ||(value.stato === 'Completato' && role==='guest' && subrole==='callcenter') || ( value.stato === 'Completato' && role==='guest' && subrole==='operatore' && value.stazione.id=== stazioneID) || ( value.stato === 'Completato' && role==='guest' && subrole==='direttore' && value.stazione.id=== stazioneID)">
+                                            <md-list-item class="ticket">
+                                                <p flex-gt-sm="20" flex-sm="25" flex-xs="75">{{value.idTicket}}</p>
+                                                <p flex-gt-sm="10" flex-sm="15" flex-xs="25">{{value.dataApertura |
+                                                    date:'dd/MM/yyyy'}}</p>
+                                                <p flex hide-xs>{{value.descrizione}}</p>
+                                                <p flex="20" hide-xs>{{value.operatore.nome + " " +
+                                                    value.operatore.cognome}}</p>
+                                            </md-list-item>
+                                            <md-divider></md-divider>
+                                        </div>
+
+                                    </md-list>
+
+                                </md-content>
+
+                            </md-tab>
+
+                            <md-tab label="Eliminati" ng-if="role==='superAdmin' || subrole==='callcenter' ">
+
+                                <md-content flex>
+
+                                    <md-list class="md-dense ticket_list" flex>
+                                        <md-list-item class="list_header">
+                                            <p flex-gt-sm="20" flex-sm="25" flex-xs="75">Ticket id</p>
+                                            <p flex-gt-sm="10" flex-sm="15" flex-xs="25">Creato il</p>
+                                            <p flex hide-xs>Descrizione</p>
+                                            <p flex="20" hide-xs>Operatore</p>
+                                        </md-list-item>
+                                        <div id="{{value.idTicket}}" ng-repeat="(key, value) in tickets"
+                                             ng-click="openTicket($event, value)"
+                                             ng-if="(value.stato === 'Eliminato' && role==='superAdmin') || (value.stato === 'Eliminato' && role==='guest' && subrole==='callcenter')">
+                                            <md-list-item class="ticket">
+                                                <p flex-gt-sm="20" flex-sm="25" flex-xs="75">{{value.idTicket}}</p>
+                                                <p flex-gt-sm="10" flex-sm="15" flex-xs="25">{{value.dataApertura |
+                                                    date:'dd/MM/yyyy'}}</p>
+                                                <p flex hide-xs>{{value.descrizione}}</p>
+                                                <p flex="20" hide-xs>{{value.operatore.nome + " " +
+                                                    value.operatore.cognome}}</p>
+                                            </md-list-item>
+                                            <md-divider></md-divider>
+                                        </div>
+
+                                    </md-list>
+
+                                </md-content>
+
+                            </md-tab>
+
+                            </md-tab>
+
+                            <md-tab label="Inserimento clienti" ng-if="role==='superAdmin' || subrole==='callcenter' ">
+
+                                <div flex-gt-sm="30" class="ticket_column_2">
+
+                                    <md-content flex layout-padding>
+
+                                        <div id="ticket_search_bar_container" layout="column"
+                                             layout-align="space-around left"
+                                             layout-padding layout-wrap>
+
+                                            <div class="search_bar" flex>
+                                                <md-autocomplete md-items="a in query(searchText)"
+                                                                 md-search-text="searchText"
+                                                                 md-item-text="itemText(a)" md-min-length="0"
+                                                                 placeholder="Ricerca un ticket"
+                                                                 md-selected-item="selectedItem"
+                                                                 md-selected-item-change="itemChanged(a)">
+                                                    <md-item-template>
+                                                        <span md-highlight-text="searchText" md-highlight-flags="gi">{{a.descrizione}}</span>
+                                                    </md-item-template>
+                                                    <md-not-found>No matches found.</md-not-found>
+                                                </md-autocomplete>
+                                            </div>
+
+                                            <div class="add_button_container" flex hide-xs
+                                                 ng-if="role === 'superAdmin' || subrole == 'callcenter'">
+                                                <div layout="row" layout-align="start center">
+                                                    <md-button class="md-fab" ng-click="newTicket($event)"
+                                                               aria-label="Add careManager">
+                                                        <md-icon class="material-icons">add</md-icon>
+                                                    </md-button>
+                                                    <p style="margin: 0 0 0 8px; font-size: 16px;"
+                                                       ng-click="newTicket($event)">Crea nuovo ticket</p>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+                                    </md-content>
+                                </div>
+
+                            </md-tab>
+
+                        </md-tabs>
+
+                    </div>
+
+
+                </div>
+
+
+            </md-content>
+
+
+        </div>
+
+
+    </div>
+</div>
+<script src="applications/3357/3357.js"></script>

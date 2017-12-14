@@ -1,0 +1,194 @@
+<md-dialog id="new_ticket_dialog_container" aria-label="Nuovo Ticket" style="width: 78%;">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Inserisci nuovo cliente</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon aria-label="Close dialog"><i class="material-icons" style="color: white;">close</i></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+    	<div class="md-dialog-content">
+	    	
+	    	<section layout="row" layout-align-sm="start center" layout-align-xs="center start" layout-wrap>
+		    	
+		    	<md-content ng-show="all_info_ok" flex style="background-color: rgba(255, 215, 16, 0.72);" layout-padding>
+			        <p style="margin: 0;">ATTENZIONE: tutti i campi sono richiesti per creare un nuovo ticket; assicurati di aver inserito tutte le informazioni a clicca sul bottone "Aggiungi Ticket".</p>
+		        </md-content>
+		    	
+	    	</section>
+	    	
+<!--
+	    	<section layout="row" layout-align-sm="start center" layout-align-xs="center start" layout-wrap>
+		    	
+		    	<md-content flex-gt-xs="33">
+			        <div layout="column" layout-padding>
+				        <span>Identificativo ticket:</span>
+				        <md-input-container md-no-float>
+				        	<input ng-model="new_ticket_id" placeholder="Ticket ID*" required>
+				        </md-input-container>
+				    </div>
+		        </md-content>
+		        
+		        <md-content flex-gt-xs="66">
+			        <div layout="column" layout-padding>
+				        <span>Descrivi l'emergenza:</span>
+				        <md-input-container md-no-float>
+				        	<textarea ng-model="new_ticket_description" rows="5" placeholder="Descrizione emergenza*" required></textarea>
+				        </md-input-container>
+				    </div>
+		        </md-content>
+		    	
+	    	</section>
+	    	
+	    	<section layout="row" layout-align="start center" layout-align-sm="start center" layout-align-xs="center start" layout-wrap>
+				
+				<md-content flex-gt-xs="33">
+					<div layout="column" layout-padding>
+				        <span>Seleziona la stazione:</span>
+				        <md-input-container md-no-float>
+					        <md-select ng-model="new_ticket_station" placeholder="Stazione*" class="md-no-underline" ng-change="change()" required>
+					           <md-option ng-repeat="item in stazioni" ng-value="item.id">
+					              {{item.nome}}
+					            </md-option>
+					        </md-select>
+				        </md-input-container>
+				    </div>
+				</md-content>
+				
+				<md-content flex-gt-xs="33">
+					<div layout="column" layout-padding>
+				        <span>Seleziona il direttore:</span>
+				        <md-input-container md-no-float>
+					        <md-select ng-model="new_ticket_dir" placeholder="Direttore*" class="md-no-underline" required ng-disabled="disable_before_station">
+								<md-option ng-repeat="item in direttoriOperatori" ng-value="item.id" ng-if="item.tipo == 'direttore'">
+					              {{item.nome + " " + item.cognome}}
+					            </md-option>
+					        </md-select>
+				        </md-input-container>
+				    </div>
+				</md-content>
+				
+				<md-content flex-gt-xs="33">
+					<div layout="column" layout-padding>
+				        <span>Seleziona l'operatore:</span>
+						<md-input-container md-no-float>
+					        <md-select ng-model="new_ticket_op" placeholder="Operatore*" required ng-disabled="disable_before_station">
+					          <md-option ng-repeat="item in direttoriOperatori" ng-value="item.id" ng-if="item.tipo == 'operatore'">
+					               {{item.nome + " " + item.cognome}}
+					            </md-option>
+					        </md-select>
+						</md-input-container>
+				    </div>
+				</md-content>
+				
+	    	</section>
+-->
+	    	
+	    	
+<!-- 	  modmy --> <!-- 	  modmy --> <!-- 	  modmy --> <!-- 	  modmy --> <!-- 	  modmy --> <!-- 	  modmy --> 
+
+
+
+<section layout="row" layout-align-sm="start center" layout-align-xs="center start" layout-wrap>
+		    	
+		    	<md-content flex-gt-xs="33">
+			        <div layout="column" layout-padding>
+				        <span>Nome:</span>
+				        <md-input-container md-no-float>
+				        	<input ng-model="new_name_client" placeholder="Nome cliente" required>
+				        </md-input-container>
+				    </div>
+		        </md-content>
+		        
+		        <md-content flex-gt-xs="33">
+			        <div layout="column" layout-padding>
+				        <span>Cognome:</span>
+				        <md-input-container md-no-float>
+				        	<textarea ng-model="new_cognome_client" rows="5" placeholder="Cognome cliente" required></textarea>
+				        </md-input-container>
+				    </div>
+		        </md-content>
+		    	
+	    	</section>
+	    	
+	    	<section layout="row" layout-align="start center" layout-align-sm="start center" layout-align-xs="center start" layout-wrap>
+				
+				<md-content flex-gt-xs="33">
+					<div layout="column" layout-padding>
+				        <span>Seleziona la stazione:</span>
+				        <md-input-container md-no-float>
+					        <md-select ng-model="new_ticket_station" placeholder="Stazione*" class="md-no-underline" ng-change="change()" required>
+					           <md-option ng-repeat="item in stazioni" ng-value="item.id">
+					              {{item.nome}}
+					            </md-option>
+					        </md-select>
+				        </md-input-container>
+				    </div>
+				</md-content>
+				
+				<md-content flex-gt-xs="33">
+					<div layout="column" layout-padding>
+				        <span>Seleziona il direttore:</span>
+				        <md-input-container md-no-float>
+					        <md-select ng-model="new_ticket_dir" placeholder="Direttore*" class="md-no-underline" required ng-disabled="disable_before_station">
+								<md-option ng-repeat="item in direttoriOperatori" ng-value="item.id" ng-if="item.tipo == 'direttore'">
+					              {{item.nome + " " + item.cognome}}
+					            </md-option>
+					        </md-select>
+				        </md-input-container>
+				    </div>
+				</md-content>
+				
+				<md-content flex-gt-xs="33">
+					<div layout="column" layout-padding>
+				        <span>Seleziona l'operatore:</span>
+						<md-input-container md-no-float>
+					        <md-select ng-model="new_ticket_op" placeholder="Operatore*" required ng-disabled="disable_before_station">
+					          <md-option ng-repeat="item in direttoriOperatori" ng-value="item.id" ng-if="item.tipo == 'operatore'">
+					               {{item.nome + " " + item.cognome}}
+					            </md-option>
+					        </md-select>
+						</md-input-container>
+				    </div>
+				</md-content>
+				
+	    	</section>
+	    	<!-- 	  modmy -->
+
+	    	
+	    	
+	    	<section layout="row" layout-align="start center" layout-align-sm="start center" layout-align-xs="center start" layout-wrap>
+		    	
+		    	<md-content flex layout-padding style="background-color: transparent;">
+			        <p style="margin: 0;">* = informazione richiesta.</p>
+		        </md-content>
+		    	
+<!--
+		        <md-content flex-gt-xs="33">
+			        <div layout="column" layout-padding>
+				        <span>Con ng-repeat</span>
+				        <md-select ng-model="ctrl.userState">
+				            <md-option ng-repeat="state in ctrl.states" ng-value="state.abbrev">
+				              {{state.abbrev}}
+				            </md-option>
+				        </md-select>
+				    </div>
+		        </md-content>
+-->
+		    	
+	    	</section>
+			
+    	</div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+    	<span flex></span>
+		<!--<md-button class="md-warn" ng-click="answer('delete_ticket')">Elimina Ticket</md-button>-->
+		<md-button class="md-primary" ng-click="answer('add_ticket')">Aggiungi Ticket</md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

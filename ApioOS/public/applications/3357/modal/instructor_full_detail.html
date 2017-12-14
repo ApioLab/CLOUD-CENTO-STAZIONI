@@ -1,0 +1,167 @@
+<style type="text/css">
+    .redBoarder {
+    }
+
+    .backgrey {
+
+        background-color: #f5f5f5 !important;
+    }
+
+    .labelora {
+        font-size: 14px !important;
+        padding-left: 8px !important;
+    }
+
+    .redBoarder .md-icon {
+        border-color: red;
+    }
+
+    .md-toolbar-tools {
+        min-height: 50px !important;
+        height: 50px !important;
+    }
+
+    .label {
+        font-size: 14px !important;
+        color: #ffffff !important;
+    }
+
+    .uli-color-bar {
+        background-color: rgb(33, 150, 243) !important;
+    }
+</style>
+
+<md-dialog aria-label="{{value.name}} class detail" style="min-width: 60%;">
+    <form ng-cloak>
+        <md-toolbar class="uli-color-bar md-toolbar-tools">
+            <div class="md-toolbar-tools">
+                <h2>{{value.nome}} {{value.cognome}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon class="material-icons" aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+
+        <md-dialog-content>
+  
+<md-card style="margin-top: 10px;">
+<!--             <div class="md-dialog-content"> -->
+
+                <md-content id="new_class_container">
+
+                    <div layout="row" layout-wrap>
+<!--                         <p flex="100" style="margin: 0;">Inserisci le seguenti informazioni:</p> -->
+                        <md-list flex="100">
+                            <md-list-item>
+                                <span flex="40">Nome</span>
+                                <md-input-container flex class="md-block" placeholder="Nome" style="margin: 0;">
+                                    <input ng-model="value.nome">
+                                </md-input-container>
+                            </md-list-item>
+                            <md-list-item>
+                                <span flex="40">Cognome</span>
+                                <md-input-container flex class="md-block" placeholder="Cognome" style="margin: 0;">
+                                    <input ng-model="value.cognome">
+                                </md-input-container>
+                            </md-list-item>
+                            <md-list-item>
+                                <span flex="40">Data Nascita</span>
+                                <md-input-container flex class="md-block" placeholder="Data di nascita" style="margin: 0;">
+                                    <input ng-model="value.data_nascitaString">
+                                </md-input-container>
+                            </md-list-item>
+                            <md-list-item>
+                                <span flex="40">Corsi seguiti</span>
+			                    <div layout="column">
+									<md-checkbox  ng-model="value.corsi_seguiti[$index]" ng-repeat="n in CorsiScuolaNuoto">
+									{{n.nome}}</md-checkbox>
+								</div>
+                            </md-list-item>
+                            <md-list-item>
+		                                <md-input-container flex>
+		                                    <label>Corsi Mese</label>
+		                                    <input type="text" ng-model="corsimese" disabled/>
+		                                </md-input-container>
+		                            </md-list-item>
+		                            
+		                        </md-list>
+		                        <md-list-item>
+		                                <md-input-container flex>
+		                                    <label>Corsi Anno</label>
+		                                    <input type="text" ng-model="corsianno" disabled/>
+		                                </md-input-container>
+		                            </md-list-item>
+		                            
+		                        </md-list>
+<!--
+                            <md-list-item>
+                                <span flex="40">Corsi Mese</span>
+                                <md-input-container flex class="md-block"  style="margin: 0;">
+                                    <input ng-model="value.corsimese">
+                                </md-input-container>
+                            </md-list-item>
+                            <md-list-item>
+                                <span flex="40">Corsi Anno</span>
+                                <md-input-container flex class="md-block"  style="margin: 0;">
+                                    <input ng-model="value.corsianno">
+                                </md-input-container>
+                            </md-list-item>
+-->
+                            
+                        </md-list>
+                    </div>
+                </md-content>
+
+<!--             </div> -->
+        </md-card>  
+  
+        
+<!--
+<md-card style="margin-top: 10px;">
+   
+                <md-content id="new_gateways_container">
+                    <div layout="row">
+
+                        <md-list flex class="listTableStyle">
+                            <md-list-item class="listTableItemStyle">
+                                <p flex="40">Nome</p>
+                                <p flex="60">{{value.nome}}</p>
+                            </md-list-item>
+                            <md-list-item class="listTableItemStyle">
+                                <p flex="40">Cognome</p>
+                                <p flex="60">{{value.cognome}}</p>
+                            </md-list-item>
+                            <md-list-item class="listTableItemStyle">
+                                <p flex="40">Data Nascita</p>
+                                <p flex="60">{{value.data_nascitaString}}</p>
+                            </md-list-item>
+                            <md-list-item class="listTableItemStyle">
+                                <p flex="40">Corsi questo mese</p>
+                                <p flex="60">---</p>
+                            </md-list-item>
+                            <md-list-item class="listTableItemStyle">
+                                <p flex="40">Corsi questo anno</p>
+                                <p flex="60">---</p>
+                            </md-list-item>
+                            <md-list-item class="listTableItemStyle">
+                                <p flex="40">Corsi seguiti</p>
+                                <p flex="60" >Ambientamento, Livello 1</p>
+                            </md-list-item>
+                        </md-list>
+
+                    </div>
+                </md-content>
+</md-card>                
+-->
+<!--             </div> -->
+        </md-dialog-content>
+
+        <!--<md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button class="md-primary md-raised" ng-click="createNewEvent()" style="padding: 0 10px;">Add Event</md-button>
+        </md-dialog-actions>-->
+
+    </form>
+</md-dialog>

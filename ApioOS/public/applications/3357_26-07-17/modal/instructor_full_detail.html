@@ -1,0 +1,63 @@
+<md-dialog aria-label="{{value.name}} class detail" style="min-width: 60%;">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>{{value.nome}} {{value.cognome}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon class="material-icons" aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <md-content id="new_gateways_container">
+                    <div layout="row">
+                        <!--<p>{{value}}</p>-->
+
+                        <md-list flex class="listTableStyle">
+                            <md-list-item class="listTableItemStyle">
+                                <p flex="40">Nome</p>
+                                <p flex="60">{{value.nome}}</p>
+                            </md-list-item>
+                            <md-list-item class="listTableItemStyle">
+                                <p flex="40">Cognome</p>
+                                <p flex="60">{{value.cognome}}</p>
+                            </md-list-item>
+                            <md-list-item class="listTableItemStyle">
+                                <p flex="40">Data Nascita</p>
+                                <p flex="60">{{value.data_nascitaString}}</p>
+                            </md-list-item>
+<!--
+                            <md-list-item class="listTableItemStyle">
+                                <p flex="40">Livello</p>
+                                <p flex="60">{{value.livello}}</p>
+                            </md-list-item>
+-->
+                            <md-list-item class="listTableItemStyle">
+                                <p flex="40">Corsi questo mese</p>
+                                <p flex="60">---</p>
+                            </md-list-item>
+                            <md-list-item class="listTableItemStyle">
+                                <p flex="40">Corsi questo anno</p>
+                                <p flex="60">---</p>
+                            </md-list-item>
+                            <md-list-item class="listTableItemStyle">
+                                <p flex="40">Corsi seguiti</p>
+                                <p flex="60" >Ambientamento, Livello 1</p>
+                            </md-list-item>
+                        </md-list>
+
+                    </div>
+                </md-content>
+            </div>
+        </md-dialog-content>
+
+        <!--<md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button class="md-primary md-raised" ng-click="createNewEvent()" style="padding: 0 10px;">Add Event</md-button>
+        </md-dialog-actions>-->
+
+    </form>
+</md-dialog>

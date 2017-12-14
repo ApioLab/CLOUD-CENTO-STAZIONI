@@ -1,0 +1,310 @@
+<!--suppress ALL -->
+<style>
+    #defaultController {
+        height: 99.8% !important;
+    }
+
+    .md-datepicker-calendar-pane {
+        z-index: 2000 !important;
+    }
+
+    .md-select-menu-container {
+        z-index: 1040;
+    }
+
+    md-virtual-repeat-container {
+        z-index: 10000 !important;
+    }
+
+    .md-select-menu-container {
+        z-index: 1040;
+    }
+
+    md-input-container .md-errors-spacer {
+        min-height: 0;
+    }
+
+    md-dialog-actions {
+        border-top: 1px solid rgba(0, 0, 0, 0.12);
+    }
+
+    md-sidenav {
+        width: 330px;
+    }
+
+    /*#sectionsContainer {
+        display: block;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        color: rgba(0, 0, 0, 0.87);
+        background: rgb(255, 255, 255);
+        height: 100%;
+    }*/
+
+    /*#sectionsContent {
+        padding: 0 16px 16px;
+        height: 91vh;
+        overflow: scroll;
+    }*/
+
+    /* Class Calendar style ------------------------- */
+    .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+        vertical-align: middle;
+    }
+
+    .classCalendarTableContainer {
+        /*width: 1400px;*/
+        /*padding-right: 40px;*/
+    }
+
+    .classCalendarTable {
+        height: 100%;
+        margin-bottom: 42px;
+        /*width: 100%;*/
+    }
+
+    .classCalendarTableTitleRow {
+        height: 30px;
+        text-align: center;
+    }
+
+    .classCalendarTableBodyRow {
+        height: 80px;
+    }
+
+    .hoursColumnWidth {
+        width: 80px;
+        text-align: center;
+    }
+
+    .laneColumnWidth {
+        width: 230px;
+    }
+
+    .cardsContainer {
+        margin: 2px;
+    }
+
+    .cardGreen {
+        background-color: #00b157;
+    }
+
+    .cardYellow {
+        background-color: #f9d732;
+    }
+
+    .cardOrange {
+        background-color: #ec9223;
+    }
+
+    .cardRed {
+        background-color: #d22c2c;
+    }
+
+    /*.cardsContainer md-card-content {
+        padding-top: 0;
+    }
+
+    .cardsContainer md-progress-circular .md-inner .md-right .md-half-circle {
+        border-right-color: rgb(40, 40, 40);
+    }
+
+    .cardsContainer md-progress-circular .md-inner .md-right .md-half-circle {
+        border-top-color: rgb(40, 40, 40);
+    }
+
+    .cardsContainer md-progress-circular .md-inner .md-left .md-half-circle {
+        border-left-color: rgb(40, 40, 40);
+    }
+
+    .cardsContainer md-progress-circular .md-inner .md-left .md-half-circle {
+        border-top-color: rgb(40, 40, 40);
+    }*/
+
+    /*.cardsContainer md-progress-circular .md-spinner-wrapper .md-inner .md-left .md-half-circle {
+        border-right-color: rgb(181, 181, 181);
+    }
+
+    .cardsContainer md-progress-circular .md-spinner-wrapper .md-inner .md-right .md-half-circle {
+        border-left-color: rgb(181, 181, 181);
+    }
+
+    .cardsContainer md-progress-circular .md-spinner-wrapper .md-inner .md-left .md-half-circle, .cardsContainer md-progress-circular .md-spinner-wrapper .md-inner .md-right .md-half-circle {
+        border-bottom-color: rgb(181, 181, 181);
+        border-width: 16px;
+    }*/
+
+    /*.cardsContainer md-progress-circular.progressCircularWhite .md-inner .md-right .md-half-circle {
+        border-right-color: rgb(241, 241, 241);
+    }
+
+    .cardsContainer md-progress-circular.progressCircularWhite .md-inner .md-right .md-half-circle {
+        border-top-color: rgb(241, 241, 241);
+    }
+
+    .cardsContainer md-progress-circular.progressCircularWhite .md-inner .md-left .md-half-circle {
+        border-left-color: rgb(241, 241, 241);
+    }
+
+    .cardsContainer md-progress-circular.progressCircularWhite .md-inner .md-left .md-half-circle {
+        border-top-color: rgb(241, 241, 241);
+    }*/
+
+    /* Event detail style */
+    .rowStyle {
+        padding-bottom: 16px;
+    }
+
+    /* ---------FLEX-MD--------- */
+    @media (min-width: 960px) and (max-width: 1279px) {
+
+    }
+
+    /* ---------FLEX-SM--------- */
+    @media (min-width: 600px) and (max-width: 959px) {
+        #sectionsContent {
+            height: 94vh;
+        }
+    }
+
+    /* ---------FLEX-XS--------- */
+    @media (max-width: 599px) {
+
+    }
+
+</style>
+
+<div id="ApioApplication3357" ng-app="ApioApplication3357" style="padding: 10px;" ng-cloak>
+    <div ng-controller="defaultController">
+        <topappapplication style="display: none !important;"></topappapplication>
+        <div id="app" style="display: block;">
+
+
+            <section id="swimmingPoolAppContainer" layout="row" flex layout-fill>
+
+                <md-sidenav class="md-sidenav-left"
+                            md-component-id="left"
+                            md-whiteframe="4">
+                    <md-toolbar>
+                        <div class="md-toolbar-tools">
+                            <md-button class="md-icon-button" aria-label="Close">
+                                <md-icon class="material-icons" ng-click="closeApp()">home</md-icon>
+                            </md-button>
+                            <h1>{{object.name}}</h1>
+                        </div>
+                    </md-toolbar>
+                    <md-content layout-padding>
+                        <!--<md-button ng-click="close()" class="md-primary">Close Sidenav Left</md-button>-->
+                        <!--<md-button ng-click="toggleLeft()" class="md-primary">Toggle left</md-button>-->
+                        <md-list id="leftMenuContainer">
+                            <md-list-item ng-click="changeMenuSection('Calendario')"
+                                          style="border-bottom: 2px solid rgba(63, 81, 181, 0.90);">
+                                <h6>Calendario</h6>
+                            </md-list-item>
+                            <md-list-item ng-click="changeMenuSection('Corsi')">
+                                <h6>Corsi</h6>
+                            </md-list-item>
+                            <md-list-item ng-click="changeMenuSection('Istruttori')">
+                                <h6>Istruttori</h6>
+                            </md-list-item>
+                            <md-list-item ng-click="changeMenuSection('Tesserati')">
+                                <h6>Tesserati</h6>
+                            </md-list-item>
+                        </md-list>
+                    </md-content>
+                </md-sidenav>
+
+
+                <md-content id="sectionsContainer">
+
+                    <md-toolbar>
+                        <div class="md-toolbar-tools">
+                            <md-button class="md-icon-button" aria-label="Close/Open Sidenav button">
+                                <!--<md-icon class="material-icons" ng-if="leftSidenavLocked === true"
+                                         ng-click="toggleLeft()">keyboard_arrow_left
+                                </md-icon>-->
+                                <md-icon class="material-icons" ng-click="toggleLeft()">menu</md-icon>
+                            </md-button>
+
+
+                            <md-button class="md-icon-button" aria-label="Close">
+                                <md-icon class="material-icons" ng-click="closeApp()">home</md-icon>
+                            </md-button>
+
+
+                            <h3 flex>Calendario corsi</h3>
+
+
+                            <md-button class="md-icon-button" aria-label="Class calendar settings button">
+                                <md-icon class="material-icons" ng-click="changeClassCalendarDate('back')">arrow_back
+                                </md-icon>
+                            </md-button>
+
+
+                            <md-datepicker ng-model="dateForCalendar" md-placeholder="Class calendar date"
+                                           md-open-on-focus></md-datepicker>
+
+                            <md-button class="md-icon-button" aria-label="Class calendar settings button">
+                                <md-icon class="material-icons" ng-click="changeClassCalendarDate('forward')">
+                                    arrow_forward
+                                </md-icon>
+                            </md-button>
+
+
+                            <md-button class="md-icon-button" aria-label="Class calendar settings button">
+                                <md-icon class="material-icons" ng-click="classCalendarSettings()">settings</md-icon>
+                            </md-button>
+                        </div>
+                    </md-toolbar>
+
+                    <md-content id="sectionsContent" layout-padding>
+
+                        <div class="classCalendarTableContainer">
+
+
+                            <!-- Tabella Ng-Repeat ----------------------------------------->
+                            <table class="table table-bordered table-striped classCalendarTable">
+                                <thead>
+                                <tr class="classCalendarTableTitleRow">
+                                    <th class="hoursColumnWidth">Orari</th>
+                                    <th class="laneColumnWidth" ng-repeat="x in Corsie">{{ x.name }}</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr id="tabella" class="classCalendarTableBodyRow" ng-repeat="x in mydata.time[0]">
+                                    <td class="hoursColumnWidth">{{ x.start }}<br>{{ x.end }}</td>
+                                    <td style="padding: 3px;" ng-repeat="y in orari[0].corsi">
+                                        <md-card ng-click="showEvent()" class="cardsContainer cardGreen">
+                                            <md-card-header style="padding: 10px;">
+                                                <md-card-header-text>
+                                                    <p style="margin:0;"><span class="md-title">AcquaGym1 - </span>
+                                                        <span style="font-size: 24px; color: black;">1/10</span>
+                                                    </p>
+                                                    <span class="md-subhead">Pippo 1</span>
+                                                </md-card-header-text>
+                                            </md-card-header>
+                                        </md-card>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <!-- Tabella Ng-Repeat ----------------------------------------->
+
+
+                        </div>
+
+                    </md-content>
+
+                    <!--<div ng-view></div>-->
+                </md-content>
+
+            </section>
+
+
+        </div>
+    </div>
+</div>
+
+<script src="applications/3357/3357.js"></script>

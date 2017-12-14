@@ -1,0 +1,321 @@
+<!-- Modal modifica corso -->
+
+
+<style>
+    .redBoarder {
+    }
+
+    .backgrey {
+
+        background-color: #f5f5f5 !important;
+    }
+
+    .labelora {
+        font-size: 14px !important;
+        padding-left: 8px !important;
+    }
+
+    .redBoarder .md-icon {
+        border-color: red;
+    }
+
+    .md-toolbar-tools {
+        min-height: 50px !important;
+        height: 50px !important;
+    }
+
+    .label {
+        font-size: 14px !important;
+        color: #ffffff !important;
+    }
+
+    .uli-color-bar {
+        background-color: rgb(33, 150, 243) !important;
+    }
+</style>
+
+<md-dialog aria-label="{{value.name}} class detail id: {{value.id}}" style="min-width: 50%;">
+    <form ng-cloak>
+        <md-toolbar class="uli-color-bar md-toolbar-tools">
+            <div class="md-toolbar-tools">
+                <h2>{{value.id}}: {{value.nome}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="delCorso()">
+                    <md-icon class="material-icons" aria-label="Delete Corso">delete</md-icon>
+                </md-button>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon class="material-icons" aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <md-card style="margin-top: 10px;" class="backgrey">
+
+                <div class="md-dialog-content">
+
+                    <md-content id="new_gateways_container">
+                        <div layout="row" layout-wrap>
+                            <!--<p>{{value}}</p>-->
+
+                            <md-list flex="100">
+                                <md-list-item>
+                                    <span flex="40">Nome corso</span>
+                                    <md-input-container flex class="md-block" placeholder="Nome" style="margin: 0;">
+                                        <input ng-model="newClass.nome">
+                                    </md-input-container>
+                                </md-list-item>
+
+                                <md-list-item>
+                                    <span flex="40">Durata</span>
+                                    <select flex="60" aria-label="Property list" placeholder="Durata"
+                                            class="form-control" ng-model="newClass.durata">
+                                        <option value="30">30 min</option>
+                                        <option value="40">40 min</option>
+                                        <option value="45">45 min</option>
+                                        <option value="50">50 min</option>
+                                        <option value="60">60 min</option>
+                                    </select>
+                                </md-list-item>
+
+                                <md-list-item>
+                                    <span flex="40">Periodo</span>
+                                    <md-datepicker class="classCalendarDatePicker backgrey"
+                                                   ng-model="newClass.dateBegin"
+                                                   md-placeholder="Inzio" md-open-on-focus></md-datepicker>
+                                    <md-datepicker class="classCalendarDatePicker backgrey" ng-model="newClass.dateEnd"
+                                                   md-placeholder="Fine" md-open-on-focus></md-datepicker>
+                                </md-list-item>
+
+                                <md-list-item>
+                                    <span flex="40">Numero posti</span>
+                                    <md-input-container flex class="md-block" placeholder="Numero posti">
+                                        <input ng-model="newClass.posti">
+                                    </md-input-container>
+                                </md-list-item>
+                                <!--
+                                                                <md-list-item>
+                                                                    <span flex="40">Corsia</span>
+                                                                    <md-select ng-model="newClass.corsia" placeholder="">
+                                                                        <md-option ng-value="c.id" ng-repeat="c in Corsie">{{c.nome}}
+                                                                            ({{c.nomePiscina}})
+                                                                        </md-option>
+                                                                    </md-select>
+                                                                </md-list-item>
+                                -->
+                                <md-list-item>
+                                    <span flex="40">Istruttore</span>
+                                    <md-select ng-model="newClass.istruttore" placeholder="">
+                                        <md-option ng-value="c.id" ng-repeat="c in Istruttori">{{c.nome}} {{c.cognome}}
+                                        </md-option>
+                                    </md-select>
+                                </md-list-item>
+
+                                <!--
+                                                                <md-list-item>
+                                                                    <span flex="40">Programma</span>
+                                                                    <div layout="column">
+                                                                        <div layout="column">
+                                                                            <span>Lunedì</span>
+                                                                            <md-select ng-model="newClass.time1" multiple>
+                                                                                <md-option ng-value="t" ng-repeat="t in time['1']">
+                                                                                    {{t.start}} - {{t.end}}
+                                                                                </md-option>
+                                                                            </md-select>
+                                                                        </div>
+                                                                        <div layout="column">
+                                                                            <span>Martedì</span>
+                                                                            <md-select ng-model="newClass.time2" multiple>
+                                                                                <md-option ng-value="t" ng-repeat="t in time['2']">
+                                                                                    {{t.start}} - {{t.end}}
+                                                                                </md-option>
+                                                                            </md-select>
+                                                                        </div>
+                                                                        <div layout="column">
+                                                                            <span>Mercoledì</span>
+                                                                            <md-select ng-model="newClass.time3" multiple>
+                                                                                <md-option ng-value="t" ng-repeat="t in time['3']">
+                                                                                    {{t.start}} - {{t.end}}
+                                                                                </md-option>
+                                                                            </md-select>
+                                                                        </div>
+                                                                        <div layout="column">
+                                                                            <span>Giovedì</span>
+                                                                            <md-select ng-model="newClass.time4" multiple>
+                                                                                <md-option ng-value="t" ng-repeat="t in time['4']">
+                                                                                    {{t.start}} - {{t.end}}
+                                                                                </md-option>
+                                                                            </md-select>
+                                                                        </div>
+                                                                        <div layout="column">
+                                                                            <span>Venerdì</span>
+                                                                            <md-select ng-model="newClass.time5" multiple>
+                                                                                <md-option ng-value="t" ng-repeat="t in time['5']">
+                                                                                    {{t.start}} - {{t.end}}
+                                                                                </md-option>
+                                                                            </md-select>
+                                                                        </div>
+                                                                        <div layout="column">
+                                                                            <span>Sabato</span>
+                                                                            <md-select ng-model="newClass.time6" multiple>
+                                                                                <md-option ng-value="t" ng-repeat="t in time['6']">
+                                                                                    {{t.start}} - {{t.end}}
+                                                                                </md-option>
+                                                                            </md-select>
+                                                                        </div>
+                                                                        <div layout="column">
+                                                                            <span>Domenica</span>
+                                                                            <md-select ng-model="newClass.time0" multiple>
+                                                                                <md-option ng-value="t" ng-repeat="t in time['0']">
+                                                                                    {{t.start}} - {{t.end}}
+                                                                                </md-option>
+                                                                            </md-select>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </md-list-item>
+                                -->
+
+                            </md-list>
+                        </div>
+                    </md-content>
+                </div>
+            </md-card>
+
+
+            <md-card>
+                <md-tabs md-selected="selectedIndex" md-dynamic-height md-border-bottom>
+                    <md-tab ng-repeat="c in Corsie" style="font-size: 12px;" label="{{c.nome}}">
+                        <!-- <md-tab ng-repeat="co in Corsie" label="{{co.name}}"> -->
+
+                        <md-card>
+                            <md-table-container>
+                                <table md-table md-row-select="false" multiple="false" ng-model="selected"
+                                       md-progress="promise">
+                                    <thead ng-if="!options.decapitate" md-head>
+                                    <!--           <table md-table md-head class="uli-color-bar md-toolbar-tools"> -->
+                                    <tr md-row class="uli-color-bar">
+                                        <th md-column><span class="label">Orario</span></th>
+                                        <th md-column><span class="label">Lun</span></th>
+                                        <th md-column><span class="label">Mar</span></th>
+                                        <th md-column><span class="label">Mer</span></th>
+                                        <th md-column><span class="label">Gio</span></th>
+                                        <th md-column><span class="label">Ven</span></th>
+                                        <th md-column><span class="label">Sab</span></th>
+                                        <th md-column><span class="label">Dom</span></th>
+                                        </th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody md-body class="backgrey">
+                                    <tr md-row ng-repeat="t in time['1']">
+                                        <td><p class="labelora">{{t.start}} - {{t.end}}</p></td>
+                                        <td>
+                                            <md-checkbox flex ng-disabled="disblaedCheckBox[$parent.$index][1][$index]"
+                                                         ng-model="checkBoxModel[$parent.$index][1][$index]"></md-checkbox>
+                                        </td>
+                                        <td>
+                                            <md-checkbox flex ng-disabled="disblaedCheckBox[$parent.$index][2][$index]"
+                                                         ng-model="checkBoxModel[$parent.$index][2][$index]"></md-checkbox>
+                                        </td>
+                                        <td>
+                                            <md-checkbox flex ng-disabled="disblaedCheckBox[$parent.$index][3][$index]"
+                                                         ng-model="checkBoxModel[$parent.$index][3][$index]"></md-checkbox>
+                                        </td>
+                                        <td>
+                                            <md-checkbox flex ng-disabled="disblaedCheckBox[$parent.$index][4][$index]"
+                                                         ng-model="checkBoxModel[$parent.$index][4][$index]"></md-checkbox>
+                                        </td>
+                                        <td>
+                                            <md-checkbox flex ng-disabled="disblaedCheckBox[$parent.$index][5][$index]"
+                                                         ng-model="checkBoxModel[$parent.$index][5][$index]"></md-checkbox>
+                                        </td>
+                                        <td>
+                                            <md-checkbox flex ng-disabled="disblaedCheckBox[$parent.$index][6][$index]"
+                                                         ng-model="checkBoxModel[$parent.$index][6][$index]"></md-checkbox>
+                                        </td>
+                                        <td>
+                                            <md-checkbox flex ng-disabled="disblaedCheckBox[$parent.$index][0][$index]"
+                                                         ng-model="checkBoxModel[$parent.$index][0][$index]"></md-checkbox>
+                                        </td>
+
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </md-table-container>
+                        </md-card>
+
+
+                    </md-tab>
+                </md-tabs>
+            </md-card>
+
+
+            <!--
+                        <md-card>
+                            <md-table-container>
+                                <table md-table md-row-select="false" multiple="false" ng-model="selected" md-progress="promise">
+                                    <thead ng-if="!options.decapitate" md-head>
+                                    <tr md-row class="uli-color-bar">
+                                        <th md-column><span class="label">Orario</span></th>
+                                        <th md-column><span class="label">Lun</span></th>
+                                        <th md-column><span class="label">Mar</span></th>
+                                        <th md-column><span class="label">Mer</span></th>
+                                        <th md-column><span class="label">Gio</span></th>
+                                        <th md-column><span class="label">Ven</span></th>
+                                        <th md-column><span class="label">Sab</span></th>
+                                        <th md-column><span class="label">Dom</span></th>
+                                        </th>
+                                    </tr>
+                                    </thead>
+
+
+                                    <tbody md-body class="backgrey">
+                                    <tr md-row ng-repeat="t in time['1']">
+                                        <td><p class="labelora">{{t.start}} - {{t.end}}</p></td>
+                                        <td>
+                                            <md-checkbox flex ng-disabled="true" ng-model="checkBoxModel[1][$index]"></md-checkbox>
+                                        </td>
+                                        <td>
+                                            <md-checkbox flex ng-disabled="true" ng-model="checkBoxModel[2][$index]"></md-checkbox>
+                                        </td>
+                                        <td>
+                                            <md-checkbox flex ng-disabled="true" ng-model="checkBoxModel[3][$index]"></md-checkbox>
+                                        </td>
+                                        <td>
+                                            <md-checkbox flex ng-disabled="true" ng-model="checkBoxModel[4][$index]"></md-checkbox>
+                                        </td>
+                                        <td>
+                                            <md-checkbox flex ng-disabled="true" ng-model="checkBoxModel[5][$index]"></md-checkbox>
+                                        </td>
+                                        <td>
+                                            <md-checkbox flex ng-disabled="true" ng-model="checkBoxModel[6][$index]"></md-checkbox>
+                                        </td>
+                                        <td>
+                                            <md-checkbox flex ng-disabled="true" ng-model="checkBoxModel[0][$index]"></md-checkbox>
+                                        </td>
+
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </md-table-container>
+                        </md-card>
+            -->
+
+            <!--                         </md-list> -->
+            <!--
+                                </div>
+                            </md-content>
+                        </div>
+            -->
+        </md-dialog-content>
+        <!--<md-dialog-actions layout="row">-->
+        <!--<span flex></span>-->
+        <!--<md-button class="md-primary md-raised uli-color-bar" ng-click="modifyCorso()" style="padding: 0 10px;">-->
+        <!--Salva-->
+        <!--</md-button>-->
+        <!--</md-dialog-actions>-->
+
+
+    </form>
+</md-dialog>

@@ -1,0 +1,243 @@
+<md-dialog aria-label="Add a new class" style="min-width: 50%;">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Aggiungi corso</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon class="material-icons" aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+
+                <md-content id="new_class_container">
+
+                    <div layout="row" layout-wrap>
+                        <md-list flex="100">
+                            <md-list-item>
+                                <span flex="40">Seleziona un corso esistente</span>
+                                <md-select ng-model="newClass.corsoEsistente" placeholder="">
+                                    <md-option ng-value="c.id" ng-repeat="c in Corsi">{{c.nome}}</md-option>
+                                </md-select>
+                            </md-list-item>
+                            <md-list-item>
+                                <span flex="40">Crea un nuovo corso</span>
+                                <md-input-container flex class="md-block" placeholder="Nome" style="margin: 0;">
+                                    <input ng-model="newClass.nome">
+                                </md-input-container>
+                            </md-list-item>
+                            <md-list-item>
+                                <span flex="40">Durata</span>
+                                <select flex="60" aria-label="Property list" placeholder="Seleziona durata"
+                                        class="form-control" ng-model="newClass.durata">
+                                    <option value="30">30 min</option>
+                                    <option value="40">40 min</option>
+                                    <option value="45">45 min</option>
+                                    <option value="50">50 min</option>
+                                    <option value="60">60 min</option>
+                                    <!--
+                                                                        <option value="70">70 min</option>
+                                                                        <option value="75">75 min</option>
+                                                                        <option value="80">80 min</option>
+                                                                        <option value="90">90 min</option>
+                                    -->
+
+                                </select>
+                            </md-list-item>
+
+                            <md-list-item>
+                                <span flex="40">Periodo</span>
+                                <md-datepicker class="classCalendarDatePicker" ng-model="newClass.dateBegin"
+                                               md-placeholder="Inzio" md-open-on-focus></md-datepicker>
+                                <md-datepicker class="classCalendarDatePicker" ng-model="newClass.dateEnd"
+                                               md-placeholder="Fine" md-open-on-focus></md-datepicker>
+                            </md-list-item>
+
+                            <md-list-item>
+                                <span flex="40">Programma</span>
+                                <div layout="column">
+                                    <div layout="column">
+                                        <span>Lunedì</span>
+                                        <md-select ng-model="newClass.time1" multiple>
+                                            <md-option ng-value="t" ng-repeat="t in time['1']">{{t.start}} - {{t.end}}
+                                            </md-option>
+                                        </md-select>
+                                    </div>
+                                    <div layout="column">
+                                        <span>Martedì</span>
+                                        <md-select ng-model="newClass.time2" multiple>
+                                            <md-option ng-value="t" ng-repeat="t in time['2']">{{t.start}} - {{t.end}}
+                                            </md-option>
+                                        </md-select>
+                                    </div>
+                                    <div layout="column">
+                                        <span>Mercoledì</span>
+                                        <md-select ng-model="newClass.time3" multiple>
+                                            <md-option ng-value="t" ng-repeat="t in time['3']">{{t.start}} - {{t.end}}
+                                            </md-option>
+                                        </md-select>
+                                    </div>
+                                    <div layout="column">
+                                        <span>Giovedì</span>
+                                        <md-select ng-model="newClass.time4" multiple>
+                                            <md-option ng-value="t" ng-repeat="t in time['4']">{{t.start}} - {{t.end}}
+                                            </md-option>
+                                        </md-select>
+                                    </div>
+                                    <div layout="column">
+                                        <span>Venerdì</span>
+                                        <md-select ng-model="newClass.time5" multiple>
+                                            <md-option ng-value="t" ng-repeat="t in time['5']">{{t.start}} - {{t.end}}
+                                            </md-option>
+                                        </md-select>
+                                    </div>
+                                    <div layout="column">
+                                        <span>Sabato</span>
+                                        <md-select ng-model="newClass.time6" multiple>
+                                            <md-option ng-value="t" ng-repeat="t in time['6']">{{t.start}} - {{t.end}}
+                                            </md-option>
+                                        </md-select>
+                                    </div>
+                                    <div layout="column">
+                                        <span>Domenica</span>
+                                        <md-select ng-model="newClass.time0" multiple>
+                                            <md-option ng-value="t" ng-repeat="t in time['0']">{{t.start}} - {{t.end}}
+                                            </md-option>
+                                        </md-select>
+                                    </div>
+                                </div>
+                            </md-list-item>
+                            <md-list-item>
+                                <span flex="40">Massimo numero di posti</span>
+                                <md-input-container flex class="md-block" placeholder="Nome" style="margin: 0;">
+                                    <input ng-model="newClass.posti">
+                                </md-input-container>
+                            </md-list-item>
+                            <md-list-item>
+                                <span flex="40">Seleziona la corsia</span>
+                                <md-select ng-model="newClass.corsia" placeholder="">
+                                    <md-option ng-value="c.id" ng-repeat="c in Corsie">{{c.nome}} ({{c.nomePiscina}})
+                                    </md-option>
+                                </md-select>
+                            </md-list-item>
+                            <md-list-item>
+                                <span flex="40">Seleziona un istruttore</span>
+                                <md-select ng-model="newClass.istruttore" placeholder="">
+                                    <md-option ng-value="c.id" ng-repeat="c in Istruttori">{{c.nome}} {{c.cognome}}
+                                    </md-option>
+                                </md-select>
+                            </md-list-item>
+                        </md-list>
+
+                        <md-list class="poolList" flex ng-cloak>
+                            <md-list-item style="background-color:#5d6dcb; color: white;">
+                                <p flex>Orario</p>
+                                <p flex>Lun</p>
+                                <p flex>Mar</p>
+                                <p flex>Mer</p>
+                                <p flex>Gio</p>
+                                <p flex>Ven</p>
+                                <p flex>Sab</p>
+                                <p flex>Dom</p>
+                                <!--                                                         <p flex="40">Corsi Seguiti</p> -->
+                            </md-list-item>
+                            <md-list-item>
+                                <p flex>10:30</p>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                            </md-list-item>
+                            <md-list-item>
+                                <p flex>16:00</p>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                            </md-list-item>
+                            <md-list-item>
+                                <p flex>16:45</p>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                            </md-list-item>
+                            <md-list-item>
+                                <p flex>17:30</p>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                            </md-list-item>
+                            <md-list-item>
+                                <p flex>18:15</p>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                            </md-list-item>
+                            <md-list-item>
+                                <p flex>19:00</p>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                            </md-list-item>
+                            <md-list-item>
+                                <p flex>19:45</p>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                            </md-list-item>
+                            <md-list-item>
+                                <p flex>20:30</p>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                                <md-checkbox flex ng-disabled="true"></md-checkbox>
+                            </md-list-item>
+                        </md-list>
+
+                    </div>
+
+                </md-content>
+
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button class="md-primary md-raised" ng-click="saveNewClass()" style="padding: 0 10px;">Add Class
+            </md-button>
+        </md-dialog-actions>
+
+    </form>
+</md-dialog>

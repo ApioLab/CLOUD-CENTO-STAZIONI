@@ -1,0 +1,469 @@
+<!--suppress ALL -->
+<style>
+    #defaultController {
+        height: 99.8% !important;
+    }
+
+    .md-datepicker-calendar-pane {
+        z-index: 2000 !important;
+    }
+
+    .md-select-menu-container {
+        z-index: 1040;
+    }
+
+    md-virtual-repeat-container {
+        z-index: 10000 !important;
+    }
+
+    .md-select-menu-container {
+        z-index: 1040;
+    }
+
+    md-input-container .md-errors-spacer {
+        min-height: 0;
+    }
+
+    md-dialog-actions {
+        border-top: 1px solid rgba(0, 0, 0, 0.12);
+    }
+
+    md-sidenav {
+        width: 330px;
+    }
+
+    #sectionsContainer {
+        display: block;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        height: 100%;
+        width: 100%;
+    }
+
+    #sectionsContent {
+        height: 91vh;
+        overflow: scroll;
+        background-color: #f3f3f3;
+    }
+
+    .menuBorderBottom {
+        border-bottom: 2px solid rgba(63, 81, 181, 0.90);
+    }
+
+    /* Class Calendar style ------------------------- */
+    .classCalendarDatePicker {
+        margin-right: 0;
+        padding-right: 16px;
+    }
+
+    .classCalendarDatePicker .md-datepicker-calendar-icon {
+        color: rgba(0, 0, 0, 0.54) !important;
+    }
+
+    .calendarSectionContainer {
+        /*width: 1400px;*/
+        /*padding-right: 40px;*/
+    }
+
+    .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+        vertical-align: middle;
+    }
+
+    .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+        /*background-color: rgba(79, 166, 241, 0.80);*/
+        background-color: #dcdcdc;
+    }
+
+    .classCalendarTable {
+        height: 100%;
+        margin-bottom: 20px;
+        /*width: 100%;*/
+        background-color: white;
+    }
+
+    .classCalendarTableTitleRow {
+        height: 30px;
+        text-align: center;
+    }
+
+    .classCalendarTableBodyRow {
+        height: 80px;
+    }
+
+    .hoursColumnWidth {
+        width: 80px;
+        text-align: center;
+    }
+
+    .laneColumnWidth {
+        width: 230px;
+    }
+
+    .cardsContainer {
+        margin: 2px;
+    }
+
+    .cardsContainer .md-title {
+        margin: 0;
+        font-size: 17px;
+    }
+
+    .cardsContainer .md-title-sub {
+        font-size: 22px;
+    }
+
+    .cardGreen {
+        background-color: #54d25e;
+    }
+
+    .cardYellow {
+        background-color: #f9d732;
+    }
+
+    .cardOrange {
+        background-color: #f38f14;
+    }
+
+    .cardRed {
+        background-color: #e83d35;
+    }
+
+    /* Class list style ------------------------- */
+    .autocompleteContainer {
+        margin-top: 8px;
+        height: 80px;
+    }
+
+    .listContainer {
+        padding-top: 12px;
+    }
+
+    .poolList {
+        padding: 0;
+        border: 1px solid #d2d1d1;
+        border-bottom: 0;
+    }
+
+    .poolList md-list-item {
+        border-bottom: 1px solid #d2d1d1;
+    }
+
+    .poolListItem:hover {
+        background-color: rgba(79, 166, 241, 0.80);
+        /*background-color: #dcdcdc;*/
+        color: white;
+    }
+
+    .titleListItemContainer {
+        background-color: #3f51b5;
+        color: white;
+        text-transform: uppercase;
+    }
+
+    /* Event detail style --------------------------- */
+    .rowStyle {
+        padding-bottom: 16px;
+    }
+
+    /* ---------FLEX-MD--------- */
+    @media (min-width: 960px) and (max-width: 1279px) {
+
+    }
+
+    /* ---------FLEX-SM--------- */
+    @media (min-width: 600px) and (max-width: 959px) {
+        #sectionsContent {
+            height: 93vh;
+        }
+    }
+
+    /* ---------FLEX-XS--------- */
+    @media (max-width: 599px) {
+
+    }
+
+</style>
+
+<div id="ApioApplication3357" ng-app="ApioApplication3357" style="padding: 10px;" ng-cloak>
+    <div ng-controller="defaultController">
+        <topappapplication style="display: none !important;"></topappapplication>
+        <div id="app" style="display: block;">
+
+            <section id="swimmingPoolAppContainer" layout="row" flex layout-fill>
+                <md-sidenav class="md-sidenav-left"
+                            md-component-id="left"
+                            md-whiteframe="4">
+                    <md-toolbar>
+                        <div class="md-toolbar-tools">
+                            <md-button class="md-icon-button" aria-label="Close">
+                                <md-icon class="material-icons" ng-click="closeApp()">home</md-icon>
+                            </md-button>
+                            <h1>{{object.name}}</h1>
+                        </div>
+                    </md-toolbar>
+                    <md-content layout-padding>
+                        <!--<md-button ng-click="close()" class="md-primary">Close Sidenav Left</md-button>-->
+                        <!--<md-button ng-click="toggleLeft()" class="md-primary">Toggle left</md-button>-->
+                        <md-list id="leftMenuContainer">
+                            <md-list-item ng-repeat="(k,v) in sideMenuItems" ng-click="changeMenuSection(v)"
+                                          ng-class="{'menuBorderBottom' : v === selectedSection}">
+                                <h6>{{v}}</h6>
+                            </md-list-item>
+                        </md-list>
+                    </md-content>
+                </md-sidenav>
+
+                <!-- App content -->
+                <md-content id="sectionsContainer">
+                    <!-- Main toolbar -->
+                    <md-toolbar>
+                        <div class="md-toolbar-tools">
+                            <md-button class="md-icon-button" aria-label="Close">
+                                <md-icon class="material-icons" ng-click="closeApp()">home</md-icon>
+                            </md-button>
+                            <md-button class="md-icon-button" aria-label="Close/Open Sidenav button">
+                                <md-icon class="material-icons" ng-click="toggleLeft()">menu</md-icon>
+                            </md-button>
+                            <h3 flex>{{selectedSection}}</h3>
+                            <md-button class="md-icon-button" aria-label="Class calendar settings button"
+                                       ng-show="selectedSection === 'Calendario'">
+                                <md-icon class="material-icons" ng-click="changeCalendarDateButtons('back')">
+                                    arrow_back
+                                </md-icon>
+                            </md-button>
+                            <md-datepicker class="classCalendarDatePicker" ng-model="dateForCalendar"
+                                           md-placeholder="Calendar date" md-open-on-focus
+                                           ng-show="selectedSection === 'Calendario'"
+                                           ng-change="setCalendarDate()"></md-datepicker>
+                            <md-button class="md-icon-button" aria-label="Class calendar settings button"
+                                       ng-show="selectedSection === 'Calendario'">
+                                <md-icon class="material-icons" ng-click="changeCalendarDateButtons('forward')">
+                                    arrow_forward
+                                </md-icon>
+                            </md-button>
+                            <md-button class="md-icon-button" aria-label="Class calendar settings button"
+                                       ng-show="selectedSection === 'Calendario'">
+                                <md-icon class="material-icons" ng-click="classCalendarSettings()">settings</md-icon>
+                            </md-button>
+                            <md-button class="md-icon-button" aria-label="Class calendar settings button"
+                                       ng-show="selectedSection === 'Corsi'">
+                                <md-icon class="material-icons" ng-click="addClass()">add</md-icon>
+                            </md-button>
+                            <md-button class="md-icon-button" aria-label="Class calendar settings button"
+                                       ng-show="selectedSection === 'Istruttori'">
+                                <md-icon class="material-icons" ng-click="addInstructor()">add</md-icon>
+                            </md-button>
+                            <md-button class="md-icon-button" aria-label="Class calendar settings button"
+                                       ng-show="selectedSection === 'Tesserati'">
+                                <md-icon class="material-icons" ng-click="addCustomer()">add</md-icon>
+                            </md-button>
+                            <md-button class="md-icon-button" aria-label="Class calendar settings button"
+                                       ng-show="selectedSection === 'Piscine - Corsie'">
+                                <md-icon class="material-icons" ng-click="addPiscina()">add</md-icon>
+                            </md-button>
+                        </div>
+                    </md-toolbar>
+
+                    <!-- the main container of every sections -->
+                    <md-content id="sectionsContent" layout-padding>
+
+                        <!-- Calendar section container -->
+                        <div class="calendarSectionContainer" ng-show="selectedSection === 'Calendario'">
+
+                            <!-- Tabella Ng-Repeat ----------------------------------------->
+                            <table class="table table-bordered table-striped table-hover classCalendarTable">
+                                <thead>
+                                <tr class="classCalendarTableTitleRow">
+                                    <th class="hoursColumnWidth">Orari</th>
+                                    <th class="laneColumnWidth" ng-repeat="x in Corsie">{{ x.name }}</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr class="classCalendarTableBodyRow" ng-repeat="x in mydata.time[weekDayForCalendar]">
+                                    <td class="hoursColumnWidth">{{ x.start }}<br>{{ x.end }}</td>
+                                    <td style="padding: 3px;" ng-repeat="c in orari[$index].corsi track by $index">
+                                        <md-card ng-click="showClass(c)" class="cardsContainer cardGreen">
+                                            <md-card-header style="padding: 10px;">
+                                                <md-card-header-text>
+                                                    <!--<p style="margin:0;"><span class="md-title">{{c.name}} - </span>
+                                                        <span style="font-size: 24px; color: black;">{{c.posti}}</span>
+                                                    </p>-->
+                                                    <p class="md-title">{{c.name}} -
+                                                        <span class="md-title-sub">{{c.posti}}</span></p>
+                                                    <span class="md-subhead">{{c.istruttore}}</span>
+                                                </md-card-header-text>
+                                            </md-card-header>
+                                        </md-card>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <!-- Tabella Ng-Repeat ----------------------------------------->
+                        </div>
+
+                        <!-- Class section container -->
+                        <div class="classSectionContainer" ng-show="selectedSection === 'Corsi'">
+                            <!--<p style="text-align: center;">{{selectedSection}}</p>-->
+                            <!-- the first container is used to flex the width at 70% for desktop and 100& for mobile -->
+                            <div layout="row" layout-align="center center" layout-fill>
+                                <div flex="70" flex-sm="100" flex-xs="100">
+
+                                    <div class="autocompleteContainer" layout="row" layout-align="center center">
+                                        <md-autocomplete flex="50" md-selected-item="selectedItem"
+                                                         md-search-text="searchText"
+                                                         md-items="class in Corsi" md-item-text="class.nome">
+                                            <span md-highlight-text="searchText">{{class.nome}}</span>
+                                        </md-autocomplete>
+                                    </div>
+
+                                    <div class="listContainer" layout="row" layout-align="center center">
+
+                                        <md-card flex>
+                                            <md-card-content>
+                                                <md-list class="poolList" flex ng-cloak>
+                                                    <md-list-item class="titleListItemContainer">
+                                                        <p flex="10">ID</p>
+                                                        <p flex>Nome</p>
+                                                        <p flex># Eseguiti Anno</p>
+                                                        <p flex># Recuperi da fare</p>
+                                                    </md-list-item>
+                                                    <md-list-item class="poolListItem" ng-repeat="c in Corsi"
+                                                                  ng-click="showClassInfo(c)">
+                                                        <!--<md-checkbox class="md-secondary" ng-model="topping.wanted"></md-checkbox>-->
+                                                        <p flex="10">{{c.id}}</p>
+                                                        <p flex>{{c.nome}}</p>
+                                                        <p flex>222</p>
+                                                        <p flex>2</p>
+                                                    </md-list-item>
+
+                                                </md-list>
+                                            </md-card-content>
+                                        </md-card>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <!-- Instructors section container -->
+                        <div class="classSectionContainer" ng-show="selectedSection === 'Istruttori'">
+                            <!--<p style="text-align: center;">{{selectedSection}}</p>-->
+                            <!-- the first container is used to flex the width at 70% for desktop and 100& for mobile -->
+                            <div layout="row" layout-align="center center" layout-fill>
+                                <div flex="70" flex-sm="100" flex-xs="100">
+
+                                    <div class="autocompleteContainer" layout="row" layout-align="center center">
+                                        <md-autocomplete flex="50" md-selected-item="selectedItem"
+                                                         md-search-text="searchText"
+                                                         md-items="istruttore in Istruttori"
+                                                         md-item-text="istruttore.nome">
+                                            <span md-highlight-text="searchText">{{istruttore.nome}}</span>
+                                        </md-autocomplete>
+                                    </div>
+
+                                    <div class="listContainer" layout="row" layout-align="center center">
+
+                                        <md-card flex>
+                                            <md-card-content>
+                                                <md-list class="poolList" flex ng-cloak>
+                                                    <md-list-item class="titleListItemContainer">
+                                                        <p flex="10">ID</p>
+                                                        <p flex>Nome</p>
+                                                        <p flex>Cognome</p>
+                                                        <p flex># Corsi mese</p>
+                                                        <p flex># Corsi anno</p>
+                                                    </md-list-item>
+                                                    <md-list-item class="poolListItem" ng-repeat="i in Istruttori"
+                                                                  ng-click="showInstructorInfo(i)">
+                                                        <!--<md-checkbox class="md-secondary" ng-model="topping.wanted"></md-checkbox>-->
+                                                        <p flex="10">{{i.id}}</p>
+                                                        <p flex>{{i.nome}}</p>
+                                                        <p flex>{{i.cognome}}</p>
+                                                        <p flex># Corsi mese</p>
+                                                        <p flex># Corsi anno</p>
+                                                    </md-list-item>
+
+                                                </md-list>
+                                            </md-card-content>
+                                        </md-card>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <!-- Costumer section container -->
+                        <div class="classSectionContainer" ng-show="selectedSection === 'Tesserati'">
+                            <!--<p style="text-align: center;">{{selectedSection}}</p>-->
+                            <!-- the first container is used to flex the width at 70% for desktop and 100& for mobile -->
+                            <div layout="row" layout-align="center center" layout-fill>
+                                <div flex="70" flex-sm="100" flex-xs="100">
+
+                                    <div class="autocompleteContainer" layout="row" layout-align="center center">
+                                        <md-autocomplete flex="50" md-selected-item="selectedItem"
+                                                         md-search-text="searchText"
+                                                         md-items="utente in Utenti" md-item-text="utente.nome">
+                                            <span md-highlight-text="searchText">{{utente.nome}}</span>
+                                        </md-autocomplete>
+                                    </div>
+
+                                    <div class="listContainer" layout="row" layout-align="center center">
+
+                                        <md-card flex>
+                                            <md-card-content>
+                                                <md-list class="poolList" flex ng-cloak>
+                                                    <md-list-item class="titleListItemContainer">
+                                                        <p flex="10">ID</p>
+                                                        <p flex>Nome</p>
+                                                        <p flex>Cognome</p>
+                                                        <p flex>Corsi seguiti</p>
+                                                        <p flex>Assenza Settimana</p>
+                                                        <p flex>Assenza Mese</p>
+                                                        <p flex>Recupero</p>
+                                                    </md-list-item>
+                                                    <md-list-item class="poolListItem" ng-repeat="u in Utenti"
+                                                                  ng-click="showCustomerInfo(u)">
+                                                        <!--<md-checkbox class="md-secondary" ng-model="topping.wanted"></md-checkbox>-->
+                                                        <p flex="10">{{u.id}}</p>
+                                                        <p flex>{{u.nome}}</p>
+                                                        <p flex>{{u.cognome}}</p>
+                                                        <p flex>4</p>
+                                                        <p flex>1</p>
+                                                        <p flex>1</p>
+                                                        <p flex>1</p>
+                                                    </md-list-item>
+
+                                                </md-list>
+                                            </md-card-content>
+                                        </md-card>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+                    </md-content>
+                </md-content>
+            </section>
+
+
+        </div>
+    </div>
+</div>
+
+<script src="applications/3357/3357.js"></script>

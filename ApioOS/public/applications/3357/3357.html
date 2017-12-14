@@ -1,0 +1,1035 @@
+<style>
+    .backgrey {
+
+        background-color: #f5f5f5 !important;
+    }
+
+    .label {
+
+        color: rgba(0, 0, 0, .54) !important;
+    }
+
+    .md-toolbar-tools {
+
+        min-height: 50px !important;
+        height: 50px !important;
+    }
+
+    .material-icons {
+        font-family: 'Material Icons';
+        font-weight: normal;
+        font-style: normal;
+        height: 24px;
+        width: 24px;
+        font-size: 24px;
+        color: inherit;
+        display: inline-block;
+        line-height: 1;
+        text-transform: none;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-feature-settings: 'liga';
+        font-feature-settings: 'liga';
+    }
+
+    .material-icons.md-18 {
+        height: 18px;
+        width: 18px;
+        font-size: 18px;
+    }
+
+    .material-icons.md-36 {
+        height: 36px;
+        width: 36px;
+        font-size: 36px;
+    }
+
+    .material-icons.md-48 {
+        height: 48px;
+        width: 48px;
+        font-size: 48px;
+    }
+
+    .material-icons.md-dark {
+        color: rgba(0, 0, 0, 0.54);
+    }
+
+    .material-icons.md-light {
+        color: #ffffff;
+    }
+
+    md-content {
+        background-color: #f5f5f5 !important;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    a {
+        text-decoration: none;
+        color: rgb(33, 150, 243);
+    }
+
+    a:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+    input::-webkit-input-placeholder {
+        color: rgba(0, 0, 0, 0.26);
+        font-weight: 300;
+    }
+
+    input::-moz-placeholder {
+        color: rgba(0, 0, 0, 0.26);
+        font-weight: 300;
+    }
+
+    input:-ms-input-placeholder {
+        color: rgba(0, 0, 0, 0.26);
+        font-weight: 300;
+    }
+
+    input::input-placeholder {
+        color: rgba(0, 0, 0, 0.26);
+        font-weight: 300;
+    }
+
+    .material-icons {
+        position: static;
+        margin: 0;
+    }
+
+    md-toolbar,
+    footer-content {
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    }
+
+    footer {
+        -webkit-flex: 1 0 auto;
+        -ms-flex: 1 0 auto;
+        flex: 1 0 auto;
+    }
+
+    footer > footer-content {
+        min-height: 64px;
+        padding: 0 16px 16px;
+        background-color: #fff;
+        color: rgba(0, 0, 0, 0.54);
+        font-size: 14px;
+    }
+
+    footer > footer-content > div {
+        margin-top: 16px;
+    }
+
+    footer > footer-content > div:not(:last-child) {
+        margin-right: 24px;
+    }
+
+    footer > footer-content > div > *:not(span) + *:not(span) {
+        margin-left: 24px;
+    }
+
+    md-card {
+        -webkit-flex: 0 0 auto;
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+        position: relative;
+    }
+
+    md-toolbar.md-table-toolbar.ng-hide {
+        display: none;
+    }
+
+    md-toolbar.md-table-toolbar.alternate .md-toolbar-tools {
+        color: #1e88e5;
+        font-size: 16px;
+        background-color: rgb(33, 150, 243)
+    }
+
+    .uli-color-bar {
+        background-color: rgb(33, 150, 243) !important;
+
+    }
+
+    md-toolbar.md-table-toolbar form {
+        margin-left: 16px;
+    }
+
+    md-toolbar.md-table-toolbar form > input {
+        width: 100%;
+        margin: 0;
+        border: none;
+        color: rgba(0, 0, 0, 0.87);
+    }
+
+    md-toolbar.md-table-toolbar form > input:focus {
+        outline: none;
+    }
+
+    md-dialog > md-dialog-content.md-dialog-content {
+        padding-bottom: 0;
+    }
+
+    md-dialog > md-dialog-content > p {
+        margin: 16px 0;
+        color: rgba(0, 0, 0, 0.54);
+        line-height: 22px;
+    }
+
+    md-dialog > md-dialog-content > p.md-warn {
+        color: #f44336;
+    }
+
+    md-dialog > md-dialog-content > form:last-child > md-input-container:last-child {
+        padding-bottom: 0;
+    }
+
+    md-dialog > .md-actions > .md-button {
+        min-width: 60px;
+    }
+
+    md-dialog[delete-dialog] {
+        max-width: 300px;
+    }
+
+    md-dialog[add-item-dialog] > md-dialog-content > form > .input-row {
+        -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    }
+
+    md-dialog[add-item-dialog] > md-dialog-content > form > .input-row > md-input-container {
+        min-width: 120px;
+    }
+
+    /*
+
+
+    md-toolbar {
+      z-index: 3;
+    }
+
+    md-toolbar.md-table-toolbar.alternate {
+      color: #1e88e5;
+      background-color: #e3f2fd;
+    }
+
+    md-toolbar.md-table-toolbar.alternate .md-toolbar-tools {
+      font-size: 16px;
+    }
+
+    md-card:first-child {
+      padding: 8px 8px 8px 24px;
+    }
+
+    .checkboxes > md-checkbox {
+      margin: 0;
+      padding: 16px;
+      min-width: 300px;
+      flex: 0 0 auto;
+    }
+    */
+
+    #defaultController {
+        height: 99.8% !important;
+    }
+
+    .md-datepicker-calendar-pane {
+        z-index: 2000 !important;
+    }
+
+    .md-select-menu-container {
+        z-index: 1040;
+    }
+
+    md-virtual-repeat-container {
+        z-index: 10000 !important;
+    }
+
+    .md-select-menu-container {
+        z-index: 1040;
+    }
+
+    md-input-container .md-errors-spacer {
+        min-height: 0;
+    }
+
+    md-dialog-actions {
+        border-top: 1px solid rgba(0, 0, 0, 0.12);
+    }
+
+    md-sidenav {
+        width: 330px;
+    }
+
+    #sectionsContainer {
+        display: block;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        height: 100%;
+        width: 100%;
+    }
+
+    #sectionsContent {
+        height: 91vh;
+        overflow: scroll;
+        background-color: #f3f3f3;
+    }
+
+    .menuBorderBottom {
+        border-bottom: 2px solid rgb(33, 150, 243);
+    }
+
+    .myGrid {
+        width: 500px;
+        height: 250px;
+    }
+
+    /* Class Calendar style ------------------------- */
+    .classCalendarDatePicker {
+        margin-right: 0;
+        padding-right: 16px;
+    }
+
+    .classCalendarDatePicker .md-datepicker-calendar-icon {
+        color: rgba(0, 0, 0, 0.54) !important;
+    }
+
+    .calendarSectionContainer {
+        /*width: 1400px;*/
+        /*padding-right: 40px;*/
+    }
+
+    .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+        vertical-align: middle;
+    }
+
+    .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+        /*background-color: rgba(79, 166, 241, 0.80);*/
+        background-color: #dcdcdc;
+    }
+
+    .classCalendarTable {
+        height: 100%;
+        margin-bottom: 20px;
+        /*width: 100%;*/
+        background-color: white;
+    }
+
+    .classCalendarTableTitleRow {
+        height: 30px;
+        text-align: center;
+    }
+
+    .classCalendarTableBodyRow {
+        height: 80px;
+    }
+
+    .hoursColumnWidth {
+        width: 80px;
+        text-align: center;
+    }
+
+    .laneColumnWidth {
+        width: 230px;
+    }
+
+    .cardsContainer {
+        margin: 2px;
+    }
+
+    .cardsContainer .md-title {
+        margin: 0;
+        font-size: 17px;
+    }
+
+    .cardsContainer .md-title-sub {
+        font-size: 22px;
+    }
+
+    .cardGreen {
+        background-color: #54d25e;
+    }
+
+    .cardYellow {
+        background-color: #f9d732;
+    }
+
+    .cardOrange {
+        background-color: #f38f14;
+    }
+
+    .cardRed {
+        background-color: #e83d35;
+    }
+
+    /* Class list style ------------------------- */
+    .autocompleteContainer {
+        margin-top: 8px;
+        height: 80px;
+    }
+
+    .listContainer {
+        padding-top: 12px;
+    }
+
+    .poolList {
+        padding: 0;
+        border: 1px solid #d2d1d1;
+        border-bottom: 0;
+    }
+
+    .poolList md-list-item {
+        border-bottom: 1px solid #d2d1d1;
+    }
+
+    .poolListItem:hover {
+        background-color: rgba(79, 166, 241, 0.80);
+        /*background-color: #dcdcdc;*/
+        color: white;
+    }
+
+    .titleListItemContainer {
+        background-color: rgb(33, 150, 243);
+        color: white;
+        text-transform: uppercase;
+    }
+
+    /* Event detail style --------------------------- */
+    .rowStyle {
+        padding-bottom: 16px;
+    }
+
+    /* Class detail style */
+    .listTableStyle {
+        border: 1px solid #afafaf;
+        border-bottom: 0;
+        padding: 0;
+    }
+
+    .listTableItemStyle {
+        background-color: #f7f7f7;
+        border-bottom: 1px solid #afafaf;
+    }
+
+    /* ---------FLEX-MD--------- */
+    @media (min-width: 960px) and (max-width: 1279px) {
+
+    }
+
+    /* ---------FLEX-SM--------- */
+    @media (min-width: 600px) and (max-width: 959px) {
+        #sectionsContent {
+            height: 93vh;
+        }
+    }
+
+    /* ---------FLEX-XS--------- */
+    @media (max-width: 599px) {
+
+    }
+
+</style>
+
+<div id="ApioApplication3357" ng-app="ApioApplication3357" style="padding: 10px;" ng-cloak>
+    <div ng-controller="defaultController">
+        <topappapplication style="display: none !important;"></topappapplication>
+        <div id="app" style="display: block;">
+
+            <section id="swimmingPoolAppContainer" layout="row" flex layout-fill>
+                <md-sidenav class="md-sidenav-left backgrey"
+                            md-component-id="left"
+                            md-whiteframe="4">
+                    <md-toolbar class="uli-color-bar md-toolbar-tools">
+                        <div class="md-toolbar-tools">
+                            <md-button class="md-icon-button" aria-label="Close">
+                                <md-icon class="material-icons" ng-click="closeApp()">home</md-icon>
+                            </md-button>
+                            <h1>{{object.name}}</h1>
+                        </div>
+                    </md-toolbar>
+                    <md-content layout-padding>
+                        <!--<md-button ng-click="close()" class="md-primary">Close Sidenav Left</md-button>-->
+                        <!--<md-button ng-click="toggleLeft()" class="md-primary">Toggle left</md-button>-->
+                        <md-list id="leftMenuContainer">
+                            <md-list-item ng-repeat="(k,v) in sideMenuItems" ng-click="changeMenuSection(v)"
+                                          ng-class="{'menuBorderBottom' : v === selectedSection}">
+                                <h6>{{v}}</h6>
+                            </md-list-item>
+                        </md-list>
+                    </md-content>
+                </md-sidenav>
+
+                <!-- App content -->
+                <md-content id="sectionsContainer">
+                    <!-- Main toolbar -->
+                    <md-toolbar class="uli-color-bar md-toolbar-tools">
+                        <div class="md-toolbar-tools">
+                            <md-button class="md-icon-button" aria-label="Close">
+                                <md-icon class="material-icons" ng-click="closeApp()">home</md-icon>
+                            </md-button>
+                            <md-button class="md-icon-button" aria-label="Close/Open Sidenav button">
+                                <md-icon class="material-icons" ng-click="toggleLeft()">menu</md-icon>
+                            </md-button>
+                            <h3 flex>{{selectedSection}}</h3>
+                            <div ng-if="selectedSection === 'Calendario'">
+                                <span>{{letteralDay}}</span>
+                            </div>
+                            <md-button class="md-icon-button" aria-label="Class calendar settings button"
+                                       ng-show="selectedSection === 'Calendario'">
+                                <md-icon class="material-icons" ng-click="changeCalendarDateButtons('reload')">
+                                    cached
+                                </md-icon>
+                            </md-button>
+
+                            <md-button class="md-icon-button" aria-label="Class calendar settings button"
+                                       ng-show="selectedSection === 'Calendario'">
+                                <md-icon class="material-icons" ng-click="changeCalendarDateButtons('back')">
+                                    arrow_back
+                                </md-icon>
+                            </md-button>
+
+                            <md-datepicker class="classCalendarDatePicker backgrey" ng-model="dateForCalendar"
+                                           md-placeholder="Calendar date" md-open-on-focus
+                                           ng-show="selectedSection === 'Calendario'"
+                                           ng-change="setCalendarDate()"></md-datepicker>
+                            <md-button class="md-icon-button" aria-label="Class calendar settings button"
+                                       ng-show="selectedSection === 'Calendario'">
+                                <md-icon class="material-icons" ng-click="changeCalendarDateButtons('forward')">
+                                    arrow_forward
+                                </md-icon>
+                            </md-button>
+                            <!--
+                                                        <md-button class="md-icon-button" aria-label="Class calendar settings button"
+                                                                   ng-show="selectedSection === 'Calendario'">
+                                                            <md-icon class="material-icons" ng-click="classCalendarSettings()">settings</md-icon>
+                                                        </md-button>
+                            -->
+                            <md-button class="md-icon-button" aria-label="Class calendar settings button"
+                                       ng-show="selectedSection === 'Corsi'">
+                                <md-icon class="material-icons" ng-click="addClass()">add</md-icon>
+                            </md-button>
+                            <md-button class="md-icon-button" aria-label="Class calendar settings button"
+                                       ng-show="selectedSection === 'Istruttori'">
+                                <md-icon class="material-icons" ng-click="addInstructor()">add</md-icon>
+                            </md-button>
+                            <md-button class="md-icon-button" aria-label="Class calendar settings button"
+                                       ng-show="selectedSection === 'Tesserati'">
+                                <md-icon class="material-icons" ng-click="addCustomer()">add</md-icon>
+                            </md-button>
+                            <md-button class="md-icon-button" aria-label="Class calendar settings button"
+                                       ng-show="selectedSection === 'Piscine - Corsie'">
+                                <md-icon class="material-icons" ng-click="addPiscina()">add</md-icon>
+                            </md-button>
+                        </div>
+                    </md-toolbar>
+
+                    <!-- the main container of every sections -->
+                    <md-content id="sectionsContent" layout-padding>
+
+                        <!-- Calendar section container -->
+                        <div class="calendarSectionContainer" ng-show="selectedSection === 'Calendario'">
+
+                            <!-- Tabella Ng-Repeat ----------------------------------------->
+                            <table class="table table-bordered table-striped table-hover classCalendarTable">
+                                <thead>
+                                <tr class="classCalendarTableTitleRow">
+                                    <th class="hoursColumnWidth" style="color: rgba(0,0,0,.60);">Orari</th>
+                                    <th class="laneColumnWidth" ng-repeat="x in Corsie"
+                                        style="text-align: center; color: rgba(0,0,0,.60);">{{ x.name }}
+                                    </th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr class="classCalendarTableBodyRow" ng-repeat="x in mydata.time[weekDayForCalendar]">
+                                    <td class="hoursColumnWidth">{{ x.start }}<br>{{ x.end }}</td>
+                                    <td style="padding: 3px;" ng-repeat="c in orari[$index].corsi track by $index">
+                                        <md-card ng-click="showClass(c, x)" class="cardsContainer"
+                                                 ng-class="{'cardGreen' : c.postiPercentage < 25, 'cardYellow' : c.postiPercentage >= 25 && c.postiPercentage < 51, 'cardOrange' : c.postiPercentage >= 51 && c.postiPercentage < 100, 'cardRed' : c.postiPercentage === 100}">
+                                            <md-card-header style="padding: 10px;">
+                                                <md-card-header-text>
+                                                    <!--<p style="margin:0;"><span class="md-title">{{c.name}} - </span>
+                                                        <span style="font-size: 24px; color: black;">{{c.posti}}</span>
+                                                    </p>-->
+                                                    <p class="md-title">{{c.name}} -
+                                                        <span class="md-title-sub">{{c.posti}}</span></p>
+                                                    <span class="md-subhead">{{c.istruttore}}</span>
+                                                </md-card-header-text>
+                                            </md-card-header>
+                                        </md-card>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <!-- Tabella Ng-Repeat ----------------------------------------->
+                        </div>
+
+                        <!-- Class section container -->
+                        <div class="classSectionContainer" ng-show="selectedSection === 'Corsi'">
+
+
+                            <md-content laout="column" flex>
+                                <md-card>
+                                    <!-- /////// -->
+                                    <md-toolbar class="md-table-toolbar md-default"
+                                                ng-hide="selected.length || filter.show" aria-hidden="false" style="">
+                                        <div class="md-toolbar-tools">
+                                            <!--     <h2 class="md-title">Nutrition</h2> -->
+                                            <div flex="" class="flex"></div>
+                                            <button class="md-icon-button md-button md-ink-ripple" type="button"
+                                                    ng-click="filter.show = true" aria-label="filter_list">
+                                                <md-icon class="material-icons">filter_list</md-icon>
+                                                <div class="md-ripple-container"></div>
+                                            </button>
+                                            <button class="md-icon-button md-button md-ink-ripple" type="button"
+                                                    ng-click="addCustomer()" aria-label="local_dining">
+                                                <md-icon class="material-icons">local_dining</md-icon>
+                                            </button>
+                                        </div>
+                                    </md-toolbar>
+                                    <!-- /////////// -->
+                                    <md-toolbar class="md-table-toolbar md-default ng-hide"
+                                                ng-show="filter.show &amp;&amp; !selected.length" aria-hidden="true"
+                                                style="">
+                                        <div class="md-toolbar-tools">
+                                            <md-icon class="material-icons">search</md-icon>
+                                            <form flex="" name="filter.form" class="ng-pristine ng-valid flex">
+                                                <input type="text" ng-model="query.filter"
+                                                       ng-model-options="filter.options" placeholder="search"
+                                                       class="ng-pristine ng-untouched ng-valid" aria-invalid="false">
+                                            </form>
+                                            <button class="md-icon-button md-button md-ink-ripple" type="button"
+                                                    ng-click="removeFilter()" aria-label="close">
+                                                <md-icon class="material-icons">close</md-icon>
+                                                <div class="md-ripple-container"></div>
+                                            </button>
+                                        </div>
+                                    </md-toolbar>
+                                    <!-- /////////// -->
+                                    <md-toolbar class="md-table-toolbar alternate ng-hide" ng-show="selected.length"
+                                                aria-hidden="true">
+                                        <div class="md-toolbar-tools layout-align-space-between-stretch"
+                                             layout-align="space-between">
+                                            <div>0 item selected</div>
+                                            <button class="md-icon-button md-button md-ink-ripple" type="button"
+                                                    ng-click="delete($event)" aria-label="delete">
+                                                <md-icon class="material-icons">delete</md-icon>
+                                            </button>
+                                        </div>
+                                    </md-toolbar>
+                                    <md-table-container>
+                                        <table md-table ng-model="selected" md-progress="promise">
+                                            <thead ng-if="!options.decapitate" md-head md-order="query.order"
+                                                   md-on-reorder="logOrder">
+                                            <tr md-row>
+                                                <th md-column md-order-by="id"><span>ID</span></th>
+                                                <th md-column md-order-by="nome"><span>Nome</span></th>
+                                                <th md-column md-order-by="posti"><span>Numero Posti</span></th>
+                                                <!--                                                 <th md-column md-order-by="corsia"><span>Corsia</span></th> -->
+                                                <th md-column md-order-by="datastart"><span>Periodo Inizio</span></th>
+                                                <th md-column md-order-by="dataend"><span>Periodo Fine</span></th>
+                                                </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody md-body>
+                                            <tr md-row
+                                                md-select="x" md-on-select="logItem" ng-click="showClassInfo(x)"
+                                                md-auto-select="options.autoSelect"
+                                                ng-repeat="x in Corsi | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+                                                <td md-cell>{{x.id}}</td>
+                                                <td md-cell>{{x.nome}}</td>
+                                                <td md-cell>{{x.posti}}</td>
+                                                <!--                                                 <td md-cell>{{x.corsia}}</td> -->
+                                                <td md-cell>{{x.dateBegin}}</td>
+                                                <td md-cell>{{x.dateEnd}}</td>
+
+
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </md-table-container>
+                                    <md-table-pagination md-limit="query.limit" md-limit-options="limitOptions"
+                                                         md-page="query.page" md-total="{{Corsi.length}}"
+                                                         md-page-select="options.pageSelect"
+                                                         md-boundary-links="options.boundaryLinks"
+                                                         md-on-paginate="logPagination"></md-table-pagination>
+                                </md-card>
+                            </md-content>
+
+                            <!--
+                                                        <div layout="row" layout-align="center center" layout-fill>
+                                                            <div flex="70" flex-sm="100" flex-xs="100">
+                                                                <div class="autocompleteContainer" layout="row" layout-align="center center">
+                                                                    <md-autocomplete flex="50" md-selected-item="selectedItem"
+                                                                                     md-search-text="searchText"
+                                                                                     md-items="class in Corsi" md-item-text="class.nome">
+                                                                        <span md-highlight-text="searchText">{{class.nome}}</span>
+                                                                    </md-autocomplete>
+                                                                </div>
+                                                                <div class="listContainer" layout="row" layout-align="center center">
+                                                                    <md-card flex style="margin-top: 50px;">
+                                                                        <md-card-content>
+                                                                            <md-list class="poolList" flex ng-cloak>
+                                                                                <md-list-item class="titleListItemContainer">
+                                                                                    <p flex="10">ID</p>
+                                                                                    <p flex>Nome</p>
+                                                                                    <p flex># Posti</p>
+                                                                                    <p flex>Corsia</p>
+                                                                                </md-list-item>
+                                                                                <md-list-item class="poolListItem" ng-repeat="c in Corsi"
+                                                                                              ng-click="showClassInfo(c)">
+                                                                                    <p flex="10">{{c.id}}</p>
+                                                                                    <p flex>{{c.nome}}</p>
+                                                                                    <p flex>10</p>
+                                                                                    <p flex>Corsia 2</p>
+                                                                                </md-list-item>
+                                                                            </md-list>
+                                                                        </md-card-content>
+                                                                    </md-card>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                            -->
+
+
+                        </div>
+
+                        <!-- Instructors section container -->
+                        <div class="classSectionContainer" ng-show="selectedSection === 'Istruttori'">
+                            <!--<p style="text-align: center;">{{selectedSection}}</p>-->
+                            <!-- the first container is used to flex the width at 70% for desktop and 100& for mobile -->
+
+
+                            <md-content laout="column" flex>
+                                <md-card>
+                                    <!-- /////// -->
+                                    <md-toolbar class="md-table-toolbar md-default"
+                                                ng-hide="selected.length || filter.show" aria-hidden="false" style="">
+                                        <div class="md-toolbar-tools">
+                                            <!--     <h2 class="md-title">Nutrition</h2> -->
+                                            <div flex="" class="flex"></div>
+                                            <button class="md-icon-button md-button md-ink-ripple" type="button"
+                                                    ng-click="filter.show = true" aria-label="filter_list">
+                                                <md-icon class="material-icons">filter_list</md-icon>
+                                                <div class="md-ripple-container"></div>
+                                            </button>
+                                            <button class="md-icon-button md-button md-ink-ripple" type="button"
+                                                    ng-click="addCustomer()" aria-label="local_dining">
+                                                <md-icon class="material-icons">local_dining</md-icon>
+                                            </button>
+                                        </div>
+                                    </md-toolbar>
+                                    <!-- /////////// -->
+                                    <md-toolbar class="md-table-toolbar md-default ng-hide"
+                                                ng-show="filter.show &amp;&amp; !selected.length" aria-hidden="true"
+                                                style="">
+                                        <div class="md-toolbar-tools">
+                                            <md-icon class="material-icons">search</md-icon>
+                                            <form flex="" name="filter.form" class="ng-pristine ng-valid flex">
+                                                <input type="text" ng-model="query.filter"
+                                                       ng-model-options="filter.options" placeholder="search"
+                                                       class="ng-pristine ng-untouched ng-valid" aria-invalid="false">
+                                            </form>
+                                            <button class="md-icon-button md-button md-ink-ripple" type="button"
+                                                    ng-click="removeFilter()" aria-label="close">
+                                                <md-icon class="material-icons">close</md-icon>
+                                                <div class="md-ripple-container"></div>
+                                            </button>
+                                        </div>
+                                    </md-toolbar>
+                                    <!-- /////////// -->
+                                    <md-toolbar class="md-table-toolbar alternate ng-hide" ng-show="selected.length"
+                                                aria-hidden="true">
+                                        <div class="md-toolbar-tools layout-align-space-between-stretch"
+                                             layout-align="space-between">
+                                            <div>0 item selected</div>
+                                            <button class="md-icon-button md-button md-ink-ripple" type="button"
+                                                    ng-click="delete($event)" aria-label="delete">
+                                                <md-icon class="material-icons">delete</md-icon>
+                                            </button>
+                                        </div>
+                                    </md-toolbar>
+                                    <md-table-container>
+                                        <table md-table ng-model="selected" md-progress="promise">
+                                            <thead ng-if="!options.decapitate" md-head md-order="query.order"
+                                                   md-on-reorder="logOrder">
+                                            <tr md-row>
+                                                <th md-column md-order-by="id"><span>ID</span></th>
+                                                <th md-column md-order-by="nome"><span>Nome</span></th>
+                                                <th md-column md-order-by="cognome"><span>Cognome</span></th>
+                                                <th md-column md-order-by="id"><span>Corsi eseguiti Mese</span></th>
+                                                <th md-column md-order-by="id"><span>Corsi eseguiti Anno</span></th>
+                                                </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody md-body>
+                                            <tr md-row
+                                                md-select="i" md-on-select="logItem" ng-click="showInstructorInfo(i)"
+                                                md-auto-select="options.autoSelect" ng-repeat="i in Istruttori |
+		           filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+                                                <td md-cell>{{i.id}}</td>
+                                                <td md-cell>{{i.nome}}</td>
+                                                <td md-cell>{{i.cognome}}</td>
+                                                <td md-cell>{{i.corsi_mensili}}</td>
+                                                <td md-cell>{{i.corsi_annuali}}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </md-table-container>
+                                    <md-table-pagination md-limit="query.limit" md-limit-options="limitOptions"
+                                                         md-page="query.page" md-total="{{Istruttori.length}}"
+                                                         md-page-select="options.pageSelect"
+                                                         md-boundary-links="options.boundaryLinks"
+                                                         md-on-paginate="logPagination"></md-table-pagination>
+                                </md-card>
+                            </md-content>
+
+
+                            <!--
+                                                        <div layout="row" layout-align="center center" layout-fill>
+                                                            <div flex="70" flex-sm="100" flex-xs="100">
+                                                                <div class="autocompleteContainer" layout="row" layout-align="center center">
+                                                                    <md-autocomplete flex="50" md-selected-item="selectedItem"
+                                                                                     md-search-text="searchText"
+                                                                                     md-items="istruttore in Istruttori"
+                                                                                     md-item-text="istruttore.nome">
+                                                                        <span md-highlight-text="searchText">{{istruttore.nome}}</span>
+                                                                    </md-autocomplete>
+                                                                </div>
+                                                                <div class="listContainer" layout="row" layout-align="center center">
+                                                                    <md-card flex>
+                                                                        <md-card-content>
+                                                                            <md-list class="poolList" flex ng-cloak>
+                                                                                <md-list-item class="titleListItemContainer">
+                                                                                    <p flex="10">ID</p>
+                                                                                    <p flex="30">Nome</p>
+                                                                                    <p flex="30">Cognome</p>
+                                                                                    <p flex="30"># Corsi mese</p>
+                                                                                    <p flex="30"># Corsi anno</p>
+                                                                                </md-list-item>
+                                                                                <md-list-item class="poolListItem" ng-repeat="i in Istruttori"
+                                                                                              ng-click="showInstructorInfo(i)">
+                                                                                    <p flex="10">{{i.id}}</p>
+                                                                                    <p flex="30">{{i.nome}}</p>
+                                                                                    <p flex="30">{{i.cognome}}</p>
+                                                                                    <p flex="30">20</p>
+                                                                                    <p flex="30">30</p>
+                                                                                </md-list-item>
+
+                                                                            </md-list>
+                                                                        </md-card-content>
+                                                                    </md-card>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                            -->
+                        </div>
+
+                        <!-- Costumer section container -->
+                        <div class="classSectionContainer" ng-show="selectedSection === 'Tesserati'">
+                            <!--<p style="text-align: center;">{{selectedSection}}</p>-->
+                            <!-- the first container is used to flex the width at 70% for desktop and 100& for mobile -->
+                            <!--
+                                                        <div layout="row" layout-align="center center" layout-fill>
+                                                            <div flex="100" flex-sm="100" flex-xs="100">
+                                                                <div class="autocompleteContainer" layout="row" layout-align="center center">
+                                                                    <md-autocomplete flex="50" md-selected-item="selectedItem"
+                                                                                     md-search-text="searchText"
+                                                                                     md-items="utente in Utenti" md-item-text="utente.nome">
+                                                                        <span md-highlight-text="searchText">{{utente.nome}}</span>
+                                                                    </md-autocomplete>
+                                                                </div>
+                                                                <div class="listContainer" layout="row" layout-align="center center">
+                                                                    <md-card flex>
+                                                                        <md-card-content>
+                                                                            <md-list class="poolList" flex ng-cloak>
+                                                                                <md-list-item class="titleListItemContainer">
+                                                                                    <p flex="10">ID</p>
+                                                                                    <p flex>Nome</p>
+                                                                                    <p flex>Cognome</p>
+                                                                                    <p flex>Data Nascita</p>
+                                                                                    <p flex>Inizio Abb.</p>
+                                                                                    <p flex>Scad. Abb.</p>
+                                                                                    <p flex>Inizio Ass.</p>
+                                                                                    <p flex>Scad. Ass.</p>
+                                                                                    <p flex>Corso</p>
+                                                                                    <p flex>Recupero</p>
+                                                                                </md-list-item>
+                                                                                <md-list-item class="poolListItem" ng-repeat="u in UtenteCorsi"
+                                                                                              ng-click="showCustomerInfo(u)">
+                                                                                    <p flex="10">{{u.id}}</p>
+                                                                                    <p flex>{{u.nome}}</p>
+                                                                                    <p flex>{{u.cognome}}</p>
+                                                                                    <p flex>{{u.data_nascita}}</p>
+                                                                                    <p flex>{{u.inizio_abbonamento}}</p>
+                                                                                    <p flex>{{u.scadenza_abbonamento}}</p>
+                                                                                    <p flex>{{u.inizio_assicurazione}}</p>
+                                                                                    <p flex>{{u.scadenza_assicurazione}}</p>
+                                                                                    <p flex>{{u.nomeCorso}}</p>
+                                                                                    <p flex>3</p>
+                                                                                </md-list-item>
+
+                                                                            </md-list>
+                                                                        </md-card-content>
+                                                                    </md-card>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                            -->
+
+                            <md-content laout="column" flex>
+                                <!--
+                                 <md-card>
+                                        <div layout="row" layout-wrap class="checkboxes">
+                                          <md-checkbox ng-model="options.rowSelection">Row Selection</md-checkbox>
+                                          <md-checkbox ng-model="options.multiSelect">Multiple Selection</md-checkbox>
+                                          <md-checkbox ng-model="options.autoSelect">Auto Selection</md-checkbox>
+                                          <md-checkbox ng-model="options.decapitate">Decapitate</md-checkbox>
+                                          <md-checkbox ng-model="options.largeEditDialog">Lard Edit Dialogs</md-checkbox>
+                                          <md-checkbox ng-model="options.boundaryLinks">Pagination Boundary Links</md-checkbox>
+                                          <md-checkbox ng-model="options.limitSelect" ng-click="toggleLimitOptions()">Pagination Limit Select</md-checkbox>
+                                          <md-checkbox ng-model="options.pageSelect">Pagination Page Select</md-checkbox>
+                                        </div>
+                                      </md-card>
+                                -->
+                                <!-- <md-card ng-hide= "filter.show" aria-hidden="false"> -->
+                                <md-card>
+                                    <!--
+                                            <md-toolbar class="md-table-toolbar md-default" ng-hide="options.rowSelection && selected.length">
+                                               <div class="md-toolbar-tools">
+
+                                                <span>Nutrition</span>
+                                                <div flex></div>
+                                    <button class="md-icon-button md-button md-ink-ripple" type="button" ng-click="filter.show = true" aria-label="filter_list">
+                                          <md-icon class="material-icons">filter_list</md-icon>
+                                        <div class="md-ripple-container"></div></button>
+                                        <button class="md-icon-button md-button md-ink-ripple" type="button" ng-click="addCustomer()" aria-label="local_dining">
+                                          <md-icon class="material-icons">local_dining</md-icon>
+                                        <div class="md-ripple-container"></div></button>
+                                    </div>
+                                            </md-toolbar>
+                                    -->
+                                    <!-- /////// -->
+                                    <md-toolbar class="md-table-toolbar md-default"
+                                                ng-hide="selected.length || filter.show" aria-hidden="false" style="">
+                                        <div class="md-toolbar-tools">
+                                            <!--     <h2 class="md-title">Nutrition</h2> -->
+                                            <div flex="" class="flex"></div>
+                                            <button class="md-icon-button md-button md-ink-ripple" type="button"
+                                                    ng-click="filter.show = true" aria-label="filter_list">
+                                                <md-icon class="material-icons">filter_list</md-icon>
+                                                <div class="md-ripple-container"></div>
+                                            </button>
+                                            <button class="md-icon-button md-button md-ink-ripple" type="button"
+                                                    ng-click="addCustomer()" aria-label="local_dining">
+                                                <md-icon class="material-icons">local_dining</md-icon>
+                                            </button>
+                                        </div>
+                                    </md-toolbar>
+                                    <!-- /////////// -->
+                                    <md-toolbar class="md-table-toolbar md-default ng-hide"
+                                                ng-show="filter.show &amp;&amp; !selected.length" aria-hidden="true"
+                                                style="">
+                                        <div class="md-toolbar-tools">
+                                            <md-icon class="material-icons">search</md-icon>
+                                            <form flex="" name="filter.form" class="ng-pristine ng-valid flex">
+                                                <input type="text" ng-model="query.filter"
+                                                       ng-model-options="filter.options" placeholder="search"
+                                                       class="ng-pristine ng-untouched ng-valid" aria-invalid="false">
+                                            </form>
+                                            <button class="md-icon-button md-button md-ink-ripple" type="button"
+                                                    ng-click="removeFilter()" aria-label="close">
+                                                <md-icon class="material-icons">close</md-icon>
+                                                <div class="md-ripple-container"></div>
+                                            </button>
+                                        </div>
+                                    </md-toolbar>
+                                    <!-- /////////// -->
+                                    <md-toolbar class="md-table-toolbar alternate ng-hide" ng-show="selected.length"
+                                                aria-hidden="true">
+                                        <div class="md-toolbar-tools layout-align-space-between-stretch"
+                                             layout-align="space-between">
+                                            <div>0 item selected</div>
+                                            <button class="md-icon-button md-button md-ink-ripple" type="button"
+                                                    ng-click="delete($event)" aria-label="delete">
+                                                <md-icon class="material-icons">delete</md-icon>
+                                            </button>
+                                        </div>
+                                    </md-toolbar>
+
+
+                                    <!-- /////////// -->
+
+                                    <!--         </md-toolbar> -->
+                                    <!--
+                                            <md-toolbar class="md-table-toolbar alternate" ng-show="options.rowSelection && selected.length">
+                                              <div class="md-toolbar-tools">
+                                                <span>{{selected.length}} {{selected.length > 1 ? 'items' : 'item'}} selected</span>
+                                              </div>
+                                            </md-toolbar>
+                                    -->
+
+                                    <md-table-container>
+                                        <table md-table md-row-select="options.rowSelection"
+                                               multiple="{{options.multiSelect}}" ng-model="selected"
+                                               md-progress="promise">
+                                            <thead ng-if="!options.decapitate" md-head md-order="query.order"
+                                                   md-on-reorder="logOrder">
+                                            <tr md-row>
+                                                <th md-column md-order-by="nome"><span>Nome</span></th>
+                                                <th md-column md-order-by="cognome"><span>Cognome</span></th>
+                                                <th md-column md-order-by="data_nascita"><span>Data Nascita</span></th>
+                                                <th md-column md-order-by="inizio_abbonamento"><span>Inizio Abb.</span>
+                                                </th>
+                                                <th md-column md-order-by="scadenza_abbonamento"><span>Scad. Abb.</span>
+                                                </th>
+                                                <th md-column md-order-by="inizio_assicurazione">
+                                                    <span>Inizio Ass.</span></th>
+                                                <th md-column md-order-by="scadenza_assicurazione">
+                                                    <span>Scad. Ass.</span></th>
+                                                <th md-column md-order-by="nomeCorso"><span>Corso</span></th>
+                                                <th md-column md-order-by="recuperi"><span>Recupero</span></th>
+                                                </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody md-body>
+                                            <tr md-row
+                                                md-select="u" md-on-select="logItem" ng-click="showCustomerInfo(u)"
+                                                md-auto-select="options.autoSelect" ng-repeat="u in UtenteCorsi |
+		           filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit"
+                                                ng-style="{'background-color': u.scadenza_abbonamentoDate.getTime() - today.getTime() <= (1000 * 3600 * 1 * 1) ? 'rgb(255, 56, 56)' : (u.scadenza_abbonamentoDate.getTime() - today.getTime() <= (1000 * 3600 * 24 * 15) ? 'rgb(255, 129, 0)' : '')}">
+                                                <td md-cell>{{u.nome}}</td>
+                                                <td md-cell>{{u.cognome}}</td>
+                                                <td md-cell>{{u.data_nascita}}</td>
+                                                <td md-cell>{{u.inizio_abbonamento}}</td>
+                                                <td md-cell>{{u.scadenza_abbonamento}}</td>
+                                                <td md-cell>{{u.inizio_assicurazione}}</td>
+                                                <td md-cell>{{u.scadenza_assicurazione}}</td>
+                                                <td md-cell>{{u.nomeCorso}}</td>
+                                                <td md-cell>{{u.recuperi}}</td>
+
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </md-table-container>
+                                    <md-table-pagination md-limit="query.limit" md-limit-options="limitOptions"
+                                                         md-page="query.page" md-total="{{UtenteCorsi.length}}"
+                                                         md-page-select="options.pageSelect"
+                                                         md-boundary-links="options.boundaryLinks"
+                                                         md-on-paginate="logPagination"></md-table-pagination>
+                                </md-card>
+                            </md-content>
+                        </div>
+
+                    </md-content>
+                </md-content>
+            </section>
+
+        </div>
+    </div>
+</div>
+
+<script src="applications/3357/3357.js"></script>
