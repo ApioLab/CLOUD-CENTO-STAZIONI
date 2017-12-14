@@ -1,0 +1,15 @@
+{
+  "appId": "Anti-intrusione",
+  "db": {},
+  "installation": "autoinstalled",
+  "log": {},
+  "marker": {},
+  "name": "TVCC",
+  "properties": {
+  },
+  "protocol": "enocean",
+  "services": [],
+  "tag": "",
+  "type": "object",
+  "user": []
+}

@@ -1,0 +1,15 @@
+{
+  "appId": "Termico",
+  "db": {},
+  "installation": "autoinstalled",
+  "log": {},
+  "marker": {},
+  "name": "Gruppo Termico",
+  "properties": {
+  },
+  "protocol": "enocean",
+  "services": [],
+  "tag": "",
+  "type": "object",
+  "user": []
+}

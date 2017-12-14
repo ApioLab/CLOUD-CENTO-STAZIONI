@@ -1,0 +1,15 @@
+{
+  "appId": "a5-02-05",
+  "db": {},
+  "name": "Eno Temp Sensor",
+  "notifications": {},
+  "properties": {
+    "temperature": {
+      "label": "Temperature",
+      "type": "sensor",
+      "value": "0"
+    }
+  },
+  "protocol": "enocean",
+  "type": "object"
+}
