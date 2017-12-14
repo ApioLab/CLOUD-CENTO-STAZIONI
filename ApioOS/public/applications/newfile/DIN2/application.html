@@ -1,0 +1,109 @@
+<style>
+    #webcam {
+        background-color: #fff;
+        z-index: 1000;
+        position: fixed;
+        width: 100%;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        height: 45%;
+        border: none;
+        padding: 0px;
+        margin: 0;
+    }
+
+    #topWebCam {
+        width: 100%;
+        height: 53%;
+    }
+
+    .descriptioModbusList {
+        width: 80%;
+        padding-right: 2%;
+    }
+
+    #rs485 {
+        margin-top: 3% !important;
+    }
+
+    .viewConfirmList {
+
+    }
+</style>
+
+<div id="ApioApplication_TMP_" ng-app="ApioApplication_TMP_" style="padding: 10px;">
+    <div ng-controller="defaultController">
+        <topappapplication></topappapplication>
+        <div id="app" style="display: block;">
+            <collapse propertyName="moreInfo" label="More Info">
+                <uploadimage propertyname="img" label="Immagine"></uploadimage>
+                <note propertyName="note" label="Note"></note>
+            </collapse>
+            <collapse label="+ RS485" propertyname="rs485">
+                <md-toolbar style="background-color: #009688;">
+                    <div class="md-toolbar-tools">
+                        <span>Add New Modbus Device</span>
+                    </div>
+                </md-toolbar>
+                <list propertyName="modbus" label="Select Modbus Device" style="margin: 0;"
+                      listener="selectDevice()"></list>
+                <div ng-show="!viewConfirmList && !callbackInstallModbus">
+                    <div style="width: 40px; margin-left: auto; margin-right: auto;">
+                        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                    </div>
+                </div>
+                <md-list>
+                    <md-list-item class="viewConfirmList" ng-show="viewConfirmList">
+                        <md-input-container style="width: 100%;">
+                            <label>{{selectedValue}}</label>
+                            <input id="addressModbus" type="number" min="1" max="10" step="any" name="address"
+                                   ng-model="addressModbus" placeholder="Digita il suo Modbus Address" required
+                                   md-maxlength="3">
+                        </md-input-container>
+                        <md-input-container style="width: 100%; margin-left: 10%;">
+                            <label>Nome App</label>
+                            <input id="nameModbus" name="address" md-maxlength="20" minlength="4"
+                                   ng-model="nameModbus" placeholder="Digita un nome da Assegnare al Meter">
+                        </md-input-container>
+                    </md-list-item>
+                    <md-list-item class="viewConfirmList" ng-show="viewConfirmList">
+                        <div class="col-xs-6">
+                            <div style="width:30px; margin-left:auto; margin-right:auto;">
+                                <i class="material-icons" style="font-size: 30px;"
+                                   ng-click="discardModbus(modbus.objectId)">highlight_off</i>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div style="width: 30px; margin-left: auto; margin-right: auto;">
+                                <i class="material-icons" style="font-size: 30px;"
+                                   ng-click="addModbus(modbus.objectId)">done</i>
+                            </div>
+                        </div>
+                    </md-list-item>
+                    <md-toolbar style="background-color: #009688;" ng-show="installedShow()">
+                        <div class="md-toolbar-tools">
+                            <span>Installed ModBus Device</span>
+                        </div>
+                    </md-toolbar>
+                    <md-list-item ng-repeat="modbus in modbusInstalled">
+                        <img class="md-avatar" ng-src="applications/{{modbus.objectId}}/icon.png">
+                        <span class="descriptioModbusList">{{modbus.name}} {{modbus.appId}}</span>
+                        <i class="material-icons" ng-click="deleteApioApplication(modbus.objectId)">delete</i>
+                    </md-list-item>
+                </md-list>
+            </collapse>
+            <log label="Log"></log>
+            <div>
+                <div ng-show="!reset" style="width: 74px; margin-left: auto; margin-right: auto;">
+                    <md-button ng-click="resetDIN()" class="md-fab md-warn" aria-label="FAB">
+                        RESET
+                    </md-button>
+                </div>
+                <div ng-show="reset" style="width: 40px; margin-left: auto; margin-right: auto;">
+                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="applications/_TMP_/_TMP_.js"></script>

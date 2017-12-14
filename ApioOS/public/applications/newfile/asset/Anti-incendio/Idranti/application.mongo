@@ -1,0 +1,20 @@
+{
+  "appId": "a5-07-01",
+  "db": {},
+  "installation": "autoinstalled",
+  "log": {},
+  "marker": {},
+  "name": "Idranti",
+  "properties": {
+    "presenza": {
+      "label": "Presence",
+      "type": "trigger",
+      "value": "0"
+    }
+  },
+  "protocol": "enocean",
+  "services": [],
+  "tag": "",
+  "type": "object",
+  "user": []
+}

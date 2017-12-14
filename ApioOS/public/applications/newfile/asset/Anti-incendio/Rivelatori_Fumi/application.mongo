@@ -1,0 +1,15 @@
+{
+  "appId": "Anti-incendio",
+  "db": {},
+  "installation": "autoinstalled",
+  "log": {},
+  "marker": {},
+  "name": "Rivelatori Fumi",
+  "properties": {
+  },
+  "protocol": "enocean",
+  "services": [],
+  "tag": "",
+  "type": "object",
+  "user": []
+}

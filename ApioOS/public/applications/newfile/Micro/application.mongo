@@ -1,0 +1,31 @@
+{
+  "appId": "Micro",
+  "db": {},
+  "name": "Micro Smart Switch",
+  "notifications": {},
+  "properties": {
+    "power": {
+      "label": "Power [W]",
+      "type": "unlimitedsensor",
+      "value": "0"
+    },
+    "switch_0": {
+      "type": "trigger",
+      "value": "0",
+      "labeloff": "Switch Off",
+      "labelon": "Switch On",
+      "valueoff": "0",
+      "valueon": "1"
+    },
+    "switch_1": {
+      "type": "trigger",
+      "value": "0",
+      "labeloff": "Switch 1 Off",
+      "labelon": "Switch 1 On",
+      "valueoff": "0",
+      "valueon": "1"
+    }
+  },
+  "protocol": "z",
+  "type": "object"
+}

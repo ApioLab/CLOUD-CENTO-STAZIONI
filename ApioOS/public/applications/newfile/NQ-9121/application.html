@@ -1,0 +1,38 @@
+<div id="ApioApplication_TMP_" ng-app="ApioApplication_TMP_" style="padding: 10px;">
+    <div ng-controller="defaultController">
+        <topappapplication></topappapplication>
+        <div id="app" style="display: block;">
+	        <unlimitedsensor propertyname="sensorType" label="Sensor Type:"></unlimitedsensor>
+            <collapse label="Settings" propertyname="settings">
+                <md-toolbar style="background-color: #009688;">
+                    <div class="md-toolbar-tools">
+                        <span>Change sensor types</span>
+                    </div>
+                </md-toolbar>
+                <list propertyName="sensorTypes" label="Select Sensor Types" ng-model="sensorType" style="margin: 0;"
+                      listener="selectSensorTypes()"></list>
+                
+                <md-list>
+                    
+                    <md-list-item class="viewConfirmList" ng-show="viewConfirmList">
+                        <div class="col-xs-6">
+                            <div style="width:30px; margin-left:auto; margin-right:auto;">
+                                <i class="material-icons" style="font-size: 30px;"
+                                   ng-click="discard()">highlight_off</i>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div style="width: 30px; margin-left: auto; margin-right: auto;">
+                                <i class="material-icons" style="font-size: 30px;"
+                                   ng-click="save()">done</i>
+                            </div>
+                        </div>
+                    </md-list-item>
+                </md-list>
+            </collapse>
+            <unlimitedsensor propertyname="gas" label="Gas(cubic meters)"></unlimitedsensor>
+            <unlimitedsensor propertyname="battery_level" label="Battery Level"></unlimitedsensor>
+        </div>
+    </div>
+</div>
+<script src="applications/_TMP_/_TMP_.js"></script>

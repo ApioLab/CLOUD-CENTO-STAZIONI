@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--Copyright 2014-2015 Alex Benfaremo, Alessandro Chelli, Lorenzo Di Berardino, Matteo Di Sabatino-->
+
+<!---------------------------------- LICENSE --------------------------------
+-                                                                           -
+- This file is part of ApioOS.                                              -
+-                                                                           -
+- ApioOS is free software released under the GPLv2 license: you can         -
+- redistribute it and/or modify it under the terms of the GNU General       -
+- Public License version 2 as published by the Free Software Foundation.    -
+-                                                                           -
+- ApioOS is distributed in the hope that it will be useful, but             -
+- WITHOUT ANY WARRANTY; without even the implied warranty of                -
+- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the              -
+- GNU General Public License version 2 for more details.                    -
+-                                                                           -
+- To read the license either open the file COPYING.txt or                   -
+- visit <http://www.gnu.org/licenses/gpl2.txt>                              -
+-                                                                           -
+---------------------------------------------------------------------------->
+<style>
+    .titleNewInstall {
+        background-color: #7ac170;
+        color: white;
+        min-height: 50px;
+        line-height: 50px;
+        font-size: 20px;
+    }
+</style>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <title>Danfoss Smart Living</title>
+    <link rel="shortcut icon" type="image/x-icon" href="public/apio_assets/img/favicon.ico"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="yes"/>
+</head>
+<body>
+<md-dialog>
+    <md-dialog-content>
+        <div class="col-xs-12 titleNewInstall">
+            <span>You're installing the object Danfoss Valve, wanna proceed?</span>
+        </div>
+        <div class="col-xs-6" style="height: 450px;">
+            <div style="display: table; height: 100%;">
+                <div style="display: table-cell; vertical-align: middle;">
+                    <img style="width: 100%;"
+                         src="/applications/newfile/ZThermostat014G0013/testina-termostatica-elettronica-danfoss-living-eco.jpg">
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6" style="height: 450px;">
+            <div style="display: table; height: 100%;">
+                <div style="display: table-cell; vertical-align: middle;">
+                    <span></span>
+                    <span>This device is a Z-Wave controlled electronic radiator thermostat. It is SDK 4.5, has Explorer Frame Support and increased network stability. This radiator thermostat is mounted on wall heating valves and controls them by a motor. The device accepts a set point that is either set manually using buttons on the device or wirelessly using Z-Wave. Afterwards, the device will regulate the warm water supply to the wall radiator and compare the detected temperature to ensure, that the temperature in the room is kept at the desired level. A small LCD panel on the device displays the set point temperature on request. The device has an internal scheduler, that allows to define up to 9 set point for up to 7 week days. Once programmed, these set points will be activated without any further manual or wireless interaction. Beside setting a desired temperature the device will support special heating schemes, such as energy saving and frost protection and intelligent functions such as detection of open windows or a valve training function to ensure that valves are still operational after longer periods.</span>
+                    <br>
+                    <br>
+                    <div style="width: 220px; margin-left: auto; margin-right: auto;">
+                        <md-button ng-click="cancel()">No</md-button>
+                        <md-button ng-click="confirm()">Yes</md-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12"></div>
+    </md-dialog-content>
+</md-dialog>
+</body>
+</html>

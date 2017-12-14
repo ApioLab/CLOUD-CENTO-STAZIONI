@@ -1,0 +1,50 @@
+{
+  "appId": "ZDIN",
+  "category": "modbus",
+  "connected": true,
+  "created": "2017-01-02",
+  "data": {},
+  "db": {},
+  "installation": "autoinstalled",
+  "log": {},
+  "marker": {},
+  "name": "ZDIN",
+  "notifications": {},
+  "properties": {
+	  "puls1": {
+      "hi": false,
+      "label": "Puls 1",
+      "type": "sensor",
+      "value": "0"
+    },
+    "puls2": {
+      "hi": false,
+      "label": "Puls 2",
+      "type": "sensor",
+      "value": "0"
+    },
+    "puls3": {
+      "hi": false,
+      "label": "Puls 3",
+      "type": "sensor",
+      "value": "0"
+    },
+    "puls4": {
+      "hi": false,
+      "label": "Puls 4",
+      "type": "sensor",
+      "value": "0"
+    },
+    "puls5": {
+      "hi": false,
+      "label": "Puls 5",
+      "type": "sensor",
+      "value": "0"
+    }
+  },
+  "protocol": "l",
+  "services": [],
+  "tag": "#apioWhite",
+  "type": "object",
+  "user": []
+}

@@ -1,0 +1,110 @@
+{
+  "appId": "Report",
+  "connected": true,
+  "created": "2016-06-15",
+  "data": {},
+  "db": {},
+  "installation": "autoinstalled",
+  "log": {},
+  "marker": {},
+  "name": "Report",
+  "notifications": {},
+  "properties": {
+    "compareCons1": {
+      "draw": "{{flagCons}}",
+      "labels": "[['Mese', 'Energia di Riferimento[kWh]','Energia Attesa[kWh]','Energia Reale[kWh]'],['{{Months[dt.getMonth() - 1]}}','{{Months[dt.getMonth()]}}']]",
+      "ng-if": "keys.length >0",
+      "title": "Fascia {{label1}}",
+      "type": "charts",
+      "value": "[[0,0,0],[0,0,0]]"
+    },
+    "compareCons2": {
+      "type": "charts",
+      "ng-if": "keys.length >1",
+      "draw": "{{flagCons}}",
+      "labels": "[['Mese', 'Energia di Riferimento[kWh]','Energia Attesa[kWh]','Energia Reale[kWh]'],['{{Months[dt.getMonth() - 1]}}','{{Months[dt.getMonth()]}}']]",
+      "title": "Fascia {{label2}}",
+      "value": "0"
+    },
+    "compareCons3": {
+      "type": "charts",
+      "ng-if": "keys.length >2",
+      "draw": "{{flagCons}}",
+      "labels": "[['Mese', 'Energia di Riferimento[kWh]','Energia Attesa[kWh]','Energia Reale[kWh]'],['{{Months[dt.getMonth() - 1]}}','{{Months[dt.getMonth()]}}']]",
+      "title": "Fascia {{label3}}",
+      "value": "0"
+    },
+    "compareProd": {
+      "type": "charts",
+      "draw": "{{flagProd}}",
+      "labels": "[['Mese', 'Energia Attesa[kWh]','Energia Reale[kWh]'],['{{Months[dt.getMonth() - 1]}}','{{Months[dt.getMonth()]}}']]",
+      "value": "0"
+    },
+    "consImp": {
+      "type": "collapse",
+      "ng-click": "drawCons()",
+      "label": "Consumo Impianto FV",
+      "open": "true",
+      "value": "0"
+    },
+    "eneAuto": {
+      "type": "unlimitedsensor",
+      "label": "kWh",
+      "class": "comparation",
+      "ng-class": "{'bkColorGreen': bkColorAutocons === '0', 'bkColorYellow': bkColorAutocons === '-1'}",
+      "value": "0"
+    },
+    "eneConsNew": {
+      "class": "comparation",
+      "label": "kWh",
+      "ng-class": "{'bkColorGreen': bkColorCons === '1', 'bkColorRed': bkColorCons === '-1'}",
+      "type": "unlimitedsensor",
+      "value": "0.00"
+    },
+    "eneConsOld": {
+      "class": "comparation",
+      "label": "kWh",
+      "type": "unlimitedsensor",
+      "value": "0.00"
+    },
+    "eneProdNew": {
+      "type": "unlimitedsensor",
+      "label": "kWh",
+      "class": "comparation",
+      "ng-class": "{'bkColorGreen': bkColorProd === '1', 'bkColorRed': bkColorProd === '-1'}",
+      "value": "0"
+    },
+    "eneProdOld": {
+      "type": "unlimitedsensor",
+      "label": "kWh",
+      "class": "comparation",
+      "value": "0"
+    },
+    "eneSlots": {
+      "draw": "{{flagPie}}",
+      "labels": "[['Fasce', 'Energia[kWh]'],['{{label1}}','{{label2}}','{{label3}}']]",
+      "type": "charts",
+      "value": "[\"0.00\"]"
+    },
+    "prodImp": {
+      "type": "collapse",
+      "ng-click": "drawProd()",
+      "label": "Produzione Impianto FV",
+      "open": "true",
+      "value": "0"
+    },
+    "ripConsumi": {
+      "type": "collapse",
+      "ng-if": "flagSlots",
+      "ng-click": "drawPie()",
+      "label": "Ripartizione dei Consumi",
+      "open": "true",
+      "value": "0"
+    }
+  },
+  "protocol": "l",
+  "services": [],
+  "tag": "",
+  "type": "object",
+  "user": []
+}

@@ -1,0 +1,57 @@
+{
+  "appId": "DIN2",
+  "connected": true,
+  "created": "2016-06-15",
+  "data": {},
+  "db": {
+    "modbus": {
+      "1": "",
+      "2": "Seneca S500",
+      "3": "SenecaMon S604",
+      "4": "SenecaTri S604",
+      "5": "Seneca S504C",
+      "6": "Estron SDM220",
+      "7": "Selco 200to400",
+      "8": "Huawei SUN2000",
+      "9": "Z DIN",
+      "10": "SolarimetroET PT100"
+    }
+  },
+  "installation": "autoinstalled",
+  "log": {},
+  "marker": {},
+  "name": "DIN2",
+  "notifications": {},
+  "properties": {
+    "img": {
+      "label": "Immagine",
+      "type": "uploadimage",
+      "value": "0"
+    },
+    "modbus": {
+      "label": "Select Modbus Device",
+      "type": "list",
+      "value": "0"
+    },
+    "moreInfo": {
+      "label": "More Info",
+      "type": "collapse",
+      "value": "0"
+    },
+    "note": {
+      "label": "Note",
+      "type": "note",
+      "value": "0"
+    },
+    "rs485": {
+      "label": "+ RS485",
+      "type": "collapse",
+      "value": "0"
+    }
+  },
+  "protocol": "l",
+  "services": [],
+  "tag": "#apioWhite",
+  "type": "object",
+  "user": []
+}

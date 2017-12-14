@@ -1,0 +1,26 @@
+{
+  "appId": "a5-08-01",
+  "db": {},
+  "name": "Luminosità e Movimento",
+  "notifications": {},
+  "properties": {
+    "illumination": {
+      "label": "Illumination",
+      "type": "unlimitedsensor",
+      "value": "0"
+    },
+    "temperature": {
+      "label": "Temperature",
+      "type": "unlimitedsensor",
+      "value": "0"
+    },
+    "pir_status": {
+      "labelon": "PIR Status - ON",
+      "labeloff": "PIR Status - OFF",
+      "type": "trigger",
+      "value": "0"
+    }
+  },
+  "protocol": "enocean",
+  "type": "object"
+}

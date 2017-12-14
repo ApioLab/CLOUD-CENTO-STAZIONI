@@ -1,0 +1,77 @@
+/*Copyright 2014-2015 Alex Benfaremo, Alessandro Chelli, Lorenzo Di Berardino, Matteo Di Sabatino*/
+
+/********************************** LICENSE *********************************
+ *                                                                          *
+ * This file is part of ApioOS.                                             *
+ *                                                                          *
+ * ApioOS is free software released under the GPLv2 license: you can        *
+ * redistribute it and/or modify it under the terms of the GNU General      *
+ * Public License version 2 as published by the Free Software Foundation.   *
+ *                                                                          *
+ * ApioOS is distributed in the hope that it will be useful, but            *
+ * WITHOUT ANY WARRANTY; without even the implied warranty of               *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the             *
+ * GNU General Public License version 2 for more details.                   *
+ *                                                                          *
+ * To read the license either open the file COPYING.txt or                  *
+ * visit <http://www.gnu.org/licenses/gpl2.txt>                             *
+ *                                                                          *
+ ****************************************************************************/
+
+.title {
+        display: table;
+        width: 100%;
+        text-align: center;
+        height: 50px;
+        font-size: 20px;
+    line-height: 50px;
+}
+
+.visibility-visible {
+    visibility: visible !important;
+}
+
+.visibility-hidden {
+    visibility: hidden !important;
+}
+
+.no-padding {
+    padding: 0 !important;
+}
+
+.vis-timeline {
+    border: 0px;
+}
+
+.vis-time-axis .vis-text {
+    padding: 2px 6px;
+    text-align: left;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 479px) {
+    .analytics svg {
+        width: 100%;
+        height: 365px;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+    .analytics svg {
+        width: 100%;
+        height: 365px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .analytics svg {
+        width: 100%;
+        height: 400px;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .analytics svg {
+        width: 100%;
+        height: 400px;
+    }
+}

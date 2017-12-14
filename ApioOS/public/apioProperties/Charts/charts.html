@@ -1,0 +1,31 @@
+<div class="row no-margin" style="cursor: pointer; position: relative;" ng-hide="currentObject.isRecording()">
+    <!--Copyright 2014-2015 Alex Benfaremo, Alessandro Chelli, Lorenzo Di Berardino, Matteo Di Sabatino-->
+
+    <!---------------------------------- LICENSE --------------------------------
+    -                                                                           -
+    - This file is part of ApioOS.                                              -
+    -                                                                           -
+    - ApioOS is free software released under the GPLv2 license: you can         -
+    - redistribute it and/or modify it under the terms of the GNU General       -
+    - Public License version 2 as published by the Free Software Foundation.    -
+    -                                                                           -
+    - ApioOS is distributed in the hope that it will be useful, but             -
+    - WITHOUT ANY WARRANTY; without even the implied warranty of                -
+    - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the              -
+    - GNU General Public License version 2 for more details.                    -
+    -                                                                           -
+    - To read the license either open the file COPYING.txt or                   -
+    - visit <http://www.gnu.org/licenses/gpl2.txt>                              -
+    -                                                                           -
+    ---------------------------------------------------------------------------->
+
+    <div class="title" ng-if="title !== undefined">{{title}}</div>
+    <div id="loader{{propertyname}}" class="content_loader" ng-show="notReady" style="margin-top: 35px;" ngCloak></div>
+    <!--<div id="{{propertyname}}" ng-if="flag0 && flagNeg" ng-show="ready" ngCloak></div>-->
+    <div id="{{propertyname}}" ng-show="flag0 && flagNeg && ready"></div>
+
+    <div ng-if="!flagNeg"><span>Almeno un valore del grafico è negativo, ricontrollare i dati</span></div>
+    <div ng-if="flagNeg && !flag0"><span>Tutti i valori del grafico sono nulli, ricontrollare i dati</span></div>
+    <link type="text/css" rel="stylesheet" href="apioProperties/Charts/charts.css"/>
+</div>
+

@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Report client</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <style>
+        html, body {
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        .rectangle {
+            width: 43%;
+            height: 40%;
+            /*border: 0.2vmin solid orange;*/
+            border: 1px solid orange;
+        }
+
+        .title {
+            width: 40%;
+            height: 10%;
+            margin-left: auto;
+            margin-right: auto;
+            /*line-height: 10vh;*/
+            line-height: 62px;
+            display: block;
+        }
+
+        .title_text {
+            /*line-height: 10vmin;*/
+            line-height: 62px;
+            /*font-size: 5vmin;*/
+            font-size: 31px;
+            text-align: center;
+            margin-left: 0;
+            margin-right: 0;
+            font-weight: bold;
+        }
+
+        .small_title_text {
+            /*line-height: 5vmin;*/
+            line-height: 31px;
+            /*font-size: 2.5vmin;*/
+            font-size: 15.5px;
+            text-align: center;
+            margin-left: 0;
+            margin-right: 0;
+            font-weight: bold;
+        }
+
+        .margin {
+            margin-bottom: 1.5%;
+            margin-top: 1%;
+        }
+
+        .borderedRectangle {
+            width: 35%;
+            height: 55%;
+            /*border: 1vmin solid orange;*/
+            border: 6.2px solid orange;
+            text-align: center;
+            display: block;
+            /*line-height: 8vmin;*/
+            line-height: 49.6px;
+            /*font-size: 4vmin;*/
+            font-size: 20px;
+            float: bottom;
+        }
+
+        .perCent {
+            width: 10%;
+            height: 55%;
+            text-align: center;
+            display: block;
+            /*line-height: 8vmin;*/
+            line-height: 49.6px;
+            /*font-size: 3vmin;*/
+            font-size: 16px;
+            float: bottom;
+        }
+
+        #consumeSlots {
+            float: left;
+            margin-left: 5%;
+        }
+
+        #energyCompare {
+            background: #FFFFFF;
+            float: right;
+            margin-right: 5%;
+        }
+
+        #energyBars {
+            background: #FFFFFF;
+            float: left;
+            margin-left: 5%;
+        }
+
+        #energyReduction {
+            fill: #FFFFFF;
+            float: right;
+            margin-right: 5%;
+        }
+    </style>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>-->
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <!--<script type="text/javascript" src="/bower_components/jquery/dist/jquery.js"></script>-->
+    <!--<script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>-->
+    <!--<script type="text/javascript" src="/bower_components/angular/angular.js"></script>-->
+
+    <!--<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>-->
+    <!--<script type="text/javascript"-->
+    <!--src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"></script>-->
+    <!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>-->
+</head>
+<body id="ApioReport" style="width:100%">
+<div id="title" class="title">
+    <div id="mainTitle" class="title_text">Report {{period}}</div>
+</div>
+<div id="consumeSlots" class="rectangle margin">
+    <div class="small_title_text">RIPARTIZIONE DEI CONSUMI</div>
+    <div id="consumeSlot" style="width: 100%;height: 80%; "></div>
+</div>
+<div id="energyCompare" class="rectangle margin">
+    <div style="width:100%;height:50%">
+        <div id="enCmpTitle1" class="small_title_text">{{title1}}</div>
+        <!--<span style="line-height:5vmin;font-size: 2.5vmin;"><br ></span>-->
+        <div id="box0" class="borderedRectangle" style="float: left;margin-left: 10%;margin-right:5%;"> {{value0}}</div>
+        <div class="perCent" id="perc1" style="float: right;"></div>
+        <div class="borderedRectangle" id="box1" style="float: right;margin-left: 5%;"> {{value1}}
+        </div>
+
+    </div>
+    <div style="width:100%;height:50%">
+        <div id="enCmpTitle2" class="small_title_text">{{title2}}</div>
+        <!--<span style="line-height:5vmin;font-size: 2.5vmin;"><br ></span>-->
+        <div id="box01" class="borderedRectangle" style="float: left;margin-left: 10%;margin-right:5%;"> {{value2}}
+        </div>
+        <div id="perc2" class="perCent" style="float: right;"></div>
+        <div id="box2" class="borderedRectangle" style="float: right;margin-left: 5%;"> {{value3}}</div>
+    </div>
+</div>
+<div id="energyBars" class="rectangle  margin">
+    <div id="barsTitle" class="small_title_text">{{title3}}</div>
+    <div id="energyBar" style="width: 100%;height: 80%;"></div>
+</div>
+<div id="energyReduction" class="rectangle margin"></div>
+<!--<div id = "energyRating"></div>-->
+<!--<script type="text/javascript">-->
+<!--$http.get("/applications/_TMP_/_TMP_.json").success(function (res) {-->
+
+<script type="text/javascript">
+    function httpGetAsync(theUrl, callback) {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function () {
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                callback(xmlHttp.responseText);
+        }
+        xmlHttp.open("GET", theUrl, true); // true for asynchronous
+        xmlHttp.send(null);
+    }
+    function getParameterByName(name, url) {
+        if (!url) {
+            url = window.location.href;
+        }
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+
+    setTimeout(function () {
+        httpGetAsync("/applications/_TMP_/_TMP_.json", function (res) {
+            var dt = new Date();
+            var ready1 = false;
+            var ready2 = false;
+            var ready3 = false;
+            var Months = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"];
+            var report = Number(getParameterByName("report"));
+            if (report == 1) {
+                document.getElementById("mainTitle").innerHTML = "Report Mensile";
+            } else if (report == 2) {
+                document.getElementById("mainTitle").innerHTML = "Report Bimestrale";
+            } else if (report == 3) {
+                document.getElementById("mainTitle").innerHTML = "Report Trimestrale";
+            } else if (report == 6) {
+                document.getElementById("mainTitle").innerHTML = "Report Semestrale";
+            } else if (report == 12) {
+                document.getElementById("mainTitle").innerHTML = "Report Annuale";
+            }
+            var prevMonth = dt.getMonth() + 1 - report >= 0 ? dt.getMonth() + 1 - report : 12 + dt.getMonth() + 1 - report;
+            prevMonth = prevMonth != 0 ? prevMonth : 12;
+            var prevYear = dt.getMonth() + 1 - report >= 0 ? dt.getFullYear() : dt.getFullYear() - 1;
+            var prev2Month = prevMonth - report >= 0 ? prevMonth - report : 12 + prevMonth - report;
+            var prev2Year = prevMonth - report >= 0 ? prevYear : prevYear - 1;
+            prev2Month = prev2Month != 0 ? prev2Month : 12;
+            console.log("prevMont", Months[prevMonth - 1]);
+            console.log("prev2Mont", Months[prev2Month - 1]);
+            console.log("prevYear: ", prevYear);
+            console.log("prev2Year: ", prev2Year);
+            google.charts.load("current", {packages: ["corechart", "bar"]});
+
+            function drawChartBar(div, labels, arrayValues, fontSize) {
+                console.log("arrayValues: ", arrayValues);
+                var table = [[]];
+                table[0] = labels[0];
+                for (var j in arrayValues) {
+                    if (arrayValues[j] instanceof Array) {
+                        var aux = [];
+                        console.log(labels[1][j]);
+                        aux[0] = labels[1][j];
+                        for (var k in arrayValues[j]) {
+                            aux[Number(k) + 1] = arrayValues[j][k];
+                            if (k == arrayValues[j].length - 1) {
+                                table[Number(j) + 1] = aux;
+                            }
+                        }
+                    } else {
+                        table[Number(j) + 1] = [labels[1][j], arrayValues[j]];
+                    }
+
+                }
+                console.log("table: ", table)
+                var data_chart = new google.visualization.arrayToDataTable(table);
+                console.log("table: ", table);
+                var view = new google.visualization.DataView(data_chart);
+
+                var options = {
+                    legend: {position: "bottom", textStyle: {fontSize: fontSize}, alignment: "center"},
+                    bar: {groupWidth: "95%"}, alignment: "center", hAxis: {textStyle: {fontSize: fontSize}},
+
+                };
+
+                var chart = new google.charts.Bar(document.getElementById(div));
+                google.visualization.events.addListener(chart, "ready", function () {
+                    var text = document.querySelectorAll("#energyBars svg g text")[1].cloneNode(true);
+                    var iterations = arrayValues.length * arrayValues[0].length;
+                    for (var i = 0; i < iterations; i++) {
+                        var f = document.querySelectorAll("#energyBars svg g path")[i].getAttribute("d").split(" ");
+                        var h = text.cloneNode(true);
+                        h.removeAttribute("id");
+                        h.setAttribute("x", Number(f[1]) - 25 > 0 ? String(Number(f[1]) - fontSize * 12 / iterations) : 0);
+                        h.setAttribute("y", Number(f[2]) - 10 > 0 ? String(Number(f[2]) - fontSize / 3) : fontSize);
+                        if (Number(f[2]) - 10 < 0) {
+                            h.setAttribute("fill", "#00000");
+                        } else {
+                            h.setAttribute("fill", "#757575");
+                        }
+                        h.setAttribute("style", "cursor: default; user-select: none; -webkit-font-smoothing: antialiased; font-family: Roboto; font-size: " + fontSize + "px;");
+                        h.setAttribute("dx", "0px");
+                        //h.setAttribute("textContent","PROVA");
+                        //h.textContent = "PROVA";
+                        try {
+                            h.childNodes[0].nodeValue = String(arrayValues[i <= iterations / 2 - 1 ? 0 : 1][i % (iterations / 2)]);
+                        } catch (er) {
+                            h.innerHTML = String(arrayValues[i <= iterations / 2 - 1 ? 0 : 1][i % (iterations / 2)]);
+                        }
+
+                        //h.innerHTML = String(arrayValues[i <= iterations / 2 - 1 ? 0 : 1][i % (iterations / 2)]);
+                        //h.innerHTML = "PROVA";
+                        console.log("------------------------");
+                        for (var x in h) {
+                            console.log(x, h[x]);
+                        }
+                        console.log("------------------------");
+                        document.querySelectorAll("#energyBars svg g")[5].appendChild(h);
+//                    if (i == iterations -1 ){
+//                        ready1 = true;
+//                    }
+
+                    }
+                    ready1 = true;
+
+                });
+
+                chart.draw(view, google.charts.Bar.convertOptions(options));
+            }
+
+            function drawChartPie(div, labels, arrayValues, fontSize) {
+                var table = [];
+                table[0] = labels[0];
+                for (var j in arrayValues) {
+                    table[Number(j) + 1] = [labels[1][j], Number(arrayValues[j])];
+                }
+                console.log("table: ", table);
+                var data_chart = new google.visualization.arrayToDataTable(table);
+                var view = new google.visualization.DataView(data_chart);
+                var options = {
+                    legend: {position: "right", alignment: "center", textStyle: {fontSize: fontSize}},
+                    chartArea: {width: "200%", height: "200%"},
+                    pieHole: 0.5,
+                    pieSliceText: "value",
+                    pieSliceTextStyle: {color: 'black'}
+
+                };
+
+                console.log("title: ", options.title);
+
+                var chart = new google.visualization.PieChart(document.getElementById(div));
+//            google.visualization.events.addListener(chart, "ready", function () {
+////                    var text = document.querySelector("#consumeSlot svg g g g text").cloneNode(true);
+////                    var iterations = arrayValues.length;
+////                    for (var i = 0; i < iterations; i++) {
+////                        if (iterations == 3) {
+////                            if (i == 0) {
+////                                var f = document.querySelectorAll("#consumeSlot svg g path")[0].getAttribute("d").split(",");
+////                            } else if (i == 1) {
+////                                var f = document.querySelectorAll("#consumeSlot svg g path")[2].getAttribute("d").split(",");
+////                            }
+////                            if (i == 2) {
+////                                var f = document.querySelectorAll("#consumeSlot svg g path")[1].getAttribute("d").split(",");
+////                            }
+////                        } else if (iterations == 2) {
+////                            if (i == 0) {
+////                                var f = document.querySelectorAll("#consumeSlot svg g path")[0].getAttribute("d").split(",");
+////                            } else if (i == 1) {
+////                                var f = document.querySelectorAll("#consumeSlot svg g path")[1].getAttribute("d").split(",");
+////                            }
+////                        }
+////                        f[0] = f[0].replace('M', '');
+////                        f[1] = f[1].split('L')[0];
+////                        console.log(f[0], f[1]);
+////                        //var h = document.createElement("TEXT");
+////                        var h = text.cloneNode(true);
+////                        h.removeAttribute("id");
+////                        h.setAttribute("x", String(Number(f[0])));
+////                        h.setAttribute("y", String(Number(f[1])));
+////                        //h.setAttribute("style", "cursor: default; user-select: none; -webkit-font-smoothing: antialiased; font-family: Roboto; font-size: " + fontSize + "px;");
+////                        //h.setAttribute("dx", "0px");
+////
+//////                        h.x = String(Number(f[1]) - 10);
+//////                        h.y = String(Number(f[2]) - 10);
+////                        //console.log(arrayValues[i <= iterations/2 -1 ? 0 : 1][i % (iterations/2)]);
+////                        h.innerHTML = String(arrayValues[i]);
+////
+////                        var g = document.querySelectorAll("#consumeSlot svg g");
+////                        g[g.length - 1].appendChild(h);
+////                    }
+////                    ready2 = true;
+//                var text = document.querySelectorAll("#consumeSlot svg g g g text");
+//                var iterations = arrayValues.length;
+//                for (var i = 0; i < iterations; i++) {
+//                    text[2 * i + 1].innerHTML = "( kWh " + String(arrayValues[i]) + " )";
+//                }
+//                ready2 = true;
+//            });
+                chart.draw(view, options);
+            }
+
+            console.log("res: ", res);
+            var object = JSON.parse(res);
+            var lastMonthSlots = [];
+            console.log(object.db.actual.slots);
+            var flag = true;
+            for (var k = 0; k < report; k++) {
+                for (var i = 0; i < object.db.actual.slots.length; i++) {
+                    console.log(object.db.actual.slots[i]);
+                    if (object.db.actual.slots[i].month == String((prevMonth + k - 1) % 12 + 1) && object.db.actual.slots[i].year == String(prevYear + Math.floor((prevMonth + k - 1) / 12))) {
+                        console.log("Trovato energia per mese ", Months[prevMonth + k - 1]);
+                        for (var j = 0; j < object.db.actual.slots[i].energy.length; j++) {
+                            if (flag) {
+                                lastMonthSlots[j] = 0;
+                                if (j == object.db.actual.slots[i].energy.length - 1) {
+                                    flag = false;
+                                }
+                            }
+                            lastMonthSlots[j] += Number(object.db.actual.slots[i].energy[j]) ? Number(object.db.actual.slots[i].energy[j]) : 0;
+                        }
+                    }
+                }
+            }
+            console.log("previousPeriodSlots", lastMonthSlots);
+            var arrayValues = lastMonthSlots;
+            var numberSlots = arrayValues.length;
+            var labels = [["Fasce", "Energia[kWh]"], ["Energia F0 [KWh]"]];
+            if (numberSlots == 2) {
+                labels[1] = ["Energia F1 [KWh]", "Energia F23 [KWh]"];
+            } else if (numberSlots == 3) {
+                labels[1] = ["Energia F1 [KWh]", "Energia F2 [KWh]", "Energia F3 [KWh]"];
+            }
+
+            if (object.db.type == "VAZ") {
+                var autoConsume = [0, 0], production = [0, 0], production_exp = [0, 0];
+                document.getElementById("enCmpTitle1").innerHTML = "ENERGIA PRODOTTA";
+                document.getElementById("enCmpTitle2").innerHTML = "ENERGIA AUTOCONSUMATA";
+                for (var k = 0; k < report; k++) {
+                    for (var i = 0; i < object.db.actual.autoconsume.length; i++) {
+//console.log(object.db.actual.slots[i]);
+                        if (object.db.actual.autoconsume[i].month == String((prev2Month + k - 1) % 12 + 1) &&
+                                object.db.actual.autoconsume[i].year == String(prev2Year + Math.floor((prev2Month + k - 1) / 12))) {
+                            autoConsume[0] += Number(object.db.actual.autoconsume[i].energy) ? Number(object.db.actual.autoconsume[i].energy) : 0;
+                        }
+                        if (object.db.actual.autoconsume[i].month == String((prevMonth + k - 1) % 12 + 1) &&
+                                object.db.actual.autoconsume[i].year == String(prevYear + Math.floor((prevMonth + k - 1) / 12))) {
+                            autoConsume[1] += Number(object.db.actual.autoconsume[i].energy) ? Number(object.db.actual.autoconsume[i].energy) : 0;
+                        }
+                    }
+                    for (var i = 0; i < object.db.actual.production.length; i++) {
+//console.log(object.db.actual.slots[i]);
+                        if (object.db.actual.production[i].month == String((prev2Month + k - 1) % 12 + 1) && object.db.actual.production[i].year
+                                == String(prev2Year + Math.floor((prev2Month + k - 1) / 12))) {
+                            production[0] += object.db.actual.production[i].energy ? Number(object.db.actual.production[i].energy) : 0;
+                        }
+                        if (object.db.actual.production[i].month == String((prevMonth + k - 1) % 12 + 1) && object.db.actual.production[i].year
+                                == String(prevYear + Math.floor((prevMonth + k - 1) / 12))) {
+                            production[1] += object.db.actual.production[i].energy ? Number(object.db.actual.production[i].energy) : 0;
+                        }
+                    }
+                    for (var i = 0; i < object.db.expect.production.length; i++) {
+//console.log(object.db.actual.slots[i]);
+                        if (object.db.expect.production[i].month == String((prev2Month + k - 1) % 12 + 1)) {
+                            production_exp[0] += object.db.expect.production[i].energy ? Number(object.db.expect.production[i].energy) : 0;
+                        }
+                        if (object.db.expect.production[i].month == String((prevMonth + k - 1) % 12 + 1)) {
+                            production_exp[1] += object.db.expect.production[i].energy ? Number(object.db.expect.production[i].energy) : 0;
+                        }
+                    }
+                }
+                document.getElementById("box0").innerHTML = production[0].toFixed(2) + " KWh";
+                document.getElementById("box1").innerHTML = production[1].toFixed(2) + " KWh";
+                document.getElementById("box01").innerHTML = autoConsume[0].toFixed(2) + " KWh";
+                document.getElementById("box2").innerHTML = autoConsume[1].toFixed(2) + " KWh";
+                console.log("variabili di produzione ", production[0], production[1]);
+
+                if (Number(production[0]) != 0) {
+                    var perc1 = document.getElementById("perc1").style;
+                    var box1 = document.getElementById("box1").style;
+                    if ((production[1] - (production[0])) * 100 / (production[0]) > 0) {
+                        document.getElementById("perc1").innerHTML = "+" + ((production[1] - (production[0])) * 100 / (production[0])).toFixed(1) + "%";
+                        perc1.color = "green";
+                        box1.backgroundColor = "rgba(0,255,0,0.5)";
+                    } else if ((production[1] - (production[0])) * 100 / (production[0]) < 0) {
+                        perc1.color = "red";
+                        box1.backgroundColor = "rgba(255,0,0,0.5)";
+                        document.getElementById("perc1").innerHTML = ((production[1] - (production[0])) * 100 / (production[0])).toFixed(1) + "%";
+
+                    }
+                }
+                if (Number(autoConsume[0]) != 0) {
+                    var perc2 = document.getElementById("perc2").style;
+                    var box2 = document.getElementById("box2").style;
+                    if ((autoConsume[1] - (autoConsume[0])) * 100 / (autoConsume[0]) > 0) {
+                        document.getElementById("perc2").innerHTML = "+" + ((autoConsume[1] - (autoConsume[0])) * 100 / (autoConsume[0])).toFixed(1) + "%"
+                        perc2.color = "green";
+                        box2.backgroundColor = "rgba(0,255,0,0.5)";
+                    } else if ((autoConsume[1] - (autoConsume[0])) * 100 / (autoConsume[0]) < 0) {
+                        perc2.color = "red";
+                        box2.backgroundColor = "rgba(255,0,0,0.5)";
+                        document.getElementById("perc2").innerHTML = ((autoConsume[1] - (autoConsume[0])) * 100 / (autoConsume[0])).toFixed(1) + "%"
+
+                    }
+                }
+
+
+                var arrayValuesBar = [[production_exp[0], production[0]], [production_exp[1], production[1]]];
+                console.log("arrayValuesBar ", arrayValuesBar);
+                if (report == 1) {
+                    var labelsBar = [["Mese", "Energia Attesa[kWh]", "Energia Reale[kWh]"], [Months[prev2Month - 1], Months[prevMonth - 1]]];
+                } else if (report == 12) {
+                    var labelsBar = [[Months[prev2Month - 1] + "-" + Months[(prev2Month - 1 + report - 1) % 12], "Energia Attesa[kWh]", "Energia Reale[kWh]"], [String(prev2Year), String(prevYear)]];
+                } else {
+                    var labelsBar = [["Periodo", "Energia Attesa[kWh]", "Energia Reale[kWh]"], [Months[prev2Month - 1] + "-" +
+                    Months[(prev2Month - 1 + report - 1) % 12], [Months[prevMonth - 1] + "-" + Months[(prevMonth - 1 + report - 1) % 12]]]];
+                }
+                document.getElementById("barsTitle").innerHTML = "Produzione Impianto FV";
+                ready3 = true;
+
+            } else if (object.db.type == "VEF") {
+                document.getElementById("enCmpTitle1").innerHTML = "ENERGIA RISPARMIATA";
+                document.getElementById("enCmpTitle2").innerHTML = "SAVING";
+                var consume = [0, 0], amount = [0, 0], refs = [{}, {}], expect = [{}, {}];
+                for (var k = 0; k < report; k++) {
+                    //consumo effettivo
+                    for (var i = 0; i < object.db.actual.consume.length; i++) {
+                        if (object.db.actual.consume[i].month == String((prev2Month + k - 1) % 12 + 1) && object.db.actual.consume[i].year ==
+                                String(prev2Year + Math.floor((prev2Month + k - 1) / 12))) {
+                            consume[0] += object.db.actual.consume[i].energy ? Number(object.db.actual.consume[i].energy) : 0;
+                        }
+                        if (object.db.actual.consume[i].month == String((prevMonth + k - 1) % 12 + 1) && object.db.actual.consume[i].year ==
+                                String(prevYear + Math.floor((prevMonth + k - 1) / 12))) {
+                            consume[1] += object.db.actual.consume[i].energy ? Number(object.db.actual.consume[i].energy) : 0;
+                        }
+
+                    }
+                    //costo dell"energia (saving)
+                    for (var i = 0; i < object.db.actual.slots.length; i++) {
+                        //console.log(object.db.actual.slots[i]);
+                        if (object.db.actual.slots[i].month == String((prev2Month + k - 1) % 12 + 1) && object.db.actual.slots[i].year ==
+                                String(prev2Year + Math.floor((prev2Month + k - 1) / 12))) {
+                            var amounts = object.db.actual.slots[i].amounts;
+                            /*var energy = object.db.actual.slots[i].energy;
+                             for (var j= 0;j < energy.length; j++){
+                             consume[0] +=Number(energy[j]);
+                             }*/
+                            for (var j = 0; j < amounts.length; j++) {
+                                amount[0] += amounts[j] ? Number(amounts[j]) : 0;
+                            }
+                        }
+                        if (object.db.actual.slots[i].month == String((prevMonth + k - 1) % 12 + 1) && object.db.actual.slots[i].year ==
+                                String(prevYear + Math.floor((prevMonth + k - 1) / 12))) {
+                            var amounts = object.db.actual.slots[i].amounts;
+                            /*var energy = object.db.actual.slots[i].energy;
+                             for (var j= 0;j < energy.length; j++){
+                             consume[1] +=Number(energy[j]);
+                             }*/
+                            for (var j = 0; j < amounts.length; j++) {
+                                amount[1] += amounts[j] ? Number(amounts[j]) : 0;
+                            }
+                        }
+                    }
+                    //consumi di riferimento
+
+                    for (var i = 0; i < object.db.refs.consume.length; i++) {
+                        //console.log(object.db.actual.slots[i]);
+                        if (object.db.refs.consume[i].month == String((prev2Month + k - 1) % 12 + 1)) {
+                            if (typeof refs[0][object.db.refs.consume[i].slot] == "undefined") {
+                                refs[0][object.db.refs.consume[i].slot] = 0;
+                            }
+                            refs[0][object.db.refs.consume[i].slot] += Number(object.db.refs.consume[i].energy);
+                        }
+                        if (object.db.refs.consume[i].month == String((prevMonth + k - 1) % 12 + 1)) {
+                            if (typeof refs[1][object.db.refs.consume[i].slot] == "undefined") {
+                                refs[1][object.db.refs.consume[i].slot] = 0;
+                            }
+                            refs[1][object.db.refs.consume[i].slot] += Number(object.db.refs.consume[i].energy);
+                        }
+                    }
+                    ///consumi aspettati
+                    for (var i = 0; i < object.db.expect.consume.length; i++) {
+                        //console.log(object.db.actual.slots[i]);
+                        if (object.db.expect.consume[i].month == String((prev2Month + k - 1) % 12 + 1)) {
+                            if (typeof expect[0][object.db.expect.consume[i].slot] == "undefined") {
+                                expect[0][object.db.expect.consume[i].slot] = 0;
+                            }
+                            expect[0][object.db.expect.consume[i].slot] += Number(object.db.expect.consume[i].energy);
+                        }
+                        if (object.db.expect.consume[i].month == String((prevMonth + k - 1) % 12 + 1)) {
+                            if (typeof expect[1][object.db.expect.consume[i].slot] == "undefined") {
+                                expect[1][object.db.expect.consume[i].slot] = 0;
+                            }
+                            expect[1][object.db.expect.consume[i].slot] += Number(object.db.expect.consume[i].energy);
+                        }
+                    }
+
+
+                }
+
+                var amount_ref = object.db.refs.amount;
+                console.log(amount_ref);
+                var slots = Object.keys(object.db.refs.amount);
+                slots.sort();
+                console.log("slots", slots);
+                var ref_amount = [0, 0];
+                for (var i = 0 in slots) {
+                    console.log(Number("amount_ref", Number(amount_ref[slots[i]])), "ref", Number(refs[1][slots[i]]));
+                    ref_amount[0] += Number(amount_ref[slots[i]]) * Number(refs[0][slots[i]]);
+                    ref_amount[1] += Number(amount_ref[slots[i]]) * Number(refs[1][slots[i]]);
+                }
+                //amount di riferimento
+                // for (var i = 0; i < slots.length; i++) {
+                // //console.log(object.db.actual.slots[i]);
+                // amount_ref[slots[i]] =
+                // refs[0][object.db.refs.consume[i].slot] += Number(object.db.refs.consume[i].energy);
+                //
+                // if (object.db.refs.consume[i].month == String((prevMonth + k - 1) % 12 + 1)) {
+                // if (typeof refs[1][object.db.refs.consume[i].slot] == "undefined") {
+                // refs[1][object.db.refs.consume[i].slot] = 0;
+                // }
+                // refs[1][object.db.refs.consume[i].slot] += Number(object.db.refs.consume[i].energy)
+                // }
+                // }
+
+                console.log("refs: ", refs);
+                console.log("expect: ", expect);
+
+                var arrayValuesBar = [[0, 0, 0], [0, 0, 0]];
+                var keysBar = Object.keys(refs[0]);
+                for (var i in keysBar) {
+                    arrayValuesBar[0][0] += Number(refs[0][keysBar[i]]);
+                    arrayValuesBar[0][1] += Number(expect[0][keysBar[i]]);
+
+                    arrayValuesBar[1][0] += Number(refs[1][keysBar[i]]);
+                    arrayValuesBar[1][1] += Number(expect[1][keysBar[i]]);
+
+                }
+                arrayValuesBar[0][2] = consume[0];
+                arrayValuesBar[1][2] = consume[1];
+                document.getElementById("box0").innerHTML = (arrayValuesBar[0][0] - consume[0]).toFixed(2) + " KWh";
+                document.getElementById("box1").innerHTML = (arrayValuesBar[1][0] - consume[1]).toFixed(2) + " KWh";
+                console.log("amountref", ref_amount[0], "amountact", amount[0]);
+                document.getElementById("box01").innerHTML = (ref_amount[0] - amount[0]).toFixed(2) + " €";
+                document.getElementById("box2").innerHTML = (ref_amount[1] - amount[1]).toFixed(2) + " €"
+
+                if (arrayValuesBar[0][0] - consume[0] != 0) {
+                    var perc1 = document.getElementById("perc1").style;
+                    var box1 = document.getElementById("box1").style;
+                    console.log(perc1);
+
+                    if ((arrayValuesBar[1][0] - consume[1] - (arrayValuesBar[0][0] - consume[0])) * 100 / (arrayValuesBar[0][0] - consume[0]) > 0) {
+                        perc1.color = "green";
+                        box1.backgroundColor = "rgba(0,255,0,0.5)";
+                        document.getElementById("perc1").innerHTML = "+" + ((arrayValuesBar[1][0] - consume[1] - (arrayValuesBar[0][0] - consume[0])) * 100 / (arrayValuesBar[0][0] - consume[0])).toFixed(1) + "%";
+                    } else if ((arrayValuesBar[1][0] - consume[1] - (arrayValuesBar[0][0] - consume[0])) * 100 / (arrayValuesBar[0][0] - consume[0]) < 0) {
+                        perc1.color = "red";
+                        box1.backgroundColor = "rgba(255,0,0,0.5)";
+                        document.getElementById("perc1").innerHTML = ((arrayValuesBar[1][0] - consume[1] - (arrayValuesBar[0][0] - consume[0])) * 100 / (arrayValuesBar[0][0] - consume[0])).toFixed(1) + "%";
+                    }
+                }
+
+                if (ref_amount[0] - amount[0] != 0) {
+                    var perc2 = document.getElementById("perc2").style;
+                    var box2 = document.getElementById("box2").style;
+                    if ((ref_amount[1] - amount[1] - (ref_amount[0] - amount[0])) * 100 / (ref_amount[0] - amount[0]) > 0) {
+                        perc2.color = "green";
+                        box2.backgroundColor = "rgba(0,255,0,0.5)";
+                        document.getElementById("perc2").innerHTML = "+" + ((ref_amount[1] - amount[1] - (ref_amount[0] - amount[0])) * 100 / (ref_amount[0] - amount[0])).toFixed(1) + "%";
+
+                    } else if ((ref_amount[1] - amount[1] - (ref_amount[0] - amount[0])) * 100 / (ref_amount[0] - amount[0]) < 0) {
+                        perc2.color = "red";
+                        box2.backgroundColor = "rgba(255,0,0,0.5)";
+                        document.getElementById("perc2").innerHTML = ((ref_amount[1] - amount[1] - (ref_amount[0] - amount[0])) * 100 / (ref_amount[0] - amount[0])).toFixed(1) + "%";
+
+                    }
+                }
+
+                if (report == 1) {
+                    var labelsBar = [["Mese", "Energia di Riferimento[kWh]", "Energia Attesa[kWh]", "Energia Reale[kWh]"], [Months[prev2Month - 1], Months[prevMonth - 1]]];
+                } else if (report == 12) {
+                    var labelsBar = [[Months[prev2Month - 1] + "-" + Months[(prev2Month - 1 + report - 1) % 12], "Energia di Riferimento[kWh]", "Energia Attesa[kWh]", "Energia Reale[kWh]"], [String(prev2Year), String(prevYear)]];
+                } else {
+                    var labelsBar = [["Periodo", "Energia di Riferimento[kWh]", "Energia Attesa[kWh]", "Energia Reale[kWh]"], [Months[prev2Month - 1] + "-" + Months[(prev2Month - 1 + report - 1) % 12], [Months[prevMonth - 1] + "-" + Months[(prevMonth - 1 + report - 1) % 12]]]];
+                }
+                document.getElementById("barsTitle").innerHTML = "Risparmio";
+                ready3 = true;
+            }
+
+
+            setTimeout(function () {
+                function draw() {
+                    var fontSize = window.innerWidth < window.innerHeight ? window.innerWidth / 60 : window.innerHeight / 60;
+                    drawChartPie("consumeSlot", labels, arrayValues, fontSize);
+                    if (typeof arrayValuesBar != "undefined") {
+                        drawChartBar("energyBar", labelsBar, arrayValuesBar, fontSize);
+                    }
+                }
+
+                google.charts.setOnLoadCallback(draw());
+                var interval = setInterval(function () {
+                    //console.log(ready1,ready2,ready3);
+                    // if (ready1 && ready2 && ready3) {
+                    // clearInterval(interval);
+                    // document.body.setAttribute("data-content-loaded", "true");
+                    // }
+                    if (ready1 && ready2 && ready3) {
+                        clearInterval(interval);
+                        setTimeout(function () {
+                            console.log("page loaded");
+                            document.body.setAttribute("data-content-loaded", "true");
+                            //window.callPhantom('takeShot');
+                        }, 1000);
+                    }
+
+                    window.PHANTOM_HTML_TO_PDF_READY = true;
+                }, 0);
+                /*window.addEventListener("resize",function () {
+                 //alert(window.innerWidth);
+                 draw();
+                 });*/
+//            $on("$destroy", function () {
+//                $(window).off("resize.doResize"); //remove the handler added earlier
+//            });
+
+
+            }, 5000);
+        });
+    }, 1000);
+
+
+</script>
+
+
+</body>
+</html>

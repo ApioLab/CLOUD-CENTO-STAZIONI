@@ -1,0 +1,15 @@
+<div id="ApioApplication_TMP_" ng-app="ApioApplication_TMP_" style="padding: 10px;">
+    <div ng-controller="defaultController">
+        <topappapplication></topappapplication>
+        <div id="app" style="display: block;">
+            <unlimitedsensor propertyname="battery" label="Battery Level [%]"></unlimitedsensor>
+            <trigger propertyname="presence" labelon="Presenza - On" labeloff="Presenza - Off" valueon="8"
+                     valueoff="3"></trigger>
+            <trigger propertyname="access_control" labelon="Access Control - On" labeloff="Access Control - Off"
+                     valueon="23" valueoff="22"></trigger>
+            <unlimitedsensor propertyname="brightness" label="Brightness [cd/m^2]"></unlimitedsensor>
+            <unlimitedsensor propertyname="temperature" label="Temperature [°C]"></unlimitedsensor>
+        </div>
+    </div>
+</div>
+<script src="applications/_TMP_/_TMP_.js"></script>

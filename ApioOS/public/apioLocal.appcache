@@ -1,0 +1,49 @@
+CACHE MANIFEST
+# 
+#EXMPLE
+#/theme.css
+#/logo.gif
+#/main.js
+/html/index.html
+/html/app.html
+/javascripts/apio.client.js
+/javascripts/app.apio.bundle.js
+/bower_components/angular/angular.js
+/bower_components/jqueryui/jquery-ui.js
+/bower_components/jquery/dist/jquery.js
+/stylesheets/app2_media_query_320_479.css
+/stylesheets/app2_media_query_480_767.css
+/stylesheets/app2_media_query_768_991.css
+/stylesheets/app2_media_query_992_1199.css
+/stylesheets/app2_media_query_1200.css
+/stylesheets/app2.css
+/stylesheets/fontApio.css
+/systemApps/home/app.home.html
+/systemApps/home/home.controller.js
+/systemApps/topAppApplication/topAppApplication.html
+/systemApps/topAppApplication/topAppApplication.js
+/javascripts/login.js
+/javascripts/socket.io.js
+/javascripts/jquery-cron/cron/jquery-cron.js
+/javascripts/addtohomescreen.js
+/javascripts/ngImgCrop_theBliz/ng-img-crop.js
+/javascripts/ace-arduino-syntax/mode-arduino.js
+
+
+
+
+NETWORK:
+# La sezione di rete sotto specifica che il file "Login.asp" non dovrebbe mai essere messo in cache, e non sarà disponibile non in linea:
+#EXMPLE
+#login.asp
+*
+
+#FALLBACK:
+#La sezione FALLBACK seguito specifica che "offline.html" sarà servito al posto di tutti i file nella / html / catalogo, nel caso in cui una connessione internet non è possibile stabilire:
+#EXMPLE
+#/html/ /offline.html
+
+
+
+
+

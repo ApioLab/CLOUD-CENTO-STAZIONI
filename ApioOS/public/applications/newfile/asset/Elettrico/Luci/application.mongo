@@ -1,0 +1,15 @@
+{
+  "appId": "Elettrico",
+  "db": {},
+  "installation": "autoinstalled",
+  "log": {},
+  "marker": {},
+  "name": "Luce",
+  "properties": {
+  },
+  "protocol": "enocean",
+  "services": [],
+  "tag": "",
+  "type": "object",
+  "user": []
+}

@@ -1,0 +1,43 @@
+<div class="row no-margin" style="cursor: pointer; position: relative;" ng-hide="currentObject.isRecording()">
+    <!--Copyright 2014-2015 Alex Benfaremo, Alessandro Chelli, Lorenzo Di Berardino, Matteo Di Sabatino-->
+
+    <!---------------------------------- LICENSE --------------------------------
+    -                                                                           -
+    - This file is part of ApioOS.                                              -
+    -                                                                           -
+    - ApioOS is free software released under the GPLv2 license: you can         -
+    - redistribute it and/or modify it under the terms of the GNU General       -
+    - Public License version 2 as published by the Free Software Foundation.    -
+    -                                                                           -
+    - ApioOS is distributed in the hope that it will be useful, but             -
+    - WITHOUT ANY WARRANTY; without even the implied warranty of                -
+    - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the              -
+    - GNU General Public License version 2 for more details.                    -
+    -                                                                           -
+    - To read the license either open the file COPYING.txt or                   -
+    - visit <http://www.gnu.org/licenses/gpl2.txt>                              -
+    -                                                                           -
+    ---------------------------------------------------------------------------->
+
+    <link type="text/css" rel="stylesheet" href="apioProperties/Graph/graph.css"/>
+    <div class="content_loader" ng-show="graph.getReady() === false" style="margin-top: 35px;"></div>
+    <div class="labels_row" ng-show="graph.getReady()" ng-if="object.objectId == 10">
+        <div class="label_container" ng-hide="!time">
+            <p>Time</p>
+            <p class="label_value_border">{{time}}</p>
+        </div>
+        <div ng-repeat="obj in labels" style="display: inline-block;">
+            <div class="label_container" ng-style="obj.style">
+                <p>{{obj.label}}</p>
+                <p class="label_value_border">
+                    <span class="label_min_value">{{obj.min}} &lt;</span>
+                    <span class="label_time_value"><span ng-show="!obj.value">0</span>{{obj.value}}</span>
+                    <span class="label_max_value">&lt; {{obj.max}}</span>
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <div id="{{graphname}}" class="col-xs-12 col-md-12 analytics no-padding" ng-show="graph.getReady()"></div>
+</div>
+

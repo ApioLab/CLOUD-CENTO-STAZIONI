@@ -1,0 +1,30 @@
+{
+  "connected": true,
+  "created": "2015-10-24",
+  "db": {},
+  "log": {},
+  "marker": {},
+  "name": "Sensore Contatto",
+  "notifications": {},
+  "properties": {
+    "contact": {
+      "type": "trigger",
+      "value": "0",
+      "labelon": "Contatto Aperto",
+      "labeloff": "Contatto Chiuso",
+      "valueon": "1",
+      "valueoff": "0"
+    },
+    "log": {
+      "type": "dynamicview",
+      "value": "0",
+      "label": "Log"
+    }
+  },
+  "protocol": "enocean",
+  "services": [],
+  "status": "1",
+  "tag": "#casa",
+  "type": "object",
+  "user": []
+}

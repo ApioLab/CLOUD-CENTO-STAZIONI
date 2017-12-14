@@ -1,0 +1,70 @@
+Aggiungere la roba in app.html
+
+NOTE SULLA STRUTTURA DELL'OGGETTO:
+{
+manufacturer: 'Philio Technology Corporation',
+manufacturerid: '0x013c',
+product: 'PST02-A 4 in 1 Multi-Sensor',
+producttype: '0x0002',
+productid: '0x000c',
+type: 'Notification Sensor',
+name: '',
+loc: ''
+}
+
+
+
+value added
+{ value_id: '9-50-2-20',
+  node_id: 9,
+  class_id: 50,
+  type: 'decimal',
+  genre: 'user',
+  instance: 2,
+  index: 20,
+  label: 'Current',
+  units: 'A',
+  help: '',
+  read_only: true,
+  write_only: false,
+  is_polled: false,
+  min: 0,
+  max: 0,
+  value: '0.0' }
+
+
+  { value_id: '9-50-2-16',
+    node_id: 9,
+    class_id: 50,
+    type: 'decimal',
+    genre: 'user',
+    instance: 2,
+    index: 16,
+    label: 'Voltage',
+    units: 'V',
+    help: '',
+    read_only: true,
+    write_only: false,
+    is_polled: false,
+    min: 0,
+    max: 0,
+    value: '0.0' }
+
+
+
+    { value_id: '9-50-2-8',
+    node_id: 9,
+    class_id: 50,
+    type: 'decimal',
+    genre: 'user',
+    instance: 2,
+    index: 8,
+    label: 'Power',
+    units: 'W',
+    help: '',
+    read_only: true,
+    write_only: false,
+    is_polled: false,
+    min: 0,
+    max: 0,
+    value: '0.0' }

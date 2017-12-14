@@ -1,0 +1,20 @@
+{
+  "appId": "a5-04-02",
+  "db": {},
+  "name": "Temperatura e Umidità",
+  "notifications": {},
+  "properties": {
+    "rel_humidity": {
+      "label": "Rel. Humidity",
+      "type": "unlimitedsensor",
+      "value": "0"
+    },
+    "temperature": {
+      "label": "Temperature",
+      "type": "unlimitedsensor",
+      "value": "0"
+    }
+  },
+  "protocol": "enocean",
+  "type": "object"
+}

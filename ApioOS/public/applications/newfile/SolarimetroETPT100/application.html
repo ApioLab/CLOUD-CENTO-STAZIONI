@@ -1,0 +1,24 @@
+<style>
+
+</style>
+
+<div id="ApioApplication_TMP_" ng-app="ApioApplication_TMP_" style="padding: 10px;">
+    <div ng-controller="defaultController">
+        <topappapplication></topappapplication>
+        <div id="app" style="display: block;">
+            <collapse propertyName="moreInfo" label="More Info">
+                <uploadimage propertyname="img" label="Immagine"></uploadimage>
+                <note propertyName="note" label="Note"></note>
+            </collapse>
+            <sensor propertyname="status" label="Status" event="false"></sensor>
+            <sensor propertyname="irradiation" label="Irraggiamento" event="false"></sensor>
+            <sensor propertyname="temp1" label="Temperatura Esterna" event="false"></sensor>
+            <sensor propertyname="temp2" label="Temperatura Interna" event="false"></sensor>
+            <sensor propertyname="irrValMD" label="Irraggiamento Valore Medio" event="false"></sensor>
+            <sensor propertyname="temp1ValMD" label="Temperatura Esterna Valore Medio" event="false"></sensor>
+            <sensor propertyname="temp2ValMD" label="Temperatura Interna Valore Medio" event="false"></sensor>
+            <log label="Log"></log>
+        </div>
+    </div>
+</div>
+<script src="applications/_TMP_/_TMP_.js"></script>

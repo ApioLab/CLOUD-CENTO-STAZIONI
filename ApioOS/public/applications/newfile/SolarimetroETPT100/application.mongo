@@ -1,0 +1,32 @@
+{
+  "appId": "SolarimetroETPT100",
+  "category": "modbus",
+  "connected": true,
+  "created": "2017-01-02",
+  "data": {},
+  "db": {},
+  "installation": "autoinstalled",
+  "log": {},
+  "marker": {},
+  "name": "Solarimetro PT100",
+  "notifications": {},
+  "properties": {
+	  "irradiation": {
+      "hi": false,
+      "label": "Irraggiamento",
+      "type": "sensor",
+      "value": "0"
+    },
+    "temp1": {
+      "hi": false,
+      "label": "Temperatura 1",
+      "type": "sensor",
+      "value": "0"
+    }
+  },
+  "protocol": "l",
+  "services": [],
+  "tag": "#apioWhite #photovoltaic",
+  "type": "object",
+  "user": []
+}

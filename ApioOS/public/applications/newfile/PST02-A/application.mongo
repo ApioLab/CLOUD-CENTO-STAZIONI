@@ -1,0 +1,41 @@
+{
+  "appId": "PST02-A",
+  "db": {},
+  "name": "Home Security",
+  "notifications": {},
+  "properties": {
+    "access_control": {
+      "labelon": "Access Control - On",
+      "labeloff": "Access Control - Off",
+      "type": "trigger",
+      "value": "0",
+      "valueoff": "22",
+      "valueon": "23"
+    },
+    "battery": {
+      "label": "Battery Level [%]",
+      "type": "unlimitedsensor",
+      "value": "0"
+    },
+    "brightness": {
+      "label": "Brightness [cd/m^2]",
+      "type": "unlimitedsensor",
+      "value": "0"
+    },
+    "presence": {
+      "labelon": "Presenza - On",
+      "labeloff": "Presenza - Off",
+      "type": "trigger",
+      "value": "0",
+      "valueoff": "3",
+      "valueon": "8"
+    },
+    "temperature": {
+      "label": "Temperature [°C]",
+      "type": "unlimitedsensor",
+      "value": "0"
+    }
+  },
+  "protocol": "z",
+  "type": "object"
+}

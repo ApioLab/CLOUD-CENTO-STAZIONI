@@ -1,0 +1,40 @@
+<md-toolbar id="{{propertyname}}" class="toolbar_selector_style">
+	<!--Copyright 2014-2015 Alex Benfaremo, Alessandro Chelli, Lorenzo Di Berardino, Matteo Di Sabatino-->
+
+    <!---------------------------------- LICENSE --------------------------------
+    -                                                                           -
+    - This file is part of ApioOS.                                              -
+    -                                                                           -
+    - ApioOS is free software released under the GPLv2 license: you can         -
+    - redistribute it and/or modify it under the terms of the GNU General       -
+    - Public License version 2 as published by the Free Software Foundation.    -
+    -                                                                           -
+    - ApioOS is distributed in the hope that it will be useful, but             -
+    - WITHOUT ANY WARRANTY; without even the implied warranty of                -
+    - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the              -
+    - GNU General Public License version 2 for more details.                    -
+    -                                                                           -
+    - To read the license either open the file COPYING.txt or                   -
+    - visit <http://www.gnu.org/licenses/gpl2.txt>                              -
+    -                                                                           -
+    ---------------------------------------------------------------------------->
+
+    <link type="text/css" rel="stylesheet" href="apioProperties/Selector/selector.css"/>
+    <div id="{{propertyname}}flag" ng-show="currentObject.isRecording()  && !isRecorded()" ng-click="addPropertyToRecording()" class="rec_flag"></div>
+    
+	<div class="md-toolbar-tools">
+		<md-button id="{{propertyname}}down" class="md-icon-button" aria-label="Down" ng-click="down()" style="margin-left: 4px;"><i class="material-icons" style="    font-size: 25px;">remove</i></md-button>
+		<span flex></span>
+		<md-divider class="vertical-divider"></md-divider>
+		<span flex></span>
+		<h2><span id="{{propertyname}}value" ng-model="model" class="selector_value">{{model}}</span></h2>
+		<span flex></span>
+		<md-divider class="vertical-divider"></md-divider>
+		<span flex></span>
+		<md-button id="{{propertyname}}up" class="md-icon-button" aria-label="Up" ng-click="up()" style="margin-right: 4px;"><i class="material-icons" style="    font-size: 25px;">add</i></md-button>
+	</div>
+	
+	
+</md-toolbar>
+
+

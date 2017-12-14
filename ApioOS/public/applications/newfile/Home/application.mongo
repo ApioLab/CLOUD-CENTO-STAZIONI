@@ -1,0 +1,25 @@
+{
+  "appId": "Home",
+  "db": {},
+  "name": "Energy-Meter",
+  "notifications": {},
+  "properties": {
+    "energy": {
+      "label": "Energy [kWh]",
+      "type": "unlimitedsensor",
+      "value": "0"
+    },
+    "log": {
+      "label": "Log",
+      "type": "log",
+      "value": "0"
+    },
+    "power": {
+      "label": "Power [W]",
+      "type": "unlimitedsensor",
+      "value": "0"
+    },
+  },
+  "protocol": "z",
+  "type": "object"
+}

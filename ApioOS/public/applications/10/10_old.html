@@ -1,0 +1,352 @@
+<style>
+    .allOptionGraphic {
+        //padding: 6px 25px;
+    }
+	#analytics_container {
+	    padding: 0 !important;
+	    height: 100%;
+    }
+    #analytics_container .layout-padding {
+		padding: 10px;
+	}
+    md-tabs {
+	    height: 100%;
+    }
+    md-tab-content>div {
+	    height: 100%;
+    }
+    md-tabs md-tabs-canvas {
+		    background-color: rgb(16,108,200);
+    }
+    md-tabs .md-tab {
+	    color: rgba(228, 228, 228, 0.78);
+	}
+    md-tabs .md-tab.md-active {
+	    color: white;
+    }
+    md-tabs md-ink-bar {
+	    color: whitesmoke;
+	    background: whitesmoke;
+	}
+	.setting_column_1 { }
+	.setting_column_2 {
+		border-left: 1px solid rgba(0,0,0,0.12);
+	}
+	.settings_container {
+		height: 100%;
+	}
+	.secondary_tabs md-tabs-canvas {
+	    background-color: white;
+    }
+	.secondary_tabs .md-tab {
+	    color: rgba(0,0,0,0.54);
+	}
+    .secondary_tabs .md-tab.md-active {
+	    color: #313131;
+    }
+    .secondary_tabs md-ink-bar {
+	    color: #505050;
+	    background: #505050;
+	}
+	
+    
+    .basic_button {
+        padding: 0.2%;
+        float: left;
+    }
+    #analytics_container .form-group {
+        margin: 0;
+    }
+    
+    .optionGraphic {
+        line-height: 200%;
+        -webkit-appearance: none;
+    }
+    .optionGraphic option {
+        width: 60%;
+        margin: 0 auto;
+    }
+    .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+	    background-color: whitesmoke;
+	}
+    .text_checkbox {
+	    background: white !important;
+	    cursor: default !important;
+	    box-shadow: 0 0 0 0 !important;
+    }
+    
+    #propertyTab .active a {
+        cursor: default;
+    }
+    #propertyTab li a {
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+    }
+	.property_container {
+		padding: 1% 0.2% 0.2% 1%;
+		margin: 0;
+	}
+	
+    .graph_container {
+	    padding: 10px 12px;
+    }
+    
+
+    @media only screen and (min-width: 320px) and (max-width: 479px) {
+        .paddingAnalyticsOption {
+            padding: 1.2%;
+        }
+        .basic_button {
+	        padding: 1%;
+	    }
+	    .property_container {
+			padding: 2%;
+		}
+    }
+
+    @media only screen and (min-width: 480px) and (max-width: 767px) {
+        .paddingAnalyticsOption {
+            padding: 0.9%;
+        }
+	    .basic_button {
+	        padding: 0.6%;
+	        float: left;
+	    }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 991px) {
+        .paddingAnalyticsOption {
+            padding: 0.5%;
+        }
+    }
+
+    @media only screen and (min-width: 992px) {
+        .paddingAnalyticsOption {
+            padding: 0.3%;
+        }
+
+        /*.heightFullScreen {
+            height: 110% !important;
+        }*/
+    }
+    #prova div{
+	    height:100%;
+    }
+</style>
+
+<div id="ApioApplication10" ng-app="ApioApplication10" style="padding: 10px;">
+    <div ng-controller="defaultController">
+        <topappapplication></topappapplication>
+        <div id="app" style="display: block;">
+            
+            
+            <md-content id="analytics_container">
+            	<md-tabs md-center-tabs="true" md-stretch-tabs="always" md-dynamic-height="false" md-border-bottom>
+            		
+            		<md-tab md-active="false" ng-click="startGraph()">
+						<md-tab-label>
+						    <span ng-show="app.installation == -1">Select an object in settings</span>
+							<span ng-show="app.installation != -1">{{installations[app.installation]}}</span>
+						</md-tab-label>
+						<md-tab-body>
+							<div ng-if="!showPunctual" class="graph_container">
+			                    <graph graphname="analytics" date="{{graphDate}}" plot="{{toPlot}}" reduce="false"
+			                           target="{{installation}}" type="avg-15"></graph>
+			                </div>
+			                <div ng-if="showPunctual" class="graph_container">
+			                    <graph graphname="analytics_punctual" date="{{graphDate}}" plot="{{toPlotPunctual}}" reduce="false"
+			                           target="{{installation}}"></graph>
+			                </div>
+						</md-tab-body>
+            			
+            		</md-tab>
+            		
+					<md-tab label="Settings" >
+						<div layout-gt-sm="row" class="settings_container" layout-xs="column">
+							
+							<div flex-gt-sm="40"  class="setting_column_1">
+								<md-content flex layout-padding>
+									
+<!--
+									<md-list flex>
+										<md-subheader class="md-no-sticky">Choose the object to analise:</md-subheader>
+										<md-list-item>
+									    	
+									    	
+									    	
+										</md-list-item>
+										
+										<md-list-item>
+										    <md-checkbox class="md-primary" ng-model="checked" aria-label="Compare two periods"></md-checkbox>
+										    <p>Compare two periods</p>
+										</md-list-item>
+										
+									</md-list>
+-->
+									
+									<div class="row" style="margin-left: 0; margin-right: 0;">
+								    	<div class="col-sm-8 paddingAnalyticsOption">
+					                        <select class="form-control" ng-model="app.installation" style="-webkit-appearance: none;">
+					                            <option value="{{key}}" ng-repeat="(key, value) in installations" label="{{value}}"
+					                                    ng-selected="key === $parent.model" installation-render-finished>
+					                                {{value}}
+					                            </option>
+					                        </select>
+					                    </div>
+									</div>
+				                    
+				                    <div class="row" style="margin-left: 0; margin-right: 0;" ng-show="!checked">
+					                    <div class="form-group col-sm-8 paddingAnalyticsOption">
+					                        <div class="input-group date optionGraphic" id="calendar">
+					                            <input id="calendar_value" class="form-control" type="text" value=""/>
+					                            <span class="input-group-addon">
+					                                <span class="glyphicon glyphicon-calendar"></span>
+					                            </span>
+					                        </div>
+					                    </div>
+				                    </div>
+				                    
+				                    <div class="row" style="margin-left: 0; margin-right: 0;" ng-show="checked">
+					                    <div class="form-group col-sm-8  paddingAnalyticsOption">
+					                        <div class="input-group date optionGraphic" id="first_range">
+					                            <input id="first_range_value" class="form-control" type="text" value=""/>
+					                            <span class="input-group-addon">
+					                                <span class="glyphicon glyphicon-list-alt"></span>
+					                            </span>
+					                        </div>
+					                    </div>
+									</div>
+									
+									<div class="row" style="margin-left: 0; margin-right: 0;" ng-show="checked">
+					                    <div class="form-group col-sm-8 paddingAnalyticsOption">
+					                        <div class="input-group date optionGraphic" id="second_range">
+					                            <input id="second_range_value" class="form-control" type="text" value=""/>
+					                            <span class="input-group-addon">
+					                                <span class="glyphicon glyphicon-list-alt"></span>
+					                            </span>
+					                        </div>
+					                    </div>
+									</div>
+									
+				                    <div class="row" style="margin-left: 0; margin-right: 0;">
+					                    <div class="form-group col-sm-8 paddingAnalyticsOption">
+					                        <div class="input-group">
+					                            <span class="input-group-addon">
+					                                <input type="checkbox" ng-model="checked" style="cursor: pointer;">
+					                            </span>
+					                            <input type="text" class="form-control text_checkbox" value="Compare two periods" readonly disabled>
+					                        </div>
+					                    </div>
+				                    </div>
+								</md-content>
+							</div>
+
+							<div flex class="setting_column_2">
+								
+								<md-tabs class="secondary_tabs" md-dynamic-height="false" md-border-bottom style="height: 76vh;">
+								
+									<md-tab label="General Properties" ng-click="setSelectedProperties('variables')">
+										
+										<md-content flex>
+											<md-list flex ng-hide="app.installation != -1 && installationsProperties[app.installation]">
+												<md-list-item ng-show="app.installation == -1">
+												    <p>No object selected.</p>
+												</md-list-item>
+												<md-list-item ng-show="app.installation != -1 && !installationsProperties[app.installation]">
+												    <p>{{installations[app.installation]}} don't have general properties.</p>
+												</md-list-item>
+											</md-list>
+											<div layout-gt-sm="row">
+												<div flex="50">
+													<md-list flex>
+														<md-list-item ng-repeat="(key, val) in installationsProperties[app.installation]" ng-if="$even && val.type !== 'uploadimage' && val.type !== 'collapse' && val.type !== 'note'">
+														    <md-checkbox class="md-primary" ng-model="isPropertySelected[key]" ng-click="showElement(key)" aria-label="Property {{getLabel(val)}}"></md-checkbox>
+														    <p>{{getLabel(val)}} <span ng-if="$first">(default)</span></p>
+														</md-list-item>
+													</md-list>
+<!--
+													<div flex ng-repeat="(key, val) in installationsProperties[app.installation]" ng-if="val.type !== 'uploadimage' && val.type !== 'collapse' && val.type !== 'note'">
+														<md-checkbox ng-if="$even" class="md-primary" ng-model="isPropertySelected[key]" ng-click="showElement(key)" aria-label="Property {{getLabel(val)}}">{{getLabel(val)}} <span ng-if="$first">(default)</span></md-checkbox>
+													</div>
+-->
+												</div>
+												<div flex="50">
+													<md-list flex>
+														<md-list-item ng-repeat="(key, val) in installationsProperties[app.installation]" ng-if="$odd && val.type !== 'uploadimage' && val.type !== 'collapse' && val.type !== 'note'">
+														    <md-checkbox class="md-primary" ng-model="isPropertySelected[key]" ng-click="showElement(key)" aria-label="Property {{getLabel(val)}}"></md-checkbox>
+														    <p>{{getLabel(val)}}</p>
+														</md-list-item>
+													</md-list>
+<!--
+													<div flex ng-repeat="(key, val) in installationsProperties[app.installation]" ng-if="val.type !== 'uploadimage' && val.type !== 'collapse' && val.type !== 'note'">
+														<md-checkbox flex ng-if="$odd" class="md-primary" ng-model="isPropertySelected[key]" ng-click="showElement(key)" aria-label="Property {{getLabel(val)}}">{{getLabel(val)}}</md-checkbox>
+													</div>
+-->
+												</div>
+											</div>
+											
+										</md-content>
+				                        
+				            		</md-tab>
+				            		
+				            		<md-tab label="Punctual Properties" ng-click="setSelectedProperties('punctuals')">
+										
+										<md-content flex>
+											<md-list flex ng-hide="app.installation != -1 && installationsPunctualProperties[app.installation]">
+												<md-list-item ng-show="app.installation == -1">
+												    <p>No object selected.</p>
+												</md-list-item>
+												<md-list-item ng-show="app.installation != -1 && !installationsPunctualProperties[app.installation]">
+												    <p>{{installations[app.installation]}} don't have punctual properties.</p>
+												</md-list-item>
+											</md-list>
+											<div layout-gt-sm="row">
+												<div flex="50">
+													<md-list flex>
+														<md-list-item ng-repeat="(key, val) in installationsPunctualProperties[app.installation]" ng-if="$even && val.type !== 'uploadimage' && val.type !== 'collapse' && val.type !== 'note'">
+														    <md-checkbox class="md-primary" ng-model="isPropertySelected[key]" ng-click="showPunctualElement(key)" aria-label="Property {{getLabel(val)}}"></md-checkbox>
+														    <p>{{getLabel(val)}}</p>
+														</md-list-item>
+													</md-list>
+<!--
+													<div flex ng-repeat="(key, val) in installationsPunctualProperties[app.installation]" ng-if="val.type !== 'uploadimage' && val.type !== 'collapse' && val.type !== 'note'">
+														<md-checkbox ng-if="$even" class="md-primary" ng-model="isPropertySelected[key]" ng-click="showPunctualElement(key)" aria-label="Property {{getLabel(val)}}">{{getLabel(val)}}</md-checkbox>
+													</div>
+-->
+												</div>
+												<div flex="50">
+													<md-list flex>
+														<md-list-item ng-repeat="(key, val) in installationsPunctualProperties[app.installation]" ng-if="$odd && val.type !== 'uploadimage' && val.type !== 'collapse' && val.type !== 'note'">
+														    <md-checkbox class="md-primary" ng-model="isPropertySelected[key]" ng-click="showPunctualElement(key)" aria-label="Property {{getLabel(val)}}"></md-checkbox>
+														    <p>{{getLabel(val)}}</p>
+														</md-list-item>
+													</md-list>
+<!--
+													<div flex ng-repeat="(key, val) in installationsPunctualProperties[app.installation]" ng-if="val.type !== 'uploadimage' && val.type !== 'collapse' && val.type !== 'note'">
+														<md-checkbox flex ng-if="$odd" class="md-primary" ng-model="isPropertySelected[key]" ng-click="showPunctualElement(key)" aria-label="Property {{getLabel(val)}}">{{getLabel(val)}}</md-checkbox>
+													</div>
+-->
+												</div>
+											</div>
+											
+										</md-content>
+				                        
+				            		</md-tab>
+				            		
+								</md-tabs>
+								
+							</div>
+							
+							
+						</div>	
+					</md-tab>
+            		
+					
+            	</md-tabs>
+			</md-content>
+
+        </div>
+    </div>
+</div>
+<script src="applications/10/10.js"></script>

@@ -1,0 +1,92 @@
+<style>
+    .title {
+        display: table;
+        width: 100%;
+        text-align: center;
+        height: 50px;
+        font-size: 16px;
+
+        line-height: 50px;
+    }
+
+    .titleColorCadetblue {
+        color: cadetblue;
+    }
+
+    .titleColorRedOpacity {
+        color: rgba(244, 67, 54, 0.78);
+    }
+
+    .comparation {
+        width: 50% !important;
+        float: left;
+        margin: 0;
+    }
+
+    .comparationText {
+
+        width: 50% !important;
+        height: 30px;
+        line-height: 30px;
+        font-weight: 100;
+        float: left;
+        margin: 0;
+        text-align: center;
+    }
+
+    .bkColorLightseagreen {
+        background-color: lightseagreen;
+    }
+
+    .bkColorRedOpacity {
+        background-color: rgba(244, 67, 54, 0.78);
+    }
+
+</style>
+<div id="ApioApplication_TMP_" ng-app="ApioApplication_TMP_" style="padding: 10px;">
+    <div ng-controller="defaultController">
+        <topappapplication></topappapplication>
+        <div id="app" style="display: block;">
+            <div ng-show="object.db.type == 'VAZ'">
+                <div class="title titleColorCadetblue">Energia Prodotta</div>
+                <div class="comparationText bkColorLightseagreen">Mese Scorso</div>
+                <div class="comparationText bkColorRedOpacity">Mese corrente</div>
+                <unlimitedsensor label="kWh" propertyName="eneProdOld"
+                                 class="comparation bkColorLightseagreen"></unlimitedsensor>
+                <unlimitedsensor label="kWh" propertyName="eneProdNew"
+                                 class="comparation bkColorRedOpacity "></unlimitedsensor>
+            </div>
+            <div class="title titleColorRedOpacity">Energia Consumata</div>
+            <div class="comparationText bkColorRedOpacity">Mese Scorso</div>
+            <div class="comparationText bkColorLightseagreen">Mese Corrente</div>
+            <unlimitedsensor label="kWh" propertyName="eneConsOld"
+                             class="comparation bkColorRedOpacity"></unlimitedsensor>
+            <unlimitedsensor label="kWh" propertyName="eneConsNew"
+                             class="comparation bkColorLightseagreen"></unlimitedsensor>
+            <div ng-show="object.db.type == 'VAZ'">
+                <div class="title">Energia Auto-Consumata</div>
+                <unlimitedsensor label="kWh" propertyName="eneAuto" style="margin-bottom:7%;"></unlimitedsensor>
+            </div>
+            <collapse propertyName="ripConsumi" ng-if="flagSlots" ng-click="drawPie()" label="Ripartizione dei Consumi">
+                <!--<div style="
+                    background-image: url(/applications/50/PieChart.png);
+                    height: 314px;
+                    background-size: 100%;
+                    background-repeat: no-repeat;
+                ">-->
+                <charts propertyName="eneSlots" type="pie" draw="{{flagPie}}" labels="[['Fasce', 'Energia[kWh]'],['{{label1}}','{{label2}}','{{label3}}']]"></charts>
+                <!--</div>-->
+            </collapse>
+            <div ng-show="object.db.type == 'VAZ'">
+                <collapse propertyName="prodImp" ng-click="drawProd()" label="Produzione Impianto FV">
+                    <charts propertyName="compareProd" type="bar" draw="{{flagProd}}" labels="[['Mese', 'Energia Attesa[kWh]','Energia Reale[kWh]'],['{{Months[dt.getMonth() - 1]}}','{{Months[dt.getMonth()]}}']]"></charts>
+                </collapse>
+            </div>
+            <collapse propertyName="consImp" ng-click="drawCons()" label="Consumo Impianto FV">
+                <charts propertyName="compareCons" type="bar" draw="{{flagCons}}" labels="[['Mese', 'Energia Prima Intervento[kWh]', 'Energia Attesa[kWh]','Energia Reale[kWh]'],['{{Months[dt.getMonth() - 1]}}','{{Months[dt.getMonth()]}}']]"></charts>
+            </collapse>
+        </div>
+        </div>
+    </div>
+</div>
+<script src="applications/_TMP_/_TMP_.js"></script>

@@ -1,0 +1,12 @@
+<div id="ApioApplication_TMP_" ng-app="ApioApplication_TMP_" style="padding: 10px;">
+    <div ng-controller="defaultController">
+        <topappapplication></topappapplication>
+        <div id="app" style="display: block;">
+            <graph graphname="analytics" plot="illumination,temperature" type="avg-15"></graph>
+            <unlimitedsensor propertyname="illumination" label="Illumination [lx]"></unlimitedsensor>
+            <unlimitedsensor propertyname="temperature" label="Temperature [°C]"></unlimitedsensor>
+            <trigger propertyname="pir_status" labelon="PIR Status - ON" labeloff="PIR Status - OFF"></trigger>
+        </div>
+    </div>
+</div>
+<script src="applications/_TMP_/_TMP_.js"></script>

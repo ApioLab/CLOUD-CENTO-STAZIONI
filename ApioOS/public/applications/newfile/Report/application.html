@@ -1,0 +1,225 @@
+<style>
+    .title {
+        display: table;
+        width: 100%;
+        text-align: center;
+        height: 50px;
+        font-size: 16px;
+        padding-top: 1%;
+        line-height: 50px;
+    }
+
+    .titleColorGreen {
+        color: #20b26f;
+    }
+
+    .titleColorRed {
+        color: #e8574c;
+    }
+
+    .comparation {
+        width: 100% !important;
+        float: left;
+        margin: 0;
+        display: inherit;
+        min-height: 45px;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    .comparationText {
+        width: 100% !important;
+        height: 38px;
+        line-height: 40px;
+        font-weight: 100;
+        float: left;
+        margin: 0;
+        padding-left: 5.3%;
+    }
+
+    .bkColorGreen {
+        background-color: #20b26f;
+    }
+
+    .bkColorRed {
+        background-color: #e8574c;
+    }
+
+    .bkColorYellow {
+        background-color: #efcb1d;
+    }
+
+    md-card md-card-content {
+        padding: 8px 0;
+    }
+
+    md-card md-card-title {
+        padding: 4px 16px 0px 16px;
+    }
+
+    .card1 {
+        padding-bottom: 16px;
+        margin-right: 4px;
+    }
+
+    .card2 {
+        padding-bottom: 16px;
+        margin-left: 4px;
+    }
+
+    md-card .box_proprietaiPhone {
+        padding: 2% 16px !important;
+    }
+
+    @media (max-width: 599px) {
+        md-card md-card-header {
+            padding-bottom: 38px;
+        }
+
+        .card1 {
+            margin-right: 8px;
+        }
+
+        .card2 {
+            margin-left: 8px;
+        }
+    }
+</style>
+<div id="ApioApplication_TMP_" ng-app="ApioApplication_TMP_">
+    <div ng-controller="defaultController">
+        <topappapplication></topappapplication>
+        <div id="app" style="display: block;" class="half_screen_app">
+            <div flex layout="row" layout-xs="column">
+                <md-card flex="50" flex-xs="100" class="card1">
+                    <md-card-header>
+                        <md-card-avatar>
+                            <img class="md-user-avatar" src="images/app_icon/energy_production.png">
+                        </md-card-avatar>
+                        <md-card-header-text>
+                            <span class="md-title">Energia Prodotta</span>
+                            <span class="md-subhead">confronto mese corrente/precedente</span>
+                        </md-card-header-text>
+                    </md-card-header>
+                    <md-card-content ng-show="object.db.type == 'VAZ'">
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-subhead" style="padding-top: 0;">Mese precedente</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <unlimitedsensor label="kWh" propertyName="eneProdOld" class="comparation"></unlimitedsensor>
+                    </md-card-content>
+                    <md-card-content ng-show="object.db.type == 'VAZ'">
+                        <md-card-title id="current_prod_title_container"
+                                       ng-class="{'bkColorGreen': bkColorProd === '1', 'bkColorRed': bkColorProd === '-1'}">
+                            <md-card-title-text>
+                                <span class="md-subhead" style="padding-top: 0;">Mese corrente</span>
+                                <span class="md-subhead" ng-if="bkColorProd === '1'"
+                                      style="padding-top: 0; font-weight: 100;">stai producendo più del mese precedente</span>
+                                <span class="md-subhead" ng-if="bkColorProd === '-1'"
+                                      style="padding-top: 0; font-weight: 100;">stai producendo meno del mese precedente</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <unlimitedsensor label="kWh" propertyName="eneProdNew" class="comparation"
+                                         ng-class="{'bkColorGreen': bkColorProd === '1', 'bkColorRed': bkColorProd === '-1'}"></unlimitedsensor>
+                    </md-card-content>
+                    <md-card-title ng-show="object.db.type == 'VEF'">
+                        <md-card-title-text>
+                            <span class="md-subhead" style="padding-top: 0;">Nessun impianto produttivo installato. Chiedi ad uno dei nostri installatori quanto puoi risparmiare installando un impianto fotovoltaico.</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                </md-card>
+                <md-card flex flex="50" flex-xs="100" class="card2">
+                    <md-card-header>
+                        <md-card-avatar>
+                            <img class="md-user-avatar" src="images/app_icon/energy_consumption.png">
+                        </md-card-avatar>
+                        <md-card-header-text>
+                            <span class="md-title">Energia Consumata</span>
+                            <span class="md-subhead">confronto mese corrente/precedente</span>
+                        </md-card-header-text>
+                    </md-card-header>
+                    <md-card-content>
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-subhead" style="padding-top: 0;">Mese precedente</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <unlimitedsensor label="kWh" propertyName="eneConsOld" class="comparation"></unlimitedsensor>
+                    </md-card-content>
+                    <md-card-content>
+                        <md-card-title id="current_cons_title_container"
+                                       ng-class="{'bkColorGreen': bkColorCons === '1', 'bkColorRed': bkColorCons === '-1'}">
+                            <md-card-title-text>
+                                <span class="md-subhead" style="padding-top: 0;">Mese corrente</span>
+                                <span class="md-subhead" ng-if="bkColorCons === '1'"
+                                      style="padding-top: 0; font-weight: 100;">stai consumando di meno del mese precedente</span>
+                                <span class="md-subhead" ng-if="bkColorCons === '-1'"
+                                      style="padding-top: 0; font-weight: 100;">stai consumando di più del mese precedente</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <unlimitedsensor label="kWh" propertyName="eneConsNew" class="comparation"
+                                         ng-class="{'bkColorGreen': bkColorCons === '1', 'bkColorRed': bkColorCons === '-1'}"></unlimitedsensor>
+                    </md-card-content>
+                </md-card>
+            </div>
+
+            <div flex layout="row">
+                <md-card flex-xs flex="100" style="padding-bottom: 16px;">
+                    <md-card-header>
+                        <md-card-avatar>
+                            <img class="md-user-avatar" src="images/app_icon/energy_auto_consumed.png">
+                        </md-card-avatar>
+                        <md-card-header-text>
+                            <span class="md-title">Energia Autoconsumata</span>
+                            <span class="md-subhead">differenza tra l'energia prodotta e quella immessa in rete</span>
+                        </md-card-header-text>
+                    </md-card-header>
+                    <md-card-content ng-show="object.db.type == 'VAZ'">
+                        <md-card-title id="current_prod_title_container"
+                                       ng-class="{'bkColorGreen': bkColorAutocons === '1', 'bkColorYellow': bkColorAutocons === '-1'}">
+                            <md-card-title-text>
+                                <span class="md-subhead" ng-if="bkColorAutocons === '0'" style="padding-top: 0;">non stai prelevando energia dalla rete</span>
+                                <span class="md-subhead" ng-if="bkColorAutocons === '-1'" style="padding-top: 0;">stai prelevando energia dalla rete</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <unlimitedsensor label="kWh" propertyName="eneAuto" class="comparation"
+                                         ng-class="{'bkColorGreen': bkColorAutocons === '0', 'bkColorYellow': bkColorAutocons === '-1'}"></unlimitedsensor>
+                    </md-card-content>
+                    <md-card-title ng-show="object.db.type == 'VEF'">
+                        <md-card-title-text>
+                            <span class="md-subhead" style="padding-top: 0;">Non stai producendo energia quindi il tuo Autoconsumo è uguale all'energia che consumi.</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                </md-card>
+            </div>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6" style="padding-left: 0; padding-right: 0;">
+                        <collapse propertyName="ripConsumi" ng-if="flagSlots" ng-click="drawPie()"
+                                  label="Ripartizione dei Consumi" open="true">
+                            <charts propertyName="eneSlots" type="pie" draw="{{flagPie}}"
+                                    labels="[['Fasce', 'Energia[kWh]'],['{{label1}}','{{label2}}','{{label3}}']]"></charts>
+                        </collapse>
+                    </div>
+                    <div class="col-md-6" style="padding-right: 0; padding-left: 0;">
+                        <div ng-show="object.db.type == 'VAZ'">
+                            <collapse propertyName="prodImp" ng-click="drawProd()" label="Produzione Impianto FV"
+                                      open="true">
+                                <charts propertyName="compareProd" type="bar" draw="{{flagProd}}"
+                                        labels="[['Mese', 'Energia Attesa[kWh]','Energia Reale[kWh]'],['{{Months[dt.getMonth() - 1]}}','{{Months[dt.getMonth()]}}']]"></charts>
+                            </collapse>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <collapse propertyName="consImp" ng-click="drawCons()" label="Consumo Impianto FV" open="true">
+                <charts ng-if="keys.length > 0" propertyName="compareCons1" type="bar" draw="{{flagCons}}" labels="[['Mese', 'Energia di Riferimento[kWh]','Energia Attesa[kWh]','Energia Reale[kWh]'],['{{Months[dt.getMonth() - 1]}}','{{Months[dt.getMonth()]}}']]" title="Fascia {{label1}}"></charts>
+                <charts ng-if="keys.length > 1" propertyName="compareCons2" type="bar" draw="{{flagCons}}" labels="[['Mese', 'Energia di Riferimento[kWh]','Energia Attesa[kWh]','Energia Reale[kWh]'],['{{Months[dt.getMonth() - 1]}}','{{Months[dt.getMonth()]}}']]" title="Fascia {{label2}}"></charts>
+                <charts ng-if="keys.length > 2" propertyName="compareCons3" type="bar" draw="{{flagCons}}" labels="[['Mese', 'Energia di Riferimento[kWh]','Energia Attesa[kWh]','Energia Reale[kWh]'],['{{Months[dt.getMonth() - 1]}}','{{Months[dt.getMonth()]}}']]" title="Fascia {{label3}}"></charts>
+            </collapse>
+        </div>
+    </div>
+</div>
+<script src="applications/_TMP_/_TMP_.js"></script>

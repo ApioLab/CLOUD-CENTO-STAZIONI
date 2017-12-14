@@ -1,0 +1,42 @@
+{
+  "appId": "EstronSDM220",
+  "category": "modbus",
+  "connected": true,
+  "created": "2015-10-24",
+  "db": {},
+  "log": {},
+  "name": "Energy Meter",
+  "notifications": {},
+  "properties": {
+    "current": {
+      "label": "Corrente [A]",
+      "type": "unlimitedsensor",
+      "value": "0"
+    },
+    "energy": {
+      "label": "Energia [kWh]",
+      "style": "display:none;",
+      "type": "unlimitedsensor",
+      "value": "0"
+    },
+    "frequency": {
+      "label": "Frequenza di Rete [Hz]",
+      "type": "unlimitedsensor",
+      "value": "0"
+    },
+    "power": {
+      "label": "Potenza Attuale [W]",
+      "style": "display:none;",
+      "type": "unlimitedsensor",
+      "value": "0"
+    },
+    "voltage": {
+      "label": "Tensione [V]",
+      "type": "unlimitedsensor",
+      "value": "0"
+    }
+  },
+  "protocol": "l",
+  "tag": "#energia",
+  "type": "object"
+}

@@ -1,0 +1,193 @@
+/*Copyright 2014-2015 Alex Benfaremo, Alessandro Chelli, Lorenzo Di Berardino, Matteo Di Sabatino*/
+
+/********************************** LICENSE *********************************
+ *                                                                          *
+ * This file is part of ApioOS.                                             *
+ *                                                                          *
+ * ApioOS is free software released under the GPLv2 license: you can        *
+ * redistribute it and/or modify it under the terms of the GNU General      *
+ * Public License version 2 as published by the Free Software Foundation.   *
+ *                                                                          *
+ * ApioOS is distributed in the hope that it will be useful, but            *
+ * WITHOUT ANY WARRANTY; without even the implied warranty of               *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the             *
+ * GNU General Public License version 2 for more details.                   *
+ *                                                                          *
+ * To read the license either open the file COPYING.txt or                  *
+ * visit <http://www.gnu.org/licenses/gpl2.txt>                             *
+ *                                                                          *
+ ****************************************************************************/
+.threebutton_label {
+	text-align: center;
+	margin: 8px 0 10px 0;
+	font-weight: 300;
+}
+
+.full {
+  width: 100%;
+  margin-bottom: 8px !important;
+}
+
+.clicked {
+	border-color: black;
+    background-color: cornsilk;
+}
+
+.title {
+  letter-spacing: -.065em;
+}
+
+.spacer {
+  padding: 25px 0;
+}
+
+.topcoat-button-bar__item > input {
+  border: 0;
+	clip: rect(0 0 0 0);
+	height: 2rem;
+	margin: 0 -2rem -2rem 0;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: auto;
+  opacity: 0.001;
+}
+
+.button-bar,
+.topcoat-button-bar {
+  display: table;
+  table-layout: fixed;
+  white-space: no-wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.topcoat-button-bar__item {
+  display: table-cell;
+  width: auto;
+  border-radius: 0;
+}
+
+.topcoat-button-bar > .topcoat-button-bar__item:first-child {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+
+.topcoat-button-bar > .topcoat-button-bar__item:last-child {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.topcoat-button-bar__item:first-child > .topcoat-button-bar__button {
+  border-right: none;
+}
+
+.topcoat-button-bar__item:last-child > .topcoat-button-bar__button {
+  border-left: none;
+}
+
+.button,
+.topcoat-button-bar__button {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  background-clip: border-box;
+  color: inherit;
+  vertical-align: top;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font: inherit;
+  cursor: default;
+  user-select: none;
+}
+
+.topcoat-button-bar__button {
+  padding: 0 1.25rem;
+  border: 1px solid #a5a8a8;
+  /* Important inheritance to manipulate border radius from parent */
+  border-radius: inherit;
+  background-color: #e5e9e8;
+  -webkit-box-shadow: inset 0 1px #fff;
+  box-shadow: inset 0 1px #fff;
+  color: #454545;
+  text-shadow: 0 1px #fff;
+  line-height: 3rem;
+  outline: none !important;
+}
+
+:checked + .topcoat-button-bar__button,
+.topcoat-button-bar__button:active,
+.topcoat-button-bar__button.is-active {
+  background-color: #d3d7d7;
+  -webkit-box-shadow: inset 0 1px rgba(0,0,0,0.12);
+  box-shadow: inset 0 1px rgba(0,0,0,0.12);
+}
+
+.topcoat-button-bar__item:disabled,
+.topcoat-button-bar__item.is-disabled {
+  opacity: 0.3;
+  cursor: default;
+  pointer-events: none;
+}
+
+.topcoat-button-bar__button:focus, .topcoat-button-bar__button:hover {
+	background-color: #2ecc71;
+    box-shadow: inset 0 1px #a4deb8;
+    text-shadow: 0 1px #a4deb8;
+}
+.topcoat-button-bar__button__active {
+	background-color: #2ecc71;
+    box-shadow: inset 0 1px #a4deb8;
+    text-shadow: 0 1px #a4deb8;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .button_ {
+        width: 70px;
+        height: 70px;
+        line-height: 70px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        padding: 0;
+        border-radius: 2000px;
+        border: solid 1px rgb(88, 170, 220);
+        font-size: 25px;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 1000px) {
+    .button_ {
+        width: 105px;
+        height: 105px;
+        line-height: 100px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        padding: 0;
+        border-radius: 2000px;
+        border: solid 1px rgb(88, 170, 220);
+        font-size: 35px;
+    }
+}
+
+@media (min-width: 1001px) {
+    .button_ {
+        margin: 0;
+        text-align: center;
+        padding: 0;
+        width: 66px;
+        height: 66px;
+        line-height: 66px;
+        border-radius: 2000px;
+        border: solid 1px rgb(88, 170, 220);
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
