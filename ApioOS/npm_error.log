@@ -1,0 +1,4 @@
+npm WARN package.json ApioServer@0.0.0 license should be a valid SPDX license expression
+npm WARN unmet dependency /home/azureuser/ApioOS/node_modules/node-enocean requires serialport@'^2.0.0' but will load
+npm WARN unmet dependency /home/azureuser/ApioOS/node_modules/serialport,
+npm WARN unmet dependency which is version 4.0.7
